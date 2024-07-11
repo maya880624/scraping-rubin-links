@@ -1,0 +1,10 @@
+# Reference: https://www.youtube.com/watch?v=FKkDUW4E2Qc&t=585s
+
+# Steps
+yarn init -y
+yarn add @types/node ts-node typescript -D
+yarn add puppeteer
+
+# in package.json: add - "scripts": {"dev": "ts-node index.ts"}
+
+yarn dev
