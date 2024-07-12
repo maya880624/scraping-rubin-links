@@ -8,3 +8,7 @@ yarn add puppeteer
 # in package.json: add - "scripts": {"dev": "ts-node index.ts"}
 
 yarn dev
+
+# run extract-links.ts
+npx tsc
+node ./dist/extract-links.js
