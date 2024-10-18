@@ -1,0 +1,308 @@
+Skip to content
+
+## Navigation Menu
+
+Toggle navigation
+
+Sign in 
+
+  * Product 
+
+    * Actions
+
+Automate any workflow 
+
+    * Packages
+
+Host and manage packages 
+
+    * Security
+
+Find and fix vulnerabilities 
+
+    * Codespaces
+
+Instant dev environments 
+
+    * GitHub Copilot
+
+Write better code with AI 
+
+    * Code review
+
+Manage code changes 
+
+    * Issues
+
+Plan and track work 
+
+    * Discussions
+
+Collaborate outside of code 
+
+Explore
+    * All features 
+    * Documentation 
+    * GitHub Skills 
+    * Blog 
+
+  * Solutions 
+
+By size
+    * Enterprise 
+    * Teams 
+    * Startups 
+
+By industry
+    * Healthcare 
+    * Financial services 
+    * Manufacturing 
+
+By use case
+    * CI/CD & Automation 
+    * DevOps 
+    * DevSecOps 
+
+  * Resources 
+
+Topics
+    * AI 
+    * DevOps 
+    * Security 
+    * Software Development 
+
+Explore
+    * Learning Pathways 
+    * White papers, Ebooks, Webinars 
+    * Customer Stories 
+    * Partners 
+
+  * Open Source 
+
+    * GitHub Sponsors
+
+Fund open source developers 
+
+    * The ReadME Project
+
+GitHub community articles 
+
+Repositories
+    * Topics 
+    * Trending 
+    * Collections 
+
+  * Enterprise 
+
+    * Enterprise platform
+
+AI-powered developer platform 
+
+Available add-ons
+    * Advanced Security
+
+Enterprise-grade security features 
+
+    * GitHub Copilot
+
+Enterprise-grade AI features 
+
+    * Premium Support
+
+Enterprise-grade 24/7 support 
+
+  * Pricing
+
+
+
+Search or jump to...
+
+# Search code, repositories, users, issues, pull requests...
+
+Search 
+
+Clear
+
+
+
+
+Search syntax tips 
+
+#  Provide feedback 
+
+We read every piece of feedback, and take your input very seriously.
+
+Include my email address so I can be contacted
+
+Cancel  Submit feedback 
+
+#  Saved searches 
+
+## Use saved searches to filter your results more quickly
+
+Name
+
+Query
+
+To see all available qualifiers, see our documentation. 
+
+Cancel  Create saved search 
+
+Sign in 
+
+Sign up  Reseting focus
+
+You signed in with another tab or window. Reload to refresh your session. You signed out in another tab or window. Reload to refresh your session. You switched accounts on another tab or window. Reload to refresh your session. Dismiss alert
+
+{{ message }}
+
+rubin-dp0  / **tutorial-notebooks ** Public
+
+  * Notifications  You must be signed in to change notification settings
+  * Fork 16
+  * Star  31
+
+
+
+
+  * Code
+  * Issues 0
+  * Pull requests 2
+  * Actions
+  * Projects 0
+  * Security
+  * Insights
+
+
+
+Additional navigation options
+
+  * Code 
+  * Issues 
+  * Pull requests 
+  * Actions 
+  * Projects 
+  * Security 
+  * Insights 
+
+
+
+## Files
+
+main
+
+## Breadcrumbs
+
+  1. tutorial-notebooks
+
+
+
+/
+
+# DP02_09_Custom_Coadds
+
+/
+
+## Directory actions
+
+## More options
+
+## Directory actions
+
+## More options
+
+## Latest commit
+
+## History
+
+History
+
+main
+
+## Breadcrumbs
+
+  1. tutorial-notebooks
+
+
+
+/
+
+# DP02_09_Custom_Coadds
+
+/
+
+Top
+
+## Folders and files
+
+NameName
+
+Last commit message
+
+Last commit date  
+  
+### parent directory
+
+..  
+  
+DP02_09a_Custom_Coadd.ipynb
+
+DP02_09a_Custom_Coadd.ipynb  
+  
+DP02_09ab_Custom_Coadd.sh
+
+DP02_09ab_Custom_Coadd.sh  
+  
+DP02_09b_Custom_Coadd_Sources.ipynb
+
+DP02_09b_Custom_Coadd_Sources.ipynb  
+  
+README.md
+
+README.md  
+  
+View all files  
+  
+## README.md
+
+# custom-coadds
+
+**WARNING: The custom coadd notebooks will only run with LSST Science Pipelines version Weekly 2022_40.**
+
+To find out which version of the LSST Science Pipelines you are using, look in the footer bar.
+
+If you are using `w_2022_40`, you may proceed with executing the custom coadd notebooks.
+
+If you are **not** using `w_2022_40` you **must** log out and start a new server:
+
+  1. At top left in the menu bar choose File then Save All and Exit.
+  2. Re-enter the Notebook Aspect.
+  3. At the "Server Options" stage, under "Select uncached image (slower start)" choose `w_2022_40`.
+  4. Note that it might take a few minutes to start your server with an old image.
+
+
+
+In addition to the notebooks in this directory, there is also a shell script version of tutorial notebook 09a plus the portion of notebook 09b that makes sense to run from the command line (`DP02_09ab_Custom_Coadd.sh`). To successfully execute this shell script, you need to launch it from a directory within which you have write permission.
+
+**Why do I need to use an old image for these tutorial notebooks?** In this tutorial and in the future with real LSST data, users will be able to recreate coadds starting with intermediate data products (the warps). On Feb 16 2023, as documented in the Major Updates Log for DP0.2 tutorials, the recommended image of the RSP at data.lsst.cloud was bumped from Weekly 2022_40 to Weekly 2023_07. However, the latest versions of the pipelines are not compatible with the intermediate data products of DP0.2, which were produced in early 2022. To update this tutorial to be able to use Weekly 2023_07, it would have to demonstrate how to recreate coadds _starting with the raw data products_. This is pedagogically undesirable because it does not accurately represent _future workflows_ , which is the goal of DP0.2. Thus, it is recommended that delegates learn how to recreate coadds with Weekly 2022_40.
+
+**Why are these notebooks in their own sub-directory?** For now, notebooks in a sub-directory will not be automatically run and tested with the recommended image, which is good because notebooks 09a and 09b currently fail to run with the recommended image and thus cause warning alarms to go off when they fail during routine testing.
+
+## Footer
+
+© 2024 GitHub, Inc. 
+
+### Footer navigation
+
+  * Terms
+  * Privacy
+  * Security
+  * Status
+  * Docs
+  * Contact
+  * Manage cookies 
+  * Do not share my personal information 
+
+
+
+You can’t perform that action at this time. 

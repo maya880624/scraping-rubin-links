@@ -1,8 +1,11 @@
-const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer');
+import puppeteer from 'puppeteer';
 import * as fs from 'fs';
 import * as path from 'path';
 import { execSync } from 'child_process';
 import { existsSync } from 'fs';
+// import { URL } from 'url';
+import { fileURLToPath, URL } from 'url';
 // Create a directory to store the rubin notebook files
 function createNotebooksDirectory(dataDir) {
     if (!fs.existsSync(dataDir)) {
@@ -40,6 +43,7 @@ const main = async () => {
             .map(anchor => anchor.href)
             .filter(href => href.endsWith('.ipynb') && !href.includes('_ES')))]);
     console.log(ipynbLinks);
+    const __dirname = fileURLToPath(new URL('.', import.meta.url));
     const notebooksPath = path.join(__dirname, 'notebooks');
     const markdownsPath = path.join(__dirname, 'markdowns');
     createNotebooksDirectory(notebooksPath);

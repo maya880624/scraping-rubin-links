@@ -1,0 +1,398 @@
+Skip to content
+
+## Navigation Menu
+
+Toggle navigation
+
+Sign in 
+
+  * Product 
+
+    * Actions
+
+Automate any workflow 
+
+    * Packages
+
+Host and manage packages 
+
+    * Security
+
+Find and fix vulnerabilities 
+
+    * Codespaces
+
+Instant dev environments 
+
+    * GitHub Copilot
+
+Write better code with AI 
+
+    * Code review
+
+Manage code changes 
+
+    * Issues
+
+Plan and track work 
+
+    * Discussions
+
+Collaborate outside of code 
+
+Explore
+    * All features 
+    * Documentation 
+    * GitHub Skills 
+    * Blog 
+
+  * Solutions 
+
+By size
+    * Enterprise 
+    * Teams 
+    * Startups 
+
+By industry
+    * Healthcare 
+    * Financial services 
+    * Manufacturing 
+
+By use case
+    * CI/CD & Automation 
+    * DevOps 
+    * DevSecOps 
+
+  * Resources 
+
+Topics
+    * AI 
+    * DevOps 
+    * Security 
+    * Software Development 
+
+Explore
+    * Learning Pathways 
+    * White papers, Ebooks, Webinars 
+    * Customer Stories 
+    * Partners 
+
+  * Open Source 
+
+    * GitHub Sponsors
+
+Fund open source developers 
+
+    * The ReadME Project
+
+GitHub community articles 
+
+Repositories
+    * Topics 
+    * Trending 
+    * Collections 
+
+  * Enterprise 
+
+    * Enterprise platform
+
+AI-powered developer platform 
+
+Available add-ons
+    * Advanced Security
+
+Enterprise-grade security features 
+
+    * GitHub Copilot
+
+Enterprise-grade AI features 
+
+    * Premium Support
+
+Enterprise-grade 24/7 support 
+
+  * Pricing
+
+
+
+Search or jump to...
+
+# Search code, repositories, users, issues, pull requests...
+
+Search 
+
+Clear
+
+
+
+
+Search syntax tips 
+
+#  Provide feedback 
+
+We read every piece of feedback, and take your input very seriously.
+
+Include my email address so I can be contacted
+
+Cancel  Submit feedback 
+
+#  Saved searches 
+
+## Use saved searches to filter your results more quickly
+
+Name
+
+Query
+
+To see all available qualifiers, see our documentation. 
+
+Cancel  Create saved search 
+
+Sign in 
+
+Sign up  Reseting focus
+
+You signed in with another tab or window. Reload to refresh your session. You signed out in another tab or window. Reload to refresh your session. You switched accounts on another tab or window. Reload to refresh your session. Dismiss alert
+
+{{ message }}
+
+lsst  / **pipelines_lsst_io ** Public
+
+  * Notifications  You must be signed in to change notification settings
+  * Fork 9
+  * Star  11
+
+
+
+
+  * Code
+  * Issues 1
+  * Pull requests 4
+  * Actions
+  * Security
+  * Insights
+
+
+
+Additional navigation options
+
+  * Code 
+  * Issues 
+  * Pull requests 
+  * Actions 
+  * Security 
+  * Insights 
+
+
+
+## Files
+
+main
+
+## Breadcrumbs
+
+  1. pipelines_lsst_io
+
+
+
+/
+
+# conf.py
+
+Blame
+
+Blame
+
+## Latest commit
+
+## History
+
+History
+
+39 lines (31 loc) · 1.04 KB
+
+main
+
+## Breadcrumbs
+
+  1. pipelines_lsst_io
+
+
+
+/
+
+# conf.py
+
+Top
+
+## File metadata and controls
+
+  * Code
+
+  * Blame
+
+
+
+
+39 lines (31 loc) · 1.04 KB
+
+Raw
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+24
+
+25
+
+26
+
+27
+
+28
+
+29
+
+30
+
+31
+
+32
+
+33
+
+34
+
+35
+
+36
+
+37
+
+38
+
+39
+
+"""Sphinx configurations for pipeline_lsst_io.
+
+These configurations are centrally defined in Documenteer
+
+(https://github.com/lsst-sqre/documenteer). Documentation:
+
+https://documenteer.lsst.io/pipelines/configuration.html
+
+"""
+
+from documenteer.conf.pipelines import *
+
+project = "LSST Science Pipelines"
+
+html_theme_options["logotext"] = project
+
+html_title = project
+
+html_short_title = project
+
+# Patch EUPS tag substitutions
+
+rst_epilog = """
+
+.. |eups-tag| replace:: v27_0_0
+
+.. |eups-tag-mono| replace:: ``v27_0_0``
+
+.. |eups-tag-bold| replace:: **v27_0_0**
+
+"""
+
+# Patch EUPS and Git tag context for Jinja templating
+
+jinja_contexts = {
+
+"default": {
+
+"release_eups_tag": "v27_0_0",
+
+"release_git_ref": "27.0.0",
+
+"version": "v27_0_0",
+
+"release": "v27_0_0",
+
+"scipipe_conda_ref": "27.0.0",
+
+"pipelines_demo_ref": "27.0.0",
+
+"newinstall_ref": "27.0.0",
+
+}
+
+}
+
+jira_uri_template = "https://ls.st/{ticket}"
+
+# needed for pipe_base
+
+intersphinx_mapping['networkx'] = ('https://networkx.org/documentation/stable/', None)
+
+## Footer
+
+© 2024 GitHub, Inc. 
+
+### Footer navigation
+
+  * Terms
+  * Privacy
+  * Security
+  * Status
+  * Docs
+  * Contact
+  * Manage cookies 
+  * Do not share my personal information 
+
+
+
+You can’t perform that action at this time. 

@@ -1,0 +1,103 @@
+ts_hexapod
+
+  * Forum
+  * Docs
+  * LSST.org â
+
+
+
+### Navigation
+
+  * next » 
+  * ts_hexapod » 
+
+
+
+# lsst.ts.hexapodÂ¶
+
+## OverviewÂ¶
+
+The Hexapod CSC controls the camera and M2 hexapods on the Simonyi Survey Telescope. Run one instance of the CSC for each hexapod, using index=1 for the camera hexapod and index=2 for the M2 hexapod.
+
+## User GuideÂ¶
+
+Start a Hexapod CSC as follows:
+    
+    
+    run_hexapod.py <index>
+    
+
+where `<index>` is 1 for the camera hexapod, 2 for the M2 hexapod
+
+Then check that the CSC has control of the low-level controller, as follows:
+
+  * Wait for the `connected` event to report `command=True` and `telemetry=True`. This should happen quickly; if it does not then check that the low-level controller is fully booted up and configured to use the correct IP address for the CSC.
+  * Check the `controllerState` event. If it is `state=Offline, offline_substate=PublishOnly`, which is the state the low-level controller wakes up in, then you must use the EUI to change the state.
+  * Check the `commandableByDDS` event. If `state=False` then you must use the EUI to change the control mode.
+
+
+
+### NotesÂ¶
+
+  * To recover from the `FAULT` state (after fixing whatever is wrong) issue the `clearError` command. This will transition to the `STANDBY` state.
+  * The low-level controller maintains the CSC summary state, so the CSC reports a summary state of `OFFLINE` until it receives telemetry from the low-level controller. Thus the CSC may transition from `OFFLINE` to almost any other state as it starts up.
+  * Communication between the low-level controller and CSC is quite unusual:
+    * The low-level controller connects to a TCP/IP _server_ in the CSC. Thus the low-level controller must be configured with the TCP/IP address of the CSC.
+    * The low-level controller does not acknowledge commands in any way. Thus the CSC must try to predict whether the low-level controller can execute a command and reject the command if not. Unfortunately this prediction cannot be completely accurate.
+    * The connection uses two separate sockets, one for commands and the other for telemetry and configuration. Both are one-directional: the low-level controller reads commands on the command socket and writes configuration and telemetry to the telemetry socket.
+
+
+
+### SimulatorÂ¶
+
+The CSC includes a simulation mode. To run using CSCâs internal simulator:
+    
+    
+    run_hexapod.py <index> --simulate
+    
+
+### The Engineering User Interface (EUI)Â¶
+
+Use the Engineering User Interface (EUI) as follows to enable CSC control of the low-level controller:
+
+>   * State must be `state=Offline, offline_substate=Available` or any more enabled state. The low-level controller wakes up in `state=Offline, offline_substate=PublishOnly`, and you must change this before the CSC can control the low-level controller. Change the state on the main panel of the EUI.
+>   * Control mode must be `DDS`. The low-level controller wakes up in control mode `GUI`, and you must change this before the CSC can control the low-level controller. To change the control mode use the `Parameters` panel; note that the EUI _shows_ the control mode on the main panel, but that display is read-only.
+> 
+
+
+## Developer GuideÂ¶
+
+  * Developer Guide
+
+
+
+## Version HistoryÂ¶
+
+  * Version History
+
+
+
+### On this page
+
+  * lsst.ts.hexapod
+    * Overview
+    * User Guide
+      * Notes
+      * Simulator
+      * The Engineering User Interface (EUI)
+    * Developer Guide
+    * Version History
+
+
+
+Page Source Back to Top
+
+Last built Nov 17, 2020. 
+
+Created using Sphinx 1.7.9. Page design is based on Astropy's bootstrap-astropy theme in astropy-helpers.   
+LSST documentation is proudly served through the Fastly CDN. 
+
+© Copyright 2020 LSST contributors.  
+
+
+Financial support for LSST comes from the National Science Foundation (NSF) through Cooperative Agreement No. 1258333, the Department of Energy (DOE) Office of Science under Contract No. DE-AC02-76SF00515, and private funding raised by the LSST Corporation. The NSF-funded LSST Project Office for construction was established as an operating center under management of the Association of Universities for Research in Astronomy (AURA). The DOE-funded effort to build the LSST camera is managed by the SLAC National Accelerator Laboratory (SLAC). 

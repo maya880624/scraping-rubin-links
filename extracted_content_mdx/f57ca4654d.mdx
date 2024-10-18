@@ -1,0 +1,571 @@
+Edition: main
+
+  * Change edition
+
+
+
+Team
+
+  * Onboarding Checklist
+  * Team Culture and Conduct Standards
+  * Tools and external resources
+  * Focus Friday
+  * Meeting Free Weeks
+  * Empowerment of DM team members
+  * Data Release Production
+
+
+
+Communications
+
+  * Slack Culture
+  * Configuring your GitHub username in your Slack profile
+  * Request for comments (RFC)
+  * Request for discussion (RFD)
+  * Policy on DM Confluence Use
+  * Mailing lists
+  * Attending and Presenting at Conferences
+  * Providing Support to the Community
+  * DM Calendars
+
+
+
+Project docs
+
+  * Writing change-controlled documentation
+  * Publishing Papers and Proceedings
+  * Technotes for Stand-Alone Technical Documentation
+  * Test Documentation
+
+
+
+Work
+
+  * DM Development Workflow with Git, GitHub, JIRA and Jenkins
+  * Backporting Tickets to a Release Branch
+  * Project Planning for Software Development
+  * JIRA Agile Usage
+  * JIRA Work Management Recipes
+
+
+
+Code Style Guides
+
+  * Introduction to DMâs Code Style Guides
+  * Software Unit Test Policy
+
+
+
+C++
+
+  * DM C++ Style Guide
+  * Documenting C++ Code
+  * Using clang-format for LSST Development
+  * Unit-Testing Private C++ Functions
+  * Using C++ Templates
+  * Using Boost
+  * Using Eigen
+  * C++ performance profiling
+  * Creating a compilation database
+
+
+
+Python
+
+  * DM Python Style Guide
+  * Formatting Python Code Automatically
+  * Python Unit Testing
+  * Documenting Python APIs with docstrings
+  * Using Astropy
+  * Python performance profiling
+  * Python Command Line Interfaces
+
+
+
+Pybind11
+
+  * DM Pybind11 Style Guide
+  * Python wrappers for C++ with pybind11
+
+
+
+JavaScript
+
+  * Documenting JavaScript APIs with JSDoc
+
+
+
+ReStructuredText
+
+  * ReStructuredText Style Guide
+
+
+
+DM Stack
+
+  * Supported Platforms
+  * Transferring Code Between Packages
+  * Deprecating Interfaces
+  * Logging
+  * Debugging Tasks with `lsstDebug`
+  * Overview of the Stack documentation system
+  * Layout of the doc/ directory
+  * Topic types for package documentation
+  * How to add a package to pipelines.lsst.io
+  * Building single-package documentation locally
+  * Building the pipelines.lsst.io site locally
+  * Building pipelines.lsst.io with Jenkins (sqre/infra/documenteer)
+  * Testing the LSST DM Stack with the Jenkins stack-os-matrix Job
+  * Coverage Analysis
+  * EUPS Tutorial
+  * The LSST Software Build Tool
+  * Adding a New Package to the Build
+  * Making Your Package pip Installable
+  * Moving to GitHub Actions from Travis
+  * Managing license and copyright in Stack packages
+  * Distributing Third-Party Packages with EUPS
+  * Renaming a Stack package
+  * Conda and rubin-env
+
+
+
+Git
+
+  * Git Configuration Standards & Recommendations
+  * Using Git LFS (Large File Storage) for data repositories
+
+
+
+Editors
+
+  * Emacs Configuration for LSST Development
+  * SublimeText Configuration for LSST Development
+  * Vim Configuration for LSST Development
+  * Visual Studio Code Configuration for LSST Development
+
+
+
+Legal
+
+  * Licensing LSST DM source code and content
+  * Copyrights for LSST DM work and the COPYRIGHT file
+
+
+
+User docs
+
+  * User documentation style guide
+
+
+
+IT Overview
+
+  * LSST Information Technology Services Committee (ITSC)
+
+
+
+Jenkins
+
+  * Jenkins rubin-ci.slac.stanford.edu Overview
+
+
+
+IDF
+
+  * Interim Data Facility Overview
+
+
+
+USDF
+
+  * SLAC Onboarding Procedure
+  * S3DF: SLAC Shared Science Data Facility Hosts USDF
+  * SLAC Kubernetes Overview
+  * Data Access: Storage Locations and Butler
+  * Batch Resources
+  * Stack Access
+  * Common Dataset Organization and Policy
+  * Data Access: Object Store
+
+
+
+__LSST DM Developer Guide
+
+  *   * LSST DM Developer Guide
+  * Edit on GitHub
+
+
+
+* * *
+
+# LSST DM Developer GuideÂ¶
+
+This is an internal guide for LSST DM staff during project construction, and for Rubin Observatory Data Production staff in operations. Itâs also openly available so that others can understand how weâre building the LSSTâs data management subsystem. In some cases, other Rubin groups (for example Telescope & Site Software) have chosen to follow various sections as it applies to them.
+
+This guide includes a mix of normative requirements and helpful, descriptive, pages. When itâs particularly important that you closely follow a standard, we include an annotation box at the top of the page.
+
+Any member of DM can contribute to this guide. Itâs published from the https://github.com/lsst-dm/dm_dev_guide GitHub repo. Check out the README to get started.
+
+* * *
+
+**Jump to:** Team Â· Communications Â· Project documentation Â· Work management
+
+**Development guides:** Overview Â· C++ Â· Python Â· Pybind11 Â· JavaScript Â· ReStructuredText Â· DM Stack Â· Git Â· Editors Â· Legal Â· User documentation style
+
+**Services:** Overview Â· Jenkins
+
+* * *
+
+## TeamÂ¶
+
+Basic information about the LSST Data Management Subsystem and our culture. Learn more about the Data Management Subsystem in LDM-294.
+
+  * Onboarding Checklist
+
+  * Team Culture and Conduct Standards
+
+  * Focus Friday
+
+  * Empowerment of DM team members
+
+
+
+
+Team-specific pages:
+
+  * Data Release Production
+
+
+
+
+## CommunicationsÂ¶
+
+How to use DMâs communication channels.
+
+  * Slack Culture
+
+  * Configuring your GitHub username in your Slack profile
+
+  * Request for comments (RFC)
+
+  * Request for discussion (RFD)
+
+  * Policy on DM Confluence Use
+
+  * Attending and Presenting at Conferences
+
+  * Providing Support to the Community
+
+  * DM Calendars
+
+
+
+
+## Project documentationÂ¶
+
+Controlled documentation and publications.
+
+  * Writing change-controlled documentation
+
+  * Publishing Papers and Proceedings
+
+
+
+
+Technical notes.
+
+  * Technotes for Stand-Alone Technical Documentation
+
+  * Test Documentation
+
+
+
+
+## Work managementÂ¶
+
+How DM coordinates work and gets things done.
+
+  * DM Development Workflow with Git, GitHub, JIRA and Jenkins
+
+  * Project Planning for Software Development
+
+  * JIRA Agile Usage
+
+  * JIRA Work Management Recipes
+
+
+
+
+## Development guidesÂ¶
+
+### Overview of Code Style Guides & PoliciesÂ¶
+
+  * Introduction to DMâs Code Style Guides
+
+  * Software Unit Test Policy
+
+
+
+
+### C++Â¶
+
+  * DM C++ Style Guide
+
+  * Documenting C++ Code
+
+  * Using clang-format for LSST Development
+
+  * Unit-Testing Private C++ Functions
+
+  * Using C++ Templates
+
+  * Using Boost
+
+  * Using Eigen
+
+  * C++ performance profiling
+
+  * Creating a compilation database
+
+
+
+
+### PythonÂ¶
+
+  * DM Python Style Guide
+
+  * Formatting Python Code Automatically
+
+  * Python Unit Testing
+
+  * Documenting Python APIs with docstrings
+
+  * Using Astropy
+
+  * Python performance profiling
+
+  * Python Command Line Interfaces
+
+
+
+
+### Pybind11Â¶
+
+  * DM Pybind11 Style Guide
+
+  * Python wrappers for C++ with pybind11
+
+
+
+
+### JavaScriptÂ¶
+
+  * Documenting JavaScript APIs with JSDoc
+
+
+
+
+### ReStructuredTextÂ¶
+
+  * ReStructuredText Style Guide
+
+
+
+
+### DM StackÂ¶
+
+General policies and procedures.
+
+  * Supported Platforms
+
+  * Transferring Code Between Packages
+
+  * Deprecating Interfaces
+
+
+
+
+Development.
+
+  * Building a package with the installed Science Pipelines stack
+
+  * Developing packages on the LSST Science Platform
+
+  * Logging
+
+  * Debugging Tasks with lsstDebug
+
+
+
+
+Documentation.
+
+  * Overview of the Stack documentation system
+
+  * Documentation in packages:
+
+    * Layout of the doc/ directory
+
+    * Topic types for package documentation:
+
+      * Package homepage topic type
+
+      * Module homepage topic type
+
+      * Task topic type
+
+      * Config topic type
+
+      * Command-line script topic type
+
+      * Argparse-based script topic type
+
+      * Generic guide topic type
+
+  * Documentation in the main repository:
+
+    * How to add a package to pipelines.lsst.io
+
+  * Building docs:
+
+    * Building single-package documentation locally
+
+    * Building the pipelines.lsst.io site locally
+
+    * Building pipelines.lsst.io with Jenkins (sqre/infra/documenteer)
+
+
+
+
+Testing.
+
+  * Testing the LSST DM Stack with the Jenkins stack-os-matrix Job
+
+  * Coverage Analysis
+
+
+
+
+Packaging.
+
+  * EUPS Tutorial
+
+  * The LSST Software Build Tool
+
+  * Adding a New Package to the Build
+
+  * Moving to GitHub Actions from Travis
+
+  * Managing license and copyright in Stack packages
+
+  * Distributing Third-Party Packages with EUPS
+
+  * Renaming a Stack package
+
+  * Conda and rubin-env
+
+
+
+
+### GitÂ¶
+
+  * Git Configuration Standards & Recommendations
+
+  * Using Git LFS (Large File Storage) for data repositories
+
+
+
+
+### EditorsÂ¶
+
+Crowd-sourced recommendations for configuring editors for LSST development (listed alphabetically)
+
+  * Emacs Configuration for LSST Development
+
+  * SublimeText Configuration for LSST Development
+
+  * Vim Configuration for LSST Development
+
+  * Visual Studio Code Configuration for LSST Development
+
+
+
+
+### LegalÂ¶
+
+  * Licensing LSST DM source code and content
+
+  * Copyrights for LSST DM work and the COPYRIGHT file
+
+
+
+
+### User documentation styleÂ¶
+
+  * User documentation style guide
+
+  * LSST-specific style guide
+
+  * Writing and structuring documentation for users
+
+
+
+
+## Service guidesÂ¶
+
+### IT overviewÂ¶
+
+  * LSST Information Technology Services Committee (ITSC)
+
+
+
+
+### Jenkins CIÂ¶
+
+  * Jenkins rubin-ci.slac.stanford.edu Overview
+
+
+
+
+### Interim Data FacilityÂ¶
+
+  * Interim Data Facility Overview
+
+
+
+
+### US Data FacilityÂ¶
+
+  * SLAC Onboarding Procedure
+
+  * S3DF: SLAC Shared Science Data Facility Hosts USDF
+
+  * SLAC Kubernetes Overview
+
+  * Data Access: Storage Locations and Butler
+
+  * Batch Resources
+
+  * Stack Access
+
+  * Common Dataset Organization and Policy
+
+  * Data Access: Object Store
+
+
+
+
+Next 
+
+* * *
+
+© Copyright 2016-2023 Association of Universities for Research in Astronomy, Inc. (AURA). 
+
+  
+LSST DM Developer Guide by the LSST Project is licensed under a Creative Commons Attribution 4.0 International License. 
+
+LSST documentation is delivered by Fastly.
+
+Built with Sphinx using a theme provided by Read the Docs. 
+
+Financial support for LSST comes from the National Science Foundation (NSF) through Cooperative Agreement No. 1258333, the Department of Energy (DOE) Office of Science under Contract No. DE-AC02-76SF00515, and private funding raised by the LSST Corporation. The NSF-funded LSST Project Office for construction was established as an operating center under management of the Association of Universities for Research in Astronomy (AURA). The DOE-funded effort to build the LSST camera is managed by the SLAC National Accelerator Laboratory (SLAC).

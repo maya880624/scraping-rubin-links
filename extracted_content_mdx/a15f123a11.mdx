@@ -1,0 +1,698 @@
+Skip to content
+
+## Navigation Menu
+
+Toggle navigation
+
+Sign in 
+
+  * Product 
+
+    * Actions
+
+Automate any workflow 
+
+    * Packages
+
+Host and manage packages 
+
+    * Security
+
+Find and fix vulnerabilities 
+
+    * Codespaces
+
+Instant dev environments 
+
+    * GitHub Copilot
+
+Write better code with AI 
+
+    * Code review
+
+Manage code changes 
+
+    * Issues
+
+Plan and track work 
+
+    * Discussions
+
+Collaborate outside of code 
+
+Explore
+    * All features 
+    * Documentation 
+    * GitHub Skills 
+    * Blog 
+
+  * Solutions 
+
+By size
+    * Enterprise 
+    * Teams 
+    * Startups 
+
+By industry
+    * Healthcare 
+    * Financial services 
+    * Manufacturing 
+
+By use case
+    * CI/CD & Automation 
+    * DevOps 
+    * DevSecOps 
+
+  * Resources 
+
+Topics
+    * AI 
+    * DevOps 
+    * Security 
+    * Software Development 
+
+Explore
+    * Learning Pathways 
+    * White papers, Ebooks, Webinars 
+    * Customer Stories 
+    * Partners 
+
+  * Open Source 
+
+    * GitHub Sponsors
+
+Fund open source developers 
+
+    * The ReadME Project
+
+GitHub community articles 
+
+Repositories
+    * Topics 
+    * Trending 
+    * Collections 
+
+  * Enterprise 
+
+    * Enterprise platform
+
+AI-powered developer platform 
+
+Available add-ons
+    * Advanced Security
+
+Enterprise-grade security features 
+
+    * GitHub Copilot
+
+Enterprise-grade AI features 
+
+    * Premium Support
+
+Enterprise-grade 24/7 support 
+
+  * Pricing
+
+
+
+Search or jump to...
+
+# Search code, repositories, users, issues, pull requests...
+
+Search 
+
+Clear
+
+
+
+
+Search syntax tips 
+
+#  Provide feedback 
+
+We read every piece of feedback, and take your input very seriously.
+
+Include my email address so I can be contacted
+
+Cancel  Submit feedback 
+
+#  Saved searches 
+
+## Use saved searches to filter your results more quickly
+
+Name
+
+Query
+
+To see all available qualifiers, see our documentation. 
+
+Cancel  Create saved search 
+
+Sign in 
+
+Sign up  Reseting focus
+
+You signed in with another tab or window. Reload to refresh your session. You signed out in another tab or window. Reload to refresh your session. You switched accounts on another tab or window. Reload to refresh your session. Dismiss alert
+
+{{ message }}
+
+lsst  / **dp0-2_lsst_io ** Public
+
+  * Notifications  You must be signed in to change notification settings
+  * Fork 0
+  * Star  2
+
+
+
+
+  * Code
+  * Issues 0
+  * Pull requests 0
+  * Actions
+  * Projects 0
+  * Security
+  * Insights
+
+
+
+Additional navigation options
+
+  * Code 
+  * Issues 
+  * Pull requests 
+  * Actions 
+  * Projects 
+  * Security 
+  * Insights 
+
+
+
+## Files
+
+main
+
+## Breadcrumbs
+
+  1. dp0-2_lsst_io
+
+
+
+/
+
+# conf.py
+
+Blame
+
+Blame
+
+## Latest commit
+
+## History
+
+History
+
+121 lines (98 loc) · 4.33 KB
+
+main
+
+## Breadcrumbs
+
+  1. dp0-2_lsst_io
+
+
+
+/
+
+# conf.py
+
+Top
+
+## File metadata and controls
+
+  * Code
+
+  * Blame
+
+
+
+
+121 lines (98 loc) · 4.33 KB
+
+Raw
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+17
+
+18
+
+19
+
+20
+
+21
+
+22
+
+23
+
+24
+
+25
+
+26
+
+27
+
+28
+
+29
+
+30
+
+31
+
+32
+
+33
+
+34
+
+35
+
+36
+
+37
+
+38
+
+39
+
+40
+
+41
+
+42
+
+43
+
+44
+
+45
+
+46
+
+47
+
+48
+
+49
+
+50
+
+51
+
+52
+
+53
+
+54
+
+55
+
+56
+
+57
+
+58
+
+59
+
+60
+
+61
+
+62
+
+63
+
+64
+
+65
+
+66
+
+67
+
+68
+
+69
+
+70
+
+71
+
+72
+
+73
+
+74
+
+75
+
+76
+
+77
+
+78
+
+79
+
+80
+
+81
+
+82
+
+83
+
+84
+
+85
+
+86
+
+87
+
+88
+
+89
+
+90
+
+91
+
+92
+
+93
+
+94
+
+95
+
+96
+
+97
+
+98
+
+99
+
+100
+
+101
+
+102
+
+103
+
+104
+
+105
+
+106
+
+107
+
+108
+
+109
+
+110
+
+111
+
+112
+
+113
+
+114
+
+115
+
+116
+
+117
+
+118
+
+119
+
+120
+
+121
+
+# Configuration file for the Sphinx documentation builder.
+
+#
+
+# This file only contains a selection of the most common options. For a full
+
+# list see the documentation:
+
+# https://www.sphinx-doc.org/en/master/usage/configuration.html
+
+# -- Path setup --------------------------------------------------------------
+
+# If extensions (or modules to document with autodoc) are in another directory,
+
+# add these directories to sys.path here. If the directory is relative to the
+
+# documentation root, use os.path.abspath to make it absolute, like shown here.
+
+#
+
+# import os
+
+import sys
+
+# sys.path.insert(0, os.path.abspath('.'))
+
+import lsst_sphinx_bootstrap_theme
+
+# -- Project information -----------------------------------------------------
+
+project = 'Vera C. Rubin Observatory Documentation for Data Preview 0.2'
+
+copyright = '2022, Vera C. Rubin Observatory'
+
+author = 'Vera C. Rubin Observatory'
+
+# -- General configuration ---------------------------------------------------
+
+# Add any Sphinx extension module names here, as strings. They can be
+
+# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
+
+# ones.
+
+extensions = [
+
+"sphinx.ext.intersphinx",
+
+"sphinx.ext.todo",
+
+"documenteer.sphinxext",
+
+]
+
+# List of patterns, relative to source directory, that match files and
+
+# directories to ignore when looking for source files.
+
+# This pattern also affects html_static_path and html_extra_path.
+
+exclude_patterns = [
+
+"_build",
+
+"README.rst",
+
+".venv",
+
+"venv",
+
+"project/templates/template-folder",
+
+]
+
+# Intersphinx
+
+intersphinx_mapping = {
+
+# 'python': ('https://docs.python.org/3/', None),
+
+}
+
+# -- Options for linkcheck builder ----------------------------------------
+
+linkcheck_retries = 2
+
+linkcheck_timeout = 15 # seconds
+
+linkcheck_ignore = [
+
+r"^https://arxiv.org/pdf/.*#",
+
+r"^http://localhost",
+
+r"^http://www.star.bris.ac.uk/~mbt/topcat/", # site temporarily down
+
+r"^https://www.star.bris.ac.uk/~mbt/topcat/", # site temporarily down
+
+r"^https://www.star.bris.ac.uk/~mbt/topcat/sun253/sun253.html#subsetDef", # site temporarily down
+
+r"https://ui.adsabs.harvard.edu/abs/2014SPIE.9150E..14C/abstract", # ADS issue presumed temporary
+
+r"https://www.ivoa.net/", r"https://ivoa.net/", # links too slow 
+
+r"https://www.ivoa.net/documents/SIA/20150730/index.html",
+
+r"https://www.ivoa.net/documents/ADQL/",
+
+r"https://www.ivoa.net/documents/ADQL/20180112/PR-ADQL-2.1-20180112.html",
+
+r"https://www.ivoa.net/documents/ObsCore/",
+
+r"https://www.ivoa.net/documents/SODA/20170517/index.html",
+
+r"https://www.ivoa.net/documents/VOSpace/",
+
+r"https://www.ivoa.net/documents/latest/ConeSearch.html", 
+
+r"https://www.ivoa.net/documents/TAP/20190927/index.html", 
+
+r"https://www.ivoa.net/documents/latest/ADQL.html",
+
+r"https://aladin.u-strasbg.fr/hips/",
+
+r"https://dp0-2.lsst.io/_static/nb_html/*"
+
+]
+
+# -- Options for HTML output -------------------------------------------------
+
+# Add any paths that contain templates here, relative to this directory.
+
+templates_path = [
+
+# '_templates',
+
+lsst_sphinx_bootstrap_theme.get_html_templates_path()
+
+]
+
+# The theme to use for HTML and HTML Help pages. See the documentation for
+
+# a list of builtin themes.
+
+html_theme = "lsst_sphinx_bootstrap_theme"
+
+html_theme_path = [lsst_sphinx_bootstrap_theme.get_html_theme_path()]
+
+html_context = {
+
+# Enable "Edit in GitHub" link
+
+"display_github": True,
+
+# https://{{ github_host|default("github.com") }}/{{ github_user }}/
+
+# {{ github_repo }}/blob/
+
+# {{ github_version }}{{ conf_py_path }}{{ pagename }}{{ suffix }}
+
+"github_user": "lsst",
+
+"github_repo": "dp0-2_lsst_io",
+
+"conf_py_path": "",
+
+# TRAVIS_BRANCH is available in CI, but master is a safe default
+
+"github_version": "main" + "/",
+
+}
+
+# Theme options are theme-specific and customize the look and feel of a theme
+
+# further. For a list of options available for each theme, see the
+
+# documentation.
+
+html_theme_options = {"logotext": project}
+
+# The name for this set of Sphinx documents.
+
+html_title = project
+
+# A shorter title for the navigation bar.
+
+html_short_title = project
+
+# Add any paths that contain custom static files (such as style sheets) here,
+
+# relative to this directory. They are copied after the builtin static files,
+
+# so a file named "default.css" will overwrite the builtin "default.css".
+
+html_static_path = ['_static']
+
+## Footer
+
+© 2024 GitHub, Inc. 
+
+### Footer navigation
+
+  * Terms
+  * Privacy
+  * Security
+  * Status
+  * Docs
+  * Contact
+  * Manage cookies 
+  * Do not share my personal information 
+
+
+
+You can’t perform that action at this time. 

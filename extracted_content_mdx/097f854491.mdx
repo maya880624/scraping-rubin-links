@@ -1,0 +1,1214 @@
+# Catalog Queries with the TAP Service
+
+<img align="left" src = https://project.lsst.org/sites/default/files/Rubin-O-Logo_0.png width=250 style="padding: 10px">
+<br>
+Contact authors: Leanne Guy and Melissa Graham <br>
+Last verified to run: 2024-07-28 <br>
+LSST Science Pipelines version: Weekly 2024_16 <br>
+Container Size: medium <br>
+Targeted learning level: intermediate <br>
+
+**Description:** Execute complex ADQL queries with the TAP service. Visualize catalog data sets.
+
+**Skills:** Use advanced ADQL and TAP functionality. Visualize retrieved datasets with bokeh and holoviews.
+
+**LSST Data Products:** Object, ForcedSource, CcdVisit tables.
+
+**Packages:** lsst.rsp, bokeh, pandas
+
+**Credit:**
+Originally developed by Leanne Guy in the context of the Rubin DP0.1.
+
+**Get Support:**
+Find DP0-related documentation and resources at <a href="https://dp0.lsst.io">dp0.lsst.io</a>. Questions are welcome as new topics in the <a href="https://community.lsst.org/c/support/dp0">Support - Data Preview 0 Category</a> of the Rubin Community Forum. Rubin staff will respond to all questions posted there.
+
+## 1. Introduction
+
+This notebook provides an intermediate-level demonstration of how to use the Table Access Protocol (TAP) server and ADQL (Astronomy Data Query Language) to query and retrieve data from the DP0.2 catalogs.
+
+TAP provides standardized access to catalog data for discovery, search, and retrieval.
+Full <a href="http://www.ivoa.net/documents/TAP">documentation for TAP</a> is provided by the International Virtual Observatory Alliance (IVOA).
+ADQL is similar to SQL (Structured Query Langage).
+The <a href="http://www.ivoa.net/documents/latest/ADQL.html">documentation for ADQL</a> includes more information about syntax and keywords.
+Note that not all ADQL functionality is supported yet in the DP0-era RSP.
+
+**See the recommendations for TAP queries in DP0.2 tutorial 02a "Introduction to the TAP Service".**
+
+The [documentation for Data Preview 0.2](https://dp0-2.lsst.io/) includes definitions
+of the data products, descriptions of catalog contents, and ADQL recipes.
+
+### 1.1. Package imports
+
+Import general python packages, the Rubin TAP service utilities, and bokeh and holoviews for interactive visualization.
+
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas
+
+from astropy import units as u
+from astropy.coordinates import SkyCoord
+
+import bokeh
+from bokeh.io import output_file, output_notebook, show
+from bokeh.layouts import gridplot
+from bokeh.models import ColumnDataSource, CDSView, GroupFilter, HoverTool
+from bokeh.plotting import figure
+from bokeh.transform import factor_cmap
+
+import holoviews as hv
+
+from lsst.rsp import get_tap_service, retrieve_query
+```
+
+### 1.2. Define functions and parameters
+
+Instantiate the TAP service.
+
+
+```python
+service = get_tap_service("tap")
+assert service is not None
+```
+
+Set the maximum number of rows to display from pandas.
+
+
+```python
+pandas.set_option('display.max_rows', 6)
+```
+
+Configure bokeh to generate output in notebook cells when show() is called.
+
+
+```python
+output_notebook()
+```
+
+Create dictionaries for standard symbols, colors, and labels to use when
+plotting data in the six LSST filters.
+
+
+```python
+plot_filter_labels = ['u', 'g', 'r', 'i', 'z', 'y']
+plot_filter_colors = {'u': '#56b4e9', 'g': '#008060', 'r': '#ff4000',
+                      'i': '#850000', 'z': '#6600cc', 'y': '#000000'}
+plot_filter_symbols = {'u': 'o', 'g': '^', 'r': 'v', 'i': 's', 'z': '*', 'y': 'p'}
+```
+
+## 2. Column manipulation
+
+Define the coordinates and radius to use for the example queries in Sections 2 and 3.
+
+
+```python
+center_ra = 62
+center_dec = -37
+radius = 0.01
+
+str_center_coords = str(center_ra) + ", " + str(center_dec)
+str_radius = str(radius)
+```
+
+Start with the same query as used in the beginner TAP tutorial notebook 02a.
+
+
+```python
+query = "SELECT coord_ra, coord_dec "\
+        "FROM dp02_dc2_catalogs.Object "\
+        "WHERE CONTAINS(POINT('ICRS', coord_ra, coord_dec), "\
+        "CIRCLE('ICRS', " + str_center_coords + ", " + str_radius + ")) = 1 "\
+        "AND detect_isPrimary = 1"
+print(query)
+```
+
+Run the query job asynchronously.
+
+
+```python
+job = service.submit_job(query)
+job.run()
+job.wait(phases=['COMPLETED', 'ERROR'])
+print('Job phase is', job.phase)
+```
+
+Return the results as a `pandas` dataframe.
+
+
+```python
+results = job.fetch_result().to_table().to_pandas()
+print(len(results))
+```
+
+Display `results`.
+
+
+```python
+results
+```
+
+Clean up.
+
+
+```python
+job.delete()
+del query, results
+```
+
+### 2.1. Rename columns
+
+Columns can be renamed by using `AS`.
+For example, use the same query as above but rename `coord_ra` and `coord_dec` 
+as `ra` and `dec`.
+
+
+```python
+query = "SELECT coord_ra AS ra, "\
+        "coord_dec AS dec "\
+        "FROM dp02_dc2_catalogs.Object "\
+        "WHERE CONTAINS(POINT('ICRS', coord_ra, coord_dec), "\
+        "CIRCLE('ICRS', " + str_center_coords + ", " + str_radius + ")) = 1 "\
+        "AND detect_isPrimary = 1"
+print(query)
+```
+
+
+```python
+job = service.submit_job(query)
+job.run()
+job.wait(phases=['COMPLETED', 'ERROR'])
+print('Job phase is', job.phase)
+```
+
+
+```python
+results = job.fetch_result().to_table().to_pandas()
+print(len(results))
+```
+
+
+```python
+results
+```
+
+Above, see the columns have been renamed in the `results` dataframe.
+
+
+```python
+job.delete()
+del query, results
+```
+
+### 2.2. Apply functions
+
+A variety of mathematical, trigonometrical, and geometrical functions can be applied to columns,
+with the results stored as columns in the returned array.
+See the [ADQL documentation](https://www.ivoa.net/documents/latest/ADQL.html) for the full list.
+
+Below, use the same query as above but convert the coordinates from degrees to radians,
+and rename the columns `ra_radians` and `dec_radians`.
+
+
+```python
+query = "SELECT RADIANS(coord_ra) AS ra_radians, "\
+        "RADIANS(coord_dec) AS dec_radians "\
+        "FROM dp02_dc2_catalogs.Object "\
+        "WHERE CONTAINS(POINT('ICRS', coord_ra, coord_dec), "\
+        "CIRCLE('ICRS', " + str_center_coords + ", " + str_radius + ")) = 1 "\
+        "AND detect_isPrimary = 1"
+print(query)
+```
+
+
+```python
+job = service.submit_job(query)
+job.run()
+job.wait(phases=['COMPLETED', 'ERROR'])
+print('Job phase is', job.phase)
+```
+
+
+```python
+results = job.fetch_result().to_table().to_pandas()
+print(len(results))
+```
+
+
+```python
+results
+```
+
+
+```python
+job.delete()
+del query, results
+```
+
+### 2.3. Convert fluxes to magnitudes
+
+Photometric measurements for LSST objects are stored in the catalogs as fluxes with units of nanoJanskys (nJy).
+
+The conversion from nJy to [AB magnitude](https://en.wikipedia.org/wiki/AB_magnitude) is
+$m_{\rm AB} = -2.5 \log(f_{\rm nJy}) + 31.4$.
+
+> **Warning:** Photometric measurements performed on difference images (images for which a "template" or "reference" image
+> of the same field has been subtracted) can be negative. Take care if converting fluxes from catalogs that are the result of difference image analysis (DIA).
+
+A function has been created to return fluxes as AB magnitudes: `scisql_nanojanskyToAbMab`.
+
+The query below converts the $g$-band `cModelFlux` to the $g$-band AB magnitude two ways,
+first using the equation (`gmag1`) and also using the function (`gmag2`), and the function
+for the error.
+See Section 5.1 for a description of the `cModel` flux.
+
+
+```python
+query = "SELECT coord_ra, coord_dec, "\
+        "-2.5 * LOG10(g_cModelFlux) + 31.4 AS gmag1, "\
+        "scisql_nanojanskyToAbMag(g_cModelFlux) AS gmag2, "\
+        "scisql_nanojanskyToAbMagSigma(g_cModelFlux, g_cModelFluxErr) AS gmag2err "\
+        "FROM dp02_dc2_catalogs.Object "\
+        "WHERE CONTAINS(POINT('ICRS', coord_ra, coord_dec), "\
+        "CIRCLE('ICRS', " + str_center_coords + ", " + str_radius + ")) = 1 "\
+        "AND detect_isPrimary = 1"
+print(query)
+```
+
+
+```python
+job = service.submit_job(query)
+job.run()
+job.wait(phases=['COMPLETED', 'ERROR'])
+print('Job phase is', job.phase)
+```
+
+
+```python
+results = job.fetch_result().to_table().to_pandas()
+print(len(results))
+```
+
+
+```python
+results
+```
+
+
+```python
+job.delete()
+del query, results
+```
+
+### 2.4. Retrieve derived columns
+
+Here, a "derived column" refers to a column which has been create from other columns.
+
+The query below retrives the $gri$-band AB magnitudes, and
+derives the $g-r$ and $r-i$ colors and returns them as separate columns `grclr` and `riclr`.
+
+It is the convention in astronomy to defined colors as the subtraction of the magnitudes, $c = m_1 - m_2$, not the fluxes.
+It is also the convention that the longer-wavelength filter is always subtracted from shorter-wavelength filter.
+In this convention, $m_1 - m_2 = c > 0$ indicates a "redder" object, and $c < 0$ is a "bluer" object.
+
+
+```python
+query = "SELECT scisql_nanojanskyToAbMag(g_cModelFlux) AS gmag, "\
+        "scisql_nanojanskyToAbMag(r_cModelFlux) AS rmag, "\
+        "scisql_nanojanskyToAbMag(i_cModelFlux) AS imag, "\
+        "scisql_nanojanskyToAbMag(g_cModelFlux) - "\
+        "scisql_nanojanskyToAbMag(r_cModelFlux) AS grclr, "\
+        "scisql_nanojanskyToAbMag(r_cModelFlux) - "\
+        "scisql_nanojanskyToAbMag(i_cModelFlux) AS riclr "\
+        "FROM dp02_dc2_catalogs.Object "\
+        "WHERE CONTAINS(POINT('ICRS', coord_ra, coord_dec), "\
+        "CIRCLE('ICRS', " + str_center_coords + ", " + str_radius + ")) = 1 "\
+        "AND detect_isPrimary = 1"
+print(query)
+```
+
+
+```python
+job = service.submit_job(query)
+job.run()
+job.wait(phases=['COMPLETED', 'ERROR'])
+print('Job phase is', job.phase)
+```
+
+
+```python
+results = job.fetch_result().to_table().to_pandas()
+print(len(results))
+```
+
+
+```python
+results
+```
+
+Create a scatter plot to show the colors. Plot horizontal and vertical line at color 0.
+
+
+```python
+fig = plt.figure(figsize=(4, 3))
+plt.plot(results['grclr'], results['riclr'],
+         'o', mew=0, ms=3, alpha=0.5, color='black')
+plt.axvline(0.0, lw=1, color='grey')
+plt.axhline(0.0, lw=1, color='grey')
+plt.xlim([-1, 2])
+plt.ylim([-2, 2])
+plt.xlabel('g-r color')
+plt.ylabel('r-i color')
+plt.show()
+```
+
+Figure 1: A color-color scatter plot with $g-r$ on the x-axis and $r-i$ on the y-axis.
+
+
+```python
+job.delete()
+del query, results
+```
+
+## 3. Column constraints
+
+In the query above, two constraints are used: the spatial constraint that a catalog object's
+coordinates must be within a certain radius of a defined point of interest, and that the
+object's `detect_isPrimary` flag must be `True`.
+
+This section demonstrates other types of column constraints.
+
+### 3.1. Comparison operators
+
+In the queries above, on the `=` operator is used,
+but others are available, e.g., `!=`, `<`, `>`, `<=`, and `>=`.
+
+Rewrite `detect_isPrimary = ` as `detect_isPrimary != 0`,
+and add a constraint that the $i$-band magnitude is less than or equal to 25 mag.
+
+
+```python
+query = "SELECT scisql_nanojanskyToAbMag(g_cModelFlux) AS gmag, "\
+        "scisql_nanojanskyToAbMag(r_cModelFlux) AS rmag, "\
+        "scisql_nanojanskyToAbMag(i_cModelFlux) AS imag "\
+        "FROM dp02_dc2_catalogs.Object "\
+        "WHERE CONTAINS(POINT('ICRS', coord_ra, coord_dec), "\
+        "CIRCLE('ICRS', " + str_center_coords + ", " + str_radius + ")) = 1 "\
+        "AND detect_isPrimary != 0 "\
+        "AND scisql_nanojanskyToAbMag(i_cModelFlux) <= 25"
+print(query)
+```
+
+
+```python
+job = service.submit_job(query)
+job.run()
+job.wait(phases=['COMPLETED', 'ERROR'])
+print('Job phase is', job.phase)
+```
+
+
+```python
+results = job.fetch_result().to_table().to_pandas()
+print(len(results))
+```
+
+Above, see that adding the magnitude constraint has decreased the number of rows returned by the query.
+
+
+```python
+# results
+```
+
+
+```python
+job.delete()
+del query, results
+```
+
+### 3.2. Operators applied to functions
+
+The `DISTANCE` function will return the distance, in degrees, between two points.
+
+Use the coordinates of one of the objects returned by the queries above to 
+define a point: `POINT('ICRS', 61.989258, -37.005119))`.
+Retrieve the distance of every other returned object from this object as `dist`.
+
+To furthermore demonstrate that operators can be used in both the `SELECT` and `WHERE`
+statements of an ADQL query, apply a constraint that objects must be less
+than 0.005 degrees away from the defined point.
+
+Sort the results based on `dist` by including an `ORDER BY` statement.
+
+
+```python
+query = "SELECT coord_ra, coord_dec, "\
+        "DISTANCE(POINT('ICRS', coord_ra, coord_dec), "\
+        "POINT('ICRS', 61.989258, -37.005119)) AS dist "\
+        "FROM dp02_dc2_catalogs.Object "\
+        "WHERE CONTAINS(POINT('ICRS', coord_ra, coord_dec), "\
+        "CIRCLE('ICRS', " + str_center_coords + ", " + str_radius + ")) = 1 "\
+        "AND detect_isPrimary = 1 "\
+        "AND DISTANCE(POINT('ICRS', coord_ra, coord_dec), "\
+        "POINT('ICRS', 61.989258, -37.005119)) < 0.005 "\
+        "ORDER BY dist ASC"
+print(query)
+```
+
+
+```python
+job = service.submit_job(query)
+job.run()
+job.wait(phases=['COMPLETED', 'ERROR'])
+print('Job phase is', job.phase)
+```
+
+
+```python
+results = job.fetch_result().to_table().to_pandas()
+print(len(results))
+```
+
+
+```python
+results
+```
+
+Above, see that the first row has a very very small distance (a rounding error) from
+the defined point because it is the same object as was used to define the point.
+
+
+```python
+job.delete()
+del query, results
+```
+
+### 3.3. Use of `WHERE ... BETWEEN ... AND ...`
+
+A constraint that one columns value is between two other columns' values
+can be applied with a statement like `<col1> BETWEEN <col2> AND <col3>`.
+The order matters.
+The statement `WHERE a BETWEEN b AND c` means $b < a < c$.
+Whereas `WHERE a BETWEEN c AND b` means $c < a < b$.
+
+Create a query with the constraint that the $r$-band `cModelFlux` value
+is in between the $g$- and $i$-band fluxes: $g < r < i$.
+This query will return red objects which have more flux in the redward filters ($r$ and $i$).
+
+
+```python
+query = "SELECT scisql_nanojanskyToAbMag(g_cModelFlux) AS gmag, "\
+        "scisql_nanojanskyToAbMag(r_cModelFlux) AS rmag, "\
+        "scisql_nanojanskyToAbMag(i_cModelFlux) AS imag "\
+        "FROM dp02_dc2_catalogs.Object "\
+        "WHERE CONTAINS(POINT('ICRS', coord_ra, coord_dec), "\
+        "CIRCLE('ICRS', " + str_center_coords + ", " + str_radius + ")) = 1 "\
+        "AND detect_isPrimary = 1 "\
+        "AND r_cModelFlux BETWEEN g_cModelFlux AND i_cModelFlux"
+print(query)
+```
+
+
+```python
+job = service.submit_job(query)
+job.run()
+job.wait(phases=['COMPLETED', 'ERROR'])
+print('Job phase is', job.phase)
+```
+
+
+```python
+results = job.fetch_result().to_table().to_pandas()
+print(len(results))
+```
+
+With `pandas` dataframes, columns can be derived from other columns after the TAP query.
+
+Create columns for the $g-r$ and $r-i$ colors.
+
+
+```python
+results['grclr'] = results['gmag'] - results['rmag']
+results['riclr'] = results['rmag'] - results['imag']
+```
+
+
+```python
+# results
+```
+
+Create a color-color scatter plot, as in Section 2.4.
+
+
+```python
+fig = plt.figure(figsize=(4, 3))
+plt.plot(results['grclr'], results['riclr'],
+         'o', mew=0, ms=3, alpha=0.5, color='black')
+plt.axvline(0.0, lw=1, color='grey')
+plt.axhline(0.0, lw=1, color='grey')
+plt.xlim([-1, 2])
+plt.ylim([-2, 2])
+plt.xlabel('g-r color')
+plt.ylabel('r-i color')
+plt.show()
+```
+
+Figure 2: The same as Figure 1, but only for objects with fluxes $f_g < f_r < f_i$,
+In other words, only "red" objects with $m_g - m_r > 0$ and $m_r - m_i > 0$.
+
+
+```python
+job.delete()
+del query, results
+```
+
+### 3.4. Use of `WHERE ... IN (...)`
+
+The constraint option of `WHERE <col1> IN (value1, value2, value3)` is
+a simpler way of doing, e.g., 
+`WHERE <col1> = value1 OR <col1> = value2 OR <col1 = value3`.
+
+A scenario where the `WHERE ... IN ()` constraint might be used is when a
+colleague has provided a list of `objectId` that they have identified as
+targets of interest, and only the rows for those objects are desired.
+
+For example, the `objectId` for 12 objects which were identified as bright stars with similar
+$g-r$ and $i-z$ colors are used to define `id_array`.
+In the scenario where a colleague provided the list of `objectId`, the array
+could have been read in from a file.
+
+
+```python
+id_array = np.asarray((1249537790362809267, 1252528461990360512, 1248772530269893180,
+                       1251728017525343554, 1251710425339299404, 1250030371572068167,
+                       1253443255664678173, 1251807182362538413, 1252607626827575504,
+                       1249784080967440401, 1253065023664713612, 1325835101237446771),
+                     dtype='long')
+```
+
+
+```python
+id_list = "(" + ", ".join(str(value) for value in id_array) + ")"
+```
+
+
+```python
+print(id_list)
+```
+
+The query below retrieves the $griz$ `psfFlux` values, converted to AB magnitudes.
+The PSF fluxes are retrieved instead of `cModel` fluxes because these objects were
+already identified as stars, point sources, and so fluxes which assume the object
+has the shape of the point spread function (PSF) are appropriate.
+
+> **Warning:** Very long lists (tens of thousands) can be problematic for the TAP service, and are best avoided.
+
+
+```python
+query = "SELECT objectId, "\
+        "scisql_nanojanskyToAbMag(g_psfFlux) AS gmag, "\
+        "scisql_nanojanskyToAbMag(r_psfFlux) AS rmag, "\
+        "scisql_nanojanskyToAbMag(r_psfFlux) AS imag, "\
+        "scisql_nanojanskyToAbMag(i_psfFlux) AS zmag "\
+        "FROM dp02_dc2_catalogs.Object "\
+        "WHERE objectId IN " + id_list
+print(query)
+```
+
+
+```python
+job = service.submit_job(query)
+job.run()
+job.wait(phases=['COMPLETED', 'ERROR'])
+print('Job phase is', job.phase)
+```
+
+
+```python
+results = job.fetch_result().to_table().to_pandas()
+print(len(results))
+```
+
+
+```python
+results
+```
+
+
+```python
+job.delete()
+del query, results
+```
+
+## 4. Table joins
+
+Tables can be joined when they have an index or identifier column in common.
+
+There are four main types of table joins in ADQL/SQL:
+ * inner: will return rows that appear in both tables and meet constraints (intersection set)
+ * outer: will return rows from either table that meet constraints (union set)
+ * left: will return rows from the first table that meet constraints, plus matching rows from the second table
+ * right: will return rows from the second table that meet constraints, plus matching rows from the first table
+
+When `JOIN` is used in an ADQL query, it is an inner join by default.
+
+**Generic example:**
+To include a table join in an ADQL query requires the specification of which column to be "joined on".
+For example, the query below retrieves all rows from "table1" that are within
+0.002 degrees of coordinates 62.123, -37.456, but only if there is a row
+in "table2" which has the same value of `id` (i.e., an inner join, which is default). 
+Columns `mag` and `band` from "table2" are also returned for these matching rows.
+
+```
+SELECT t1.id, t1.ra, t1.dec, t2.mag, t2.band
+FROM catalog.table1 AS t1
+JOIN catalog.table2 AS t2 ON t1.id = t2.id
+WHERE CONTAINS(POINT('IRCS', t1.ra, t1.dec), CIRCLE('ICRS', 62.123, -37.456 0.002)) = 1
+```
+
+**Object and Source examples:**
+a join between the DP0.2 `Object` and `ForcedSource` tables
+is demonstrated in Section 4.1.
+
+**Difference Image Analysis (DIA) examples:**
+table joins to create difference-image lightcurves for transient
+and variable objects are demonstrated in DP0.2 tutorial notebooks 07a and 07b.
+
+**DP0.2 Truth Match examples:**
+table joins with the DP0.2 `MatchesTruth` and `TruthSummary` tables are
+demonstrated in DP0.2 tutorial notebook 08.
+
+### 4.1. Variable star lightcurve
+
+A common reason for a table join with DP0.2 is to create lightcurves.
+
+Examples of common joins:
+ * `Object` and `ForcedSource` tables on column `objectId`
+ * `Source` or `ForcedSource` and `CcdVisit` tables on column `ccdVisitId`
+
+Recall the contents of these tables:
+ * `Source` table: measurements for detections in the processed visit images (PVIs)
+ * `Object` table: measurements for detections in the deeply stacked images (coadds)
+ * `ForcedSource` table: forced photometry on the PVIs at the location of all `Object`s
+ * `CcdVisit` table: PVI metadata such a filter, date, exposure time
+
+Note that the `Source` table cannot be joined with the `ForcedSource` or `Object` tables,
+because it is the result of independent processing.
+
+First, define the coordinates of a known RR Lyrae variable star.
+Use a search radius of $\sim2$".
+
+
+```python
+target_ra = 62.1479031
+target_dec = -35.799138
+radius = 0.0006
+
+str_target_coords = str(target_ra) + ", " + str(target_dec)
+str_radius = str(radius)
+```
+
+#### 4.1.1. Single-table query to find the objectId
+
+Find the `objectId` for the variable star with a simple, single-table query.
+
+
+```python
+query = "SELECT objectId "\
+        "FROM dp02_dc2_catalogs.Object "\
+        "WHERE CONTAINS(POINT('ICRS', coord_ra, coord_dec), "\
+        "CIRCLE('ICRS', " + str_target_coords + ", " + str_radius + ")) = 1 "\
+        "AND detect_isPrimary = 1"
+print(query)
+```
+
+
+```python
+job = service.submit_job(query)
+job.run()
+job.wait(phases=['COMPLETED', 'ERROR'])
+print('Job phase is', job.phase)
+```
+
+Retrieve the `results` and print the length of the dataframe.
+There should be only one row (one match within the small search radius).
+
+
+```python
+results = job.fetch_result().to_table().to_pandas()
+print(len(results))
+```
+
+Save the `objectId` of the first (and only) row of the `results` dataframe as `str_target_objectId`
+for use in Section 4.1.2 below.
+Also print it.
+
+
+```python
+str_target_objectId = str(results['objectId'][0])
+print(str_target_objectId)
+```
+
+
+```python
+job.delete()
+del query, results
+```
+
+#### 4.1.2. Two-table join to retrieve the light curve
+
+Find all rows of the `ForcedSource` catalog which are measurements of this object.
+
+
+```python
+query = "SELECT scisql_nanojanskyToAbMag(fs.psfFlux) AS mag, "\
+        "scisql_nanojanskyToAbMagSigma(fs.psfFlux, fs.psfFluxErr) AS magerr, "\
+        "cv.band, cv.expMidptMJD "\
+        "FROM dp02_dc2_catalogs.ForcedSource AS fs "\
+        "JOIN dp02_dc2_catalogs.CcdVisit AS cv ON fs.ccdVisitId = cv.ccdVisitId "\
+        "WHERE fs.objectId = " + str_target_objectId
+print(query)
+```
+
+
+```python
+job = service.submit_job(query)
+job.run()
+job.wait(phases=['COMPLETED', 'ERROR'])
+print('Job phase is', job.phase)
+```
+
+Retrieve the `results` and print the length of the dataframe.
+The length will be the total number of individual observations of the object, in all filters.
+
+
+```python
+results = job.fetch_result().to_table().to_pandas()
+print(len(results))
+```
+
+
+```python
+# results
+```
+
+Print the number of observations in each of the six filters.
+
+
+```python
+values, counts = np.unique(results['band'], return_counts=True)
+for value, count in zip(values, counts):
+    print(value, count)
+del values, counts
+```
+
+Plot the $r$- and $i$-band light curve.
+
+
+```python
+fig = plt.figure(figsize=(4, 3))
+for filt in ['r', 'i']:
+    tx = np.where(results['band'] == filt)[0]
+    plt.plot(results['expMidptMJD'][tx], results['mag'][tx],
+             plot_filter_symbols[filt], alpha=0.5, mew=0,
+             color=plot_filter_colors[filt], label=filt)
+plt.gca().invert_yaxis()
+plt.xlabel('Modified Julian Date')
+plt.ylabel('Apparent Magnitude')
+plt.legend(loc='upper left', handletextpad=0)
+plt.show()
+```
+
+Figure 3: The light curve for `objectId` = `1651589610221899038`, a known RR Lyrae variable star,
+in the $r$ (orange triangles) and $i$ (brown squares) filters.
+
+
+```python
+job.delete()
+del query, results
+```
+
+### 4.2. Three-table join to retrieve the light curve
+
+The single-table query for the `objectId` and the two-table join to retrieve
+the `ForcedSource` lightcurve can be combined into the following three-table join.
+
+
+```python
+query = "SELECT scisql_nanojanskyToAbMag(fs.psfFlux) AS mag, "\
+        "scisql_nanojanskyToAbMagSigma(fs.psfFlux, fs.psfFluxErr) AS magerr, "\
+        "cv.band, cv.expMidptMJD "\
+        "FROM dp02_dc2_catalogs.Object AS o "\
+        "JOIN dp02_dc2_catalogs.ForcedSource AS fs ON o.objectId = fs.objectId "\
+        "JOIN dp02_dc2_catalogs.CcdVisit AS cv ON fs.ccdVisitId = cv.ccdVisitId "\
+        "WHERE CONTAINS(POINT('ICRS', o.coord_ra, o.coord_dec), "\
+        "CIRCLE('ICRS', " + str_target_coords + ", " + str_radius + ")) = 1 "\
+        "AND o.detect_isPrimary = 1"
+print(query)
+```
+
+
+```python
+job = service.submit_job(query)
+job.run()
+job.wait(phases=['COMPLETED', 'ERROR'])
+print('Job phase is', job.phase)
+```
+
+
+```python
+results = job.fetch_result().to_table().to_pandas()
+print(len(results))
+```
+
+
+```python
+# results
+```
+
+As these are the exact same data as retrieved in Section 4.1.2 above,
+plotting the light curve is left as an exercise for the learner (Section 6).
+
+
+```python
+job.delete()
+del query, results
+```
+
+## 5. Interactive plots for large data sets
+
+In this section, the **bokeh** package is used to create interactive plots to explore a dataset.
+Multiple panels are used to show different representations of the same dataset.
+A selection applied to either panel will highlight the selected points in the other panel.
+
+<a href="https://bokeh.org/">Bokeh Documentation</a> <br>
+<a href="https://holoviews.org/">Holoviews Documentation</a>
+
+This section uses the same center coordiantes as Section 2 and 3, but instead of a small radius
+of 0.01 degrees, a full degree radius is used.
+
+
+```python
+use_center_coords = "62, -37"
+use_radius = "1.0"
+
+center_coords = SkyCoord(62, -37, frame='icrs', unit='deg')
+search_radius = 1.0*u.deg
+```
+
+### 5.1. Create the query
+
+Select rows of the `Object` table within the central search area defined above.
+As always with the `Object` catalog, enforce that the `detect_isPrimary` flag is "True" ($=1$).
+Only return objects which have $g$, $r$, and $i$-band magnitudes between 17 and 23 mag (using the $<$ and $>$ operators),
+and which have a measured r-band extendedness parameter (i.e., it is not NaN or NULL).
+Extendedness is typically a parameter between 0 (point-like) and 1 (extended); for DP0.2 it is either 0 or 1.
+
+Return the the `cModelFlux` measurements as magnitudes.
+Composite Model (CModel) fluxes are similar in nature to [those measured for SDSS](https://www.sdss3.org/dr8/algorithms/magnitudes.php#cmodel).
+In short, it is the linear combination of the best fit exponential and de Vaucouleurs profiles.
+The `cModel` type of flux is appropriate to use for extended objects.
+
+
+```python
+query = "SELECT objectId, detect_isPrimary, " + \
+        "coord_ra AS ra, coord_dec AS dec, " + \
+        "scisql_nanojanskyToAbMag(g_cModelFlux) AS mag_g_cModel, " + \
+        "scisql_nanojanskyToAbMag(r_cModelFlux) AS mag_r_cModel, " + \
+        "scisql_nanojanskyToAbMag(i_cModelFlux) AS mag_i_cModel, " + \
+        "r_extendedness " + \
+        "FROM dp02_dc2_catalogs.Object " + \
+        "WHERE CONTAINS(POINT('ICRS', coord_ra, coord_dec), " + \
+        "CIRCLE('ICRS', " + use_center_coords + ", " + use_radius + ")) = 1 " + \
+        "AND detect_isPrimary = 1 " + \
+        "AND scisql_nanojanskyToAbMag(g_cModelFlux) > 17.0 " + \
+        "AND scisql_nanojanskyToAbMag(g_cModelFlux) < 23.0 " + \
+        "AND scisql_nanojanskyToAbMag(r_cModelFlux) > 17.0 " + \
+        "AND scisql_nanojanskyToAbMag(r_cModelFlux) < 23.0 " + \
+        "AND scisql_nanojanskyToAbMag(i_cModelFlux) > 17.0 " + \
+        "AND scisql_nanojanskyToAbMag(i_cModelFlux) < 23.0 " + \
+        "AND r_extendedness IS NOT NULL "
+print(query)
+```
+
+
+```python
+job = service.submit_job(query)
+job.run()
+job.wait(phases=['COMPLETED', 'ERROR'])
+print('Job phase is', job.phase)
+```
+
+
+```python
+results = job.fetch_result().to_table().to_pandas()
+print(len(results))
+```
+
+
+```python
+results
+```
+
+### 5.2. Prepare the results for plotting
+
+The basis for any data visualization is the underlying data.
+
+The `ColumnDataSource` (CDS) is the core of bokeh plots.
+A CDS can be prepared from the data returned by a query, enabling it to be passed directly to bokeh.
+Bokeh automatically creates a CDS from data passed as python lists or numpy arrays.
+CDS are useful as they allow data to be shared between multiple plots and renderers, enabling brushing and linking.
+A CDS is essentially a collection of sequences of data that have their own unique column name. 
+
+Getting the data preparation phase right is the key to creating powerful visualizations. 
+
+Recall the center coordinates that were defined with `astropy` `SkyCoord`.
+Get the central RA and Dec as values (datatype float) and print them.
+
+
+```python
+center_ra = center_coords.ra.deg
+center_dec = center_coords.dec.deg
+print(center_ra, center_dec)
+```
+
+Create a python dictionary that associates the `r_extendedness` column with the Object being a star or a galaxy.
+
+
+```python
+object_map = {0.0: 'star', 1.0: 'galaxy'}
+```
+
+Create a python dictionary to store the data from the query and pass to the `ColumnDataSource`.
+All columns in a CDS must have the same length.
+
+
+```python
+data = dict(ra=results['ra'], dec=results['dec'],
+            target_ra=results['ra']-center_ra,
+            target_dec=results['dec']-center_dec,
+            gmi=results['mag_g_cModel']-results['mag_i_cModel'],
+            gmag=results['mag_g_cModel'],
+            rmag=results['mag_r_cModel'],
+            imag=results['mag_i_cModel'])
+source = ColumnDataSource(data=data)
+```
+
+Additional data can be added to the CDS after creation, as
+demonstrated in the cell below with the addition of `objectId` and `extendedness` in the r-band.
+
+Note that the `objectId` needs to be converted to a string, 
+because bokeh can't interpret an integer value that high.
+
+
+```python
+objIdString = np.array(results['objectId']).astype('str')
+source.data['objectId'] = objIdString
+source.data['r_extendedness'] = results['r_extendedness']
+```
+
+Use the `object_map` dictionary to add an `object_type` column to the CDS.
+
+
+```python
+source.data['object_type'] = results['r_extendedness'].map(object_map)
+source.data['object_type']
+```
+
+### 5.3. Plot a color-magnitude diagram
+
+Use bokeh to plot a color-magnitude (g vs. g-i) diagram making use of the `cModel` magnitudes.
+Hover over the points in the plot to see their values.
+
+Define the plot aesthetics and tools.
+
+
+```python
+plot_options = {'height': 400, 'width': 400,
+                'tools': ['box_select', 'reset', 'box_zoom', 'help']}
+```
+
+Define the hover tool.
+
+
+```python
+tooltips = [
+    ("Col (g-i)", "@gmi"),
+    ("Mag (g)", "@gmag"),
+    ("Mag (r)", "@rmag"),
+    ("Mag (i)", "@imag"),
+    ("Type", "@object_type")
+]
+hover_tool_cmd = HoverTool(tooltips=tooltips)
+```
+
+Create a color-magnitude diagram.
+
+
+```python
+p = figure(title="Color - Magnitude Diagram",
+           x_axis_label='g-i', y_axis_label='g',
+           x_range=(-1.8, 4.3), y_range=(23.5, 16),
+           **plot_options)
+```
+
+Color-code the different object types by defining a color map palette.
+
+
+```python
+object_type_palette = ['darkred', 'lightgrey']
+p.add_tools(hover_tool_cmd)
+p.scatter(x='gmi', y='gmag', source=source,
+          size=3, alpha=0.6,
+          legend_field="object_type",
+          color=factor_cmap('object_type',
+                            palette=object_type_palette,
+                            factors=['star', 'galaxy']),
+          hover_color="darkblue")
+```
+
+Show the interactive plot.
+
+
+```python
+show(p)
+```
+
+Figure 4: The $g-i$ color vs. the $g$-band apparent magnitude for galaxies (grey) and stars (maroon). The hover text includes the color, magnitudes, and type for each point.
+
+### 5.4. Plot a color-color (r-i vs. g-r) diagram
+
+Add a color-color (r-i vs. g-r) diagram and make use of the advanced linking features of bokeh 
+to enable brushing and linking between the the color-magnitude diagram and this color-color plot.
+
+
+```python
+source.data['rmi'] = results['mag_r_cModel'] - results['mag_i_cModel']
+source.data['gmr'] = results['mag_g_cModel'] - results['mag_r_cModel']
+```
+
+The CMD above is very crowded. Below, filter on object type and plot stars only.
+
+Use a GroupFilter to select rows from the CDS that satisfy `object_type` = "star".
+
+
+```python
+stars = CDSView()
+stars.filter = GroupFilter(column_name='object_type', group="star")
+```
+
+Define the various options for the plot, and create the hover tool.
+
+
+```python
+plot_options = {'height': 350, 'width': 350,
+                'tools': ['box_zoom', 'box_select',
+                          'lasso_select', 'reset', 'help']}
+
+hover_tool = HoverTool(tooltips=[("(RA,DEC)", "(@ra, @dec)"),
+                                 ("(g-r,g)", "(@gmr, @gmag)"),
+                                 ("objectId", "@objectId"),
+                                 ("type", "@object_type")])
+```
+
+Create the three plots: spatial, color-magnitude, and color-color, then plot all three together on a grid.
+
+Create the spatial plot.
+
+
+```python
+title_spatial = 'Spatial centred on (RA,DEC) = '+use_center_coords
+
+fig_spatial = figure(title=title_spatial,
+                     x_axis_label="Delta RA", y_axis_label="Delta DEC",
+                     **plot_options)
+fig_spatial.scatter(x='target_ra', y='target_dec',
+                    source=source, view=stars,
+                    size=4.0, alpha=0.6,
+                    color='teal', hover_color='firebrick')
+fig_spatial.add_tools(hover_tool)
+```
+
+Create the color-magnitude plot.
+
+
+```python
+fig_cmag = figure(title="Color-Magnitude Diagram",
+                  x_axis_label="g-r", y_axis_label="g",
+                  x_range=(-1.0, 2.0), y_range=(23.5, 16),
+                  **plot_options)
+fig_cmag.scatter(x='gmr', y='gmag', source=source, view=stars,
+                 size=4.0, alpha=0.6,
+                 color='teal', hover_color='firebrick')
+fig_cmag.add_tools(hover_tool)
+```
+
+Create the color-color plot.
+
+
+```python
+fig_cc = figure(title="Color-Color Diagram",
+                x_axis_label="g-r", y_axis_label="r-i",
+                x_range=(-1.0, 2.0), y_range=(-1.0, 2.5),
+                **plot_options)
+fig_cc.scatter(x='gmr', y='rmi', source=source, view=stars,
+               size=4.0, alpha=0.6,
+               color='teal', hover_color='firebrick')
+fig_cc.add_tools(hover_tool)
+```
+
+Show all three plots together in a row.
+
+
+```python
+p = gridplot([[fig_spatial, fig_cmag, fig_cc]])
+show(p)
+```
+
+Figure 5: Three side-by-side panels showing points for stars only (teal). Left: the difference in right ascension (Delta RA) vs. the difference in declination (Delta DEC) between object coordinates and 62, -37 degrees. Center: the $g-r$ color vs. the $g$-band apparent magnitude. Right: the $g-r$ color vs. the $r-i$ color. The hover text is the same for all panels: the coordinates, the $g-r$ color and $g$ mag, `objectId`, and type. 
+
+Hover the mouse over the data points in any of the plots in order to 
+use the hover tool to see information about individual data points (e.g., the `objectId`).
+Notice the data points highlighted in red on one panel with the hover tool are also highlighted on the other panels.
+
+Click on the box select or lasso select icons in the upper right corner of the figure. 
+Use the box select or lasso select functionality to make a selection in any panel by clicking and dragging to define a region. 
+The selected data points will be displayed in darker teal in all panels.
+
+Use the refresh icon to reset the plot.
+
+Clean up.
+
+
+```python
+del results, data, p, stars, source
+```
+
+## 6. Exercises for the learner
+
+(1) In Section 3.3, use `WHERE ... BETWEEN ... AND ...` to create a query to retrieve
+blue objects (instead of red) which have $g-r<0$ and $r-i<0$.
+Hint: `r_cModelFlux BETWEEN i_cModelFlux AND g_cModelFlux`
+
+(2) In Section 5.1, rewrite the query to use `WHERE ... BETWEEN ... AND ...` in order
+to restrict the magnitudes of the rows returned. Use the demonstration in Section 2.4
+to retrieve the $g-r$ and $r-i$ colors as part of the query, instead of creating
+them in Section 5.4.
+
+(3) The query below has three errors. Try running it, and see that the job fails with
+phase ERROR. Use `job.raise_if_error()` to figure out what the three errors are.
+This is the same three-table join query as was used in Section 4.2, just with 
+three errors added.
+
+```
+SELECT scisql_nanojanskyToAbMag(fs.psfFlux) AS mag, scisql_nanojanskyToAbMag(fs.psfFlux, fs.psfFluxErr) AS magerr, cv.band, cv.expMidptMJD FROM dp02_dc2_catalogs.Object AS o JOIN dp02_dc2.catalogs.ForcedSource AS fs ON o.objectId = fs.objectId JOIN dp02_dc2_catalogs.CcdVisit AS cv ON fs.ccdVisitId = cv.visitId WHERE CONTAINS(POINT('ICRS', o.coord_ra, o.coord_dec), CIRCLE('ICRS', 62.1479031, -35.799138, 0.0006)) = 1 AND o.detect_isPrimary = 1
+```
+
+(4) In Section 4.2, the light curve is not plotted because the same data was retrieved
+as in Section 4.1.2. Go back and plot the data retrieved in Section 4.2, but this time
+show all six LSST filters in the plot.
+
+
+```python
+
+```

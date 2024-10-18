@@ -1,0 +1,496 @@
+Skip to content
+
+## Navigation Menu
+
+Toggle navigation
+
+Sign in 
+
+  * Product 
+
+    * Actions
+
+Automate any workflow 
+
+    * Packages
+
+Host and manage packages 
+
+    * Security
+
+Find and fix vulnerabilities 
+
+    * Codespaces
+
+Instant dev environments 
+
+    * GitHub Copilot
+
+Write better code with AI 
+
+    * Code review
+
+Manage code changes 
+
+    * Issues
+
+Plan and track work 
+
+    * Discussions
+
+Collaborate outside of code 
+
+Explore
+    * All features 
+    * Documentation 
+    * GitHub Skills 
+    * Blog 
+
+  * Solutions 
+
+By size
+    * Enterprise 
+    * Teams 
+    * Startups 
+
+By industry
+    * Healthcare 
+    * Financial services 
+    * Manufacturing 
+
+By use case
+    * CI/CD & Automation 
+    * DevOps 
+    * DevSecOps 
+
+  * Resources 
+
+Topics
+    * AI 
+    * DevOps 
+    * Security 
+    * Software Development 
+
+Explore
+    * Learning Pathways 
+    * White papers, Ebooks, Webinars 
+    * Customer Stories 
+    * Partners 
+
+  * Open Source 
+
+    * GitHub Sponsors
+
+Fund open source developers 
+
+    * The ReadME Project
+
+GitHub community articles 
+
+Repositories
+    * Topics 
+    * Trending 
+    * Collections 
+
+  * Enterprise 
+
+    * Enterprise platform
+
+AI-powered developer platform 
+
+Available add-ons
+    * Advanced Security
+
+Enterprise-grade security features 
+
+    * GitHub Copilot
+
+Enterprise-grade AI features 
+
+    * Premium Support
+
+Enterprise-grade 24/7 support 
+
+  * Pricing
+
+
+
+Search or jump to...
+
+# Search code, repositories, users, issues, pull requests...
+
+Search 
+
+Clear
+
+
+
+
+Search syntax tips 
+
+#  Provide feedback 
+
+We read every piece of feedback, and take your input very seriously.
+
+Include my email address so I can be contacted
+
+Cancel  Submit feedback 
+
+#  Saved searches 
+
+## Use saved searches to filter your results more quickly
+
+Name
+
+Query
+
+To see all available qualifiers, see our documentation. 
+
+Cancel  Create saved search 
+
+Sign in 
+
+Sign up  Reseting focus
+
+You signed in with another tab or window. Reload to refresh your session. You signed out in another tab or window. Reload to refresh your session. You switched accounts on another tab or window. Reload to refresh your session. Dismiss alert
+
+{{ message }}
+
+rubin-dp0  / **tutorial-notebooks ** Public
+
+  * Notifications  You must be signed in to change notification settings
+  * Fork 16
+  * Star  31
+
+
+
+
+  * Code
+  * Issues 0
+  * Pull requests 2
+  * Actions
+  * Projects 0
+  * Security
+  * Insights
+
+
+
+Additional navigation options
+
+  * Code 
+  * Issues 
+  * Pull requests 
+  * Actions 
+  * Projects 
+  * Security 
+  * Insights 
+
+
+
+## Commit
+
+Permalink
+
+This commit does not belong to any branch on this repository, and may belong to a fork outside of the repository.
+
+various updates to reflect Melissa's feedback 
+
+Browse files Browse the repository at this point in the history
+
+  * Loading branch information
+
+
+
+galaxyumi committed Sep 26, 2023
+
+1 parent 0990bc8 commit 0bee66f
+
+Show file tree
+
+Hide file tree
+
+Showing **2 changed files** with **45 additions** and **45 deletions**. 
+
+  * Whitespace
+  * Ignore whitespace
+
+
+
+  * Split
+  * Unified
+
+
+
+  * DP03_04a_Introduction_to_Phase_Curves.ipynb DP03_04a_Introduction_to_Phase_Curves.ipynb 
+  * DP03_04b_Advanced_Phase_Curve_Modeling.ipynb DP03_04b_Advanced_Phase_Curve_Modeling.ipynb 
+
+
+
+##  There are no files selected for viewing 
+
+38 changes: 15 additions & 23 deletions  38  DP03_04a_Introduction_to_Phase_Curves.ipynb
+
+Show comments 
+
+View file  Edit file  Delete file 
+
+This file contains bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters. Learn more about bidirectional Unicode characters
+
+Show hidden characters 
+
+Original file line number Diff line number Diff line change  
+Expand Up @@ -73,21 +73,6 @@  
+"**Get Support:** Find DP0.3-related documentation and resources at <a href=\"https://dp0-3.lsst.io\">dp0-3.lsst.io</a>. Questions are welcome as new topics in the <a href=\"https://community.lsst.org/c/support/dp0\">Support - Data Preview 0 Category</a> of the Rubin Community Forum. Rubin staff will respond to all questions posted there."  
+]  
+},  
+{  
+"cell_type": "code",  
+"execution_count": null,  
+"id": "16896376-9f5b-466f-a627-eb978e7f46e5",  
+"metadata": {  
+"tags": []  
+},  
+"outputs": [],  
+"source": [  
+"#%load_ext pycodestyle_magic\n",  
+"#%flake8_on\n",  
+"#import logging\n",  
+"#logging.getLogger(\"flake8\").setLevel(logging.FATAL)"  
+]  
+},  
+{  
+"attachments": {  
+"d51223c2-2573-4477-ac49-2b4f757f1681.png": {  
+Expand Down Expand Up @@ -566,7 +551,8 @@  
+"plt.xlabel('Semi-major axis [au]')\n",  
+"plt.ylabel('Number')\n",  
+"plt.yscale('log')\n",  
+"plt.legend()"  
+"plt.legend()\n",  
+"plt.show()"  
+]  
+},  
+{  
+Expand Down Expand Up @@ -718,7 +704,7 @@  
+"plt.ylabel('Reduced magnitude [mag]')\n",  
+"plt.legend(bbox_to_anchor=(1.05, 1.0), loc='upper left', ncol=1)\n",  
+"plt.title('Main Belt Asteroid')\n",  
+"\n"  
+"plt.show()"  
+]  
+},  
+{  
+Expand Down Expand Up @@ -810,7 +796,8 @@  
+"plt.ylabel('Reduced magnitude [mag]')\n",  
+"plt.title('TNO')\n",  
+"\n",  
+"plt.tight_layout()\n"  
+"plt.tight_layout()\n",  
+"plt.show()"  
+]  
+},  
+{  
+Expand Down Expand Up @@ -899,7 +886,8 @@  
+"plt.xlabel('Phase Angle [deg]')\n",  
+"plt.ylabel('Reduced magnitude [mag]')\n",  
+"plt.legend(bbox_to_anchor=(1.05, 1.0), loc='upper left')\n",  
+"plt.title('ssObjectId = %d' % sId)"  
+"plt.title('ssObjectId = %d' % sId)\n",  
+"plt.show()"  
+]  
+},  
+{  
+Expand Down Expand Up @@ -955,7 +943,8 @@  
+"fig.supxlabel('Absolute magnitude, H [mag]')\n",  
+"fig.supylabel('Slope parameter, G12')\n",  
+"print(len(uniqueObj), len(uniqueObj[main_belt_2k]),\n",  
+" len(uniqueObj[JT_2k]))"  
+" len(uniqueObj[JT_2k]))\n",  
+"plt.show()"  
+]  
+},  
+{  
+Expand Down Expand Up @@ -1016,7 +1005,8 @@  
+"plt.ylabel('Uncertainty in phase curve fit')\n",  
+"plt.xlabel('Median uncertainty in apparent mag')\n",  
+"\n",  
+"plt.tight_layout()"  
+"plt.tight_layout()\n",  
+"plt.show()"  
+]  
+},  
+{  
+Expand Down Expand Up @@ -1060,7 +1050,8 @@  
+"\n",  
+"sns.histplot(x=uniqueObj['q'], y=uniqueObj[ifilt+'_G12err'],\n",  
+" bins=100, ax=axs[1, 1])\n",  
+"axs[1, 1].set_xlabel('perihelion distance [au]')\n"  
+"axs[1, 1].set_xlabel('perihelion distance [au]')\n",  
+"plt.show()"  
+]  
+},  
+{  
+Expand Down Expand Up @@ -1108,7 +1099,8 @@  
+"axs[1].set_ylabel(r'$\\\Delta$H using z-band')\n",  
+"axs[1].set_xlabel(r'$\\\Delta$H using r-band')\n",  
+"\n",  
+"plt.tight_layout()"  
+"plt.tight_layout()\n",  
+"plt.show()"  
+]  
+},  
+{  
+Expand Down  
+  
+52 changes: 30 additions & 22 deletions  52  DP03_04b_Advanced_Phase_Curve_Modeling.ipynb
+
+Show comments 
+
+View file  Edit file  Delete file 
+
+This file contains bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters. Learn more about bidirectional Unicode characters
+
+Show hidden characters 
+
+Original file line number Diff line number Diff line change  
+Expand Up @@ -73,21 +73,6 @@  
+"**Get Support:** Find DP0.3-related documentation and resources at <a href=\"https://dp0-3.lsst.io\">dp0-3.lsst.io</a>. Questions are welcome as new topics in the <a href=\"https://community.lsst.org/c/support/dp0\">Support - Data Preview 0 Category</a> of the Rubin Community Forum. Rubin staff will respond to all questions posted there."  
+]  
+},  
+{  
+"cell_type": "code",  
+"execution_count": null,  
+"id": "16896376-9f5b-466f-a627-eb978e7f46e5",  
+"metadata": {  
+"tags": []  
+},  
+"outputs": [],  
+"source": [  
+"#%load_ext pycodestyle_magic\n",  
+"#%flake8_on\n",  
+"#import logging\n",  
+"#logging.getLogger(\"flake8\").setLevel(logging.FATAL)"  
+]  
+},  
+{  
+"cell_type": "markdown",  
+"id": "cfc73be0",  
+Expand Down Expand Up @@ -379,6 +364,25 @@  
+"def weighted_dev(params, mag, phase, mag_err, model):\n",  
+" \"\"\"\n",  
+" Compute weighted deviation for a given model.\n",  
+" \n",  
+" Parameters\n",  
+" \----------\n",  
+" params: list\n",  
+" phase curve parameters\n",  
+" mag: ndarray\n",  
+" reduced magnitude\n",  
+" phase: ndarray\n",  
+" phase angle in radians\n",  
+" mag_err: ndarray\n",  
+" uncertainty in magnitude\n",  
+" model: function\n",  
+" phase curve model function\n",  
+" \n",  
+"\n",  
+" Returns\n",  
+" \-------\n",  
+" sol: tuple\n",  
+" best-fit solution\n",  
+" \"\"\"\n",  
+"\n",  
+" pred = model(phase, params)\n",  
+Expand Down Expand Up @@ -782,7 +786,7 @@  
+" fitted_array.append([iobj, ifilt, x_fitted])\n",  
+"\n",  
+"results = pd.DataFrame(fitted_array)\n",  
+"results.columns = ['ssObjectId', 'fname', 'fit_param']\n"  
+"results.columns = ['ssObjectId', 'fname', 'fit_param']"  
+]  
+},  
+{  
+Expand Down Expand Up @@ -819,7 +823,7 @@  
+"id": "b47093f8-45bf-4bf0-9d17-bdc06eeac679",  
+"metadata": {},  
+"source": [  
+"Now, we will plot example phase curves in all available filters (in DP0.3) $g$,$r$,$i$,$z$ for a single object referenced by its ssObjectId, which we call `sId`. (You can explore different objects by changing the `iObj` index to retrieve different sources). First the observations to be modeled are plotted, and then all three forms of phase curve model defined above. The plot demonstrates that the reduced magnitude and phase curve of the source are offset from eachother in each filter, reflecting the variation in brightness of asteroids in different filters. Overall, it is clear taht the 3 different fitted models all describe the observations well for well-sampled phase curves in DP0.3."  
+"Now, we will plot example phase curves in all available filters (in DP0.3) $g$,$r$,$i$,$z$ for a single object referenced by its ssObjectId, which we call `sId`. (You can explore different objects by changing the `iObj` index to retrieve different sources). First the observations to be modeled are plotted, and then all three forms of phase curve model defined above. The plot demonstrates that the reduced magnitude and phase curve of the source are offset from eachother in each filter, reflecting the variation in brightness of asteroids in different filters. Overall, it is clear that the 3 different fitted models all describe the observations well for well-sampled phase curves in DP0.3."  
+]  
+},  
+{  
+Expand Down Expand Up @@ -883,7 +887,8 @@  
+"plt.xlabel('Phase Angle [deg]')\n",  
+"plt.ylabel('Reduced magnitude [mag]')\n",  
+"plt.legend(bbox_to_anchor=(1.05, 1.0), loc='upper left', ncol=2)\n",  
+"plt.title('ssObjectId = %d' % sId)"  
+"plt.title('ssObjectId = %d' % sId)\n",  
+"plt.show()"  
+]  
+},  
+{  
+Expand Down Expand Up @@ -943,7 +948,8 @@  
+"\n",  
+"fig.supxlabel('Slope parameter G [HG12_model]')\n",  
+"fig.supylabel('Slope parameter G [SSObject Table]')\n",  
+"axs[0].legend(loc=2)"  
+"axs[0].legend(loc=2)\n",  
+"plt.show()"  
+]  
+},  
+{  
+Expand Down Expand Up @@ -982,7 +988,8 @@  
+"\n",  
+"fig.supxlabel('Absolute magnitude H [HG12_model]')\n",  
+"fig.supylabel('Absolute magnitude H [SSObject Table]')\n",  
+"axs[0].legend(loc=2)"  
+"axs[0].legend(loc=2)\n",  
+"plt.show()"  
+]  
+},  
+{  
+Expand All @@ -998,7 +1005,7 @@  
+"id": "a6b53e88-add4-4fcd-87b6-52e892f7c55d",  
+"metadata": {},  
+"source": [  
+"This section compares the input phase curve parameters, `mpcH` and `mpcG`, that were used to simulate asteroids in DP0.3 with those derived using the `HG_model` in this tutorial to see how well the input parameters are recovered in the simulated LSST results at the end of the 10 year survey. The left panel shows the difference of 0.2 between the input slope `G` and the output slope `G` guided by the red solid lines in all four filters. The distributions of out-in absolute magnitude `H` are more complicated. Recall that `mpcH` is reported in $V$ band; the conversion from Rubin filters to $V$ is summarized in <a href=\"https://github.com/lsst/dp0-3_lsst_io/blob/main/data-products-dp0-3/data-simulation-dp0-3.rst\">Table 1 of the DP0.3 documentation</a>. The filter conversion can not fully explain the offsets seen in the out-in distributions. "  
+"This section compares the input phase curve parameters, `mpcH` and `mpcG`, that were used to simulate asteroids in DP0.3 with those derived using the `HG_model` in this tutorial to see how well the input parameters are recovered in the simulated LSST results at the end of the 10 year survey. The left panel shows the difference of 0.2 between the input slope `G` and the output slope `G` guided by the red solid lines in all four filters. The distributions of out-in absolute magnitude `H` are more complicated. Recall that `mpcH` is reported in $V$ band; the conversion from Rubin filters to $V$ is summarized in <a href=\"https://dp0-3.lsst.io/data-products-dp0-3/data-simulation-dp0-3.html#synthetic-object-populations\">Table 1 of the DP0.3 documentation</a>. The filter conversion can not fully explain the offsets seen in the out-in distributions. "  
+]  
+},  
+{  
+Expand Down Expand Up @@ -1033,7 +1040,8 @@  
+"axs[0].plot([0.02, 0.02], [0, 80], 'r',label='detected bias')\n",  
+"axs[0].set_ylim(0, 70)\n",  
+"axs[0].legend(loc=1)\n",  
+"axs[1].set_xlabel('Out - In (Absolute magnitude H)')"  
+"axs[1].set_xlabel('Out - In (Absolute magnitude H)')\n",  
+"plt.show()"  
+]  
+},  
+{  
+Expand Down  
+  
+Toggle all file notes Toggle all file annotations
+
+###  0 comments on commit `0bee66f`
+
+Please sign in to comment. 
+
+## Footer
+
+© 2024 GitHub, Inc. 
+
+### Footer navigation
+
+  * Terms
+  * Privacy
+  * Security
+  * Status
+  * Docs
+  * Contact
+  * Manage cookies 
+  * Do not share my personal information 
+
+
+
+You can’t perform that action at this time. 

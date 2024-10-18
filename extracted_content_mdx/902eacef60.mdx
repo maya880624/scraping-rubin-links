@@ -1,0 +1,397 @@
+Skip to content
+
+## Navigation Menu
+
+Toggle navigation
+
+Sign in 
+
+  * Product 
+
+    * Actions
+
+Automate any workflow 
+
+    * Packages
+
+Host and manage packages 
+
+    * Security
+
+Find and fix vulnerabilities 
+
+    * Codespaces
+
+Instant dev environments 
+
+    * GitHub Copilot
+
+Write better code with AI 
+
+    * Code review
+
+Manage code changes 
+
+    * Issues
+
+Plan and track work 
+
+    * Discussions
+
+Collaborate outside of code 
+
+Explore
+    * All features 
+    * Documentation 
+    * GitHub Skills 
+    * Blog 
+
+  * Solutions 
+
+By size
+    * Enterprise 
+    * Teams 
+    * Startups 
+
+By industry
+    * Healthcare 
+    * Financial services 
+    * Manufacturing 
+
+By use case
+    * CI/CD & Automation 
+    * DevOps 
+    * DevSecOps 
+
+  * Resources 
+
+Topics
+    * AI 
+    * DevOps 
+    * Security 
+    * Software Development 
+
+Explore
+    * Learning Pathways 
+    * White papers, Ebooks, Webinars 
+    * Customer Stories 
+    * Partners 
+
+  * Open Source 
+
+    * GitHub Sponsors
+
+Fund open source developers 
+
+    * The ReadME Project
+
+GitHub community articles 
+
+Repositories
+    * Topics 
+    * Trending 
+    * Collections 
+
+  * Enterprise 
+
+    * Enterprise platform
+
+AI-powered developer platform 
+
+Available add-ons
+    * Advanced Security
+
+Enterprise-grade security features 
+
+    * GitHub Copilot
+
+Enterprise-grade AI features 
+
+    * Premium Support
+
+Enterprise-grade 24/7 support 
+
+  * Pricing
+
+
+
+Search or jump to...
+
+# Search code, repositories, users, issues, pull requests...
+
+Search 
+
+Clear
+
+
+
+
+Search syntax tips 
+
+#  Provide feedback 
+
+We read every piece of feedback, and take your input very seriously.
+
+Include my email address so I can be contacted
+
+Cancel  Submit feedback 
+
+#  Saved searches 
+
+## Use saved searches to filter your results more quickly
+
+Name
+
+Query
+
+To see all available qualifiers, see our documentation. 
+
+Cancel  Create saved search 
+
+Sign in 
+
+Sign up  Reseting focus
+
+You signed in with another tab or window. Reload to refresh your session. You signed out in another tab or window. Reload to refresh your session. You switched accounts on another tab or window. Reload to refresh your session. Dismiss alert
+
+{{ message }}
+
+lsst-sqre  / **kafka-aggregator ** Public
+
+  * Notifications  You must be signed in to change notification settings
+  * Fork 1
+  * Star  11
+
+
+
+
+A Kafka aggregator based on the Faust Python Stream Processing library 
+
+kafka-aggregator.lsst.io
+
+11 stars  1 fork  Branches Tags Activity
+
+Star 
+
+Notifications  You must be signed in to change notification settings
+
+  * Code
+  * Issues 2
+  * Pull requests 5
+  * Actions
+  * Security
+  * Insights
+
+
+
+Additional navigation options
+
+  * Code 
+  * Issues 
+  * Pull requests 
+  * Actions 
+  * Security 
+  * Insights 
+
+
+
+# lsst-sqre/kafka-aggregator
+
+This commit does not belong to any branch on this repository, and may belong to a fork outside of the repository.
+
+master
+
+BranchesTags
+
+Go to file
+
+Code
+
+## Folders and files
+
+NameName
+
+Last commit message
+
+Last commit date  
+  
+## Latest commit
+
+## History
+
+467 Commits  
+  
+.github
+
+.github  
+  
+docs
+
+docs  
+  
+examples
+
+examples  
+  
+requirements
+
+requirements  
+  
+scripts
+
+scripts  
+  
+src/kafkaaggregator
+
+src/kafkaaggregator  
+  
+tests
+
+tests  
+  
+.gitignore
+
+.gitignore  
+  
+.pre-commit-config.yaml
+
+.pre-commit-config.yaml  
+  
+CHANGELOG.rst
+
+CHANGELOG.rst  
+  
+Dockerfile
+
+Dockerfile  
+  
+MANIFEST.in
+
+MANIFEST.in  
+  
+Makefile
+
+Makefile  
+  
+README.rst
+
+README.rst  
+  
+docker-compose.yaml
+
+docker-compose.yaml  
+  
+pyproject.toml
+
+pyproject.toml  
+  
+renovate.json
+
+renovate.json  
+  
+setup.cfg
+
+setup.cfg  
+  
+setup.py
+
+setup.py  
+  
+View all files  
+  
+## Repository files navigation
+
+  * README
+
+
+
+# kafka-aggregator
+
+A Kafka aggregator based on the Faust Python Stream Processing library.
+
+kafka-aggregator development is based on the Safir application template.
+
+## Overview
+
+kafka-aggregator uses Faust's windowing feature to aggregate a stream of messages from Kafka.
+
+kafka-aggregator implements a Faust agent, a "stream processor", that adds messages from a source topic into a Faust table. The table is configured as a tumbling window with a size, representing the window duration (time interval) and an expiration time, which specifies the duration for which the data allocated to each window will be stored. Every time a window expires, a callback function is called to aggregate the messages allocated to that window. The size of the window controls the frequency of the aggregated stream.
+
+kafka-aggregator uses faust-avro to add Avro serialization and Schema Registry support to Faust. faust-avro can parse Faust models into Avro Schemas.
+
+See the docs for more information.
+
+## About
+
+A Kafka aggregator based on the Faust Python Stream Processing library 
+
+kafka-aggregator.lsst.io
+
+### Topics
+
+python  kafka  stream-processing  faust 
+
+### Resources
+
+Readme 
+
+Activity
+
+Custom properties
+
+### Stars
+
+**11** stars 
+
+### Watchers
+
+**7** watching 
+
+### Forks
+
+**1** fork 
+
+Report repository 
+
+##  Releases 
+
+2 tags
+
+##  Packages 0
+
+No packages published   
+
+
+##  Contributors 6
+
+  *   *   *   *   *   * 
+
+
+## Languages
+
+  * Python 84.9%
+  * Jinja 6.3%
+  * Shell 4.4%
+  * Dockerfile 3.3%
+  * Makefile 1.1%
+
+
+
+## Footer
+
+© 2024 GitHub, Inc. 
+
+### Footer navigation
+
+  * Terms
+  * Privacy
+  * Security
+  * Status
+  * Docs
+  * Contact
+  * Manage cookies 
+  * Do not share my personal information 
+
+
+
+You can’t perform that action at this time. 

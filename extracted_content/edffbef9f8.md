@@ -1,0 +1,50 @@
+Log inSkip to main contentSkip to sidebar
+
+Linked Applications
+
+Loading…
+
+  * Dashboards
+
+  * Projects
+
+  * Issues
+
+
+
+
+  *   * Give feedback to Atlassian
+  * Help
+
+    * Jira Core help
+    * Keyboard Shortcuts
+    * About Jira
+    * Custom Fields++ Help
+    * Jira Credits
+
+  * Log In
+
+
+
+
+# Welcome to Jira
+
+_U_ sername
+
+_P_ assword
+
+_R_ emember my login on this computer
+
+Not a member? To request an account, please contact your Jira administrators. 
+
+Can't access your account?
+
+  * Atlassian Jira Project Management Software
+  * About Jira
+  * Report a problem
+
+
+
+Powered by a free Atlassian Jira community license for LSST. Try Jira - bug tracking software for _your_ team. 
+
+Atlassian

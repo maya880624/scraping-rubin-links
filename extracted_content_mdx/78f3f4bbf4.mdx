@@ -1,0 +1,134 @@
+kafka-connect-manager
+
+  * Forum
+  * Docs
+  * LSST.org â
+
+
+
+### Navigation
+
+  * next » 
+  * kafka-connect-manager » 
+
+
+
+# kafkaconnectÂ¶
+
+A Python client for managing connectors using the Kafka Connect API.
+
+## OverviewÂ¶
+
+Kafkaconnect provides a command line interface (CLI) to interact with the Kafka Connect API and manage connectors.
+
+For dynamic connectors, the configuration is defined in a JSON file and uploaded to the Kafka Connect API. For non dynamic connectors, kafkaconnect can be used as a wrapper to auto-update the connector configuration when topics are created or deleted in Kafka.
+
+To deploy a connector on Kubernetes use the kafka-connect-manager Helm chart. For dynamic connectors, the configuration is stored in a configmap which is templated in Helm.
+
+### Supported connectorsÂ¶
+
+List of connectors kafkaconnect currently supports:
+
+  * Lenses InfluxDB Sink
+
+  * Confluent Amazon S3 Sink (dynamic)
+
+  * Confluent JDBC Sink (dynamic)
+
+  * MirrorMaker 2 (dynamic)
+
+
+
+
+Note: other connectors can also be managed by kafkaconnect using the `upload` command, as long as they are installed in the cp-kafka-connect docker image.
+
+## InstallationÂ¶
+
+  * Installation guide
+    * Helm chart
+    * Argo CD
+
+
+
+## ConfigurationÂ¶
+
+  * Configuration settings
+    * kafkaconnect.config Module
+    * kafkaconnect.influxdb_sink.config Module
+
+
+
+## User guideÂ¶
+
+  * Using kafkaconnect
+    * Lenses InfluxDB Sink
+    * Resetting consumer group offsets
+
+
+
+## Development guideÂ¶
+
+  * Development guide
+    * Development workflow
+    * Running locally with docker-compose
+  * Release procedure
+
+
+
+## CLIÂ¶
+
+  * CLI Reference
+    * kafkaconnect
+
+
+
+## Project informationÂ¶
+
+The GitHub repository for `kafka-connect-manager` is https://github.com/lsst-sqre/kafka-connect-manager
+
+  * Contributing
+    * Reporting an issue
+    * Pull Request Guidelines
+    * Send Feedback
+  * Change log
+    * 1.3.1 (2023-07-03)
+    * 1.2.0 (2023-06-12)
+    * 1.1.0 (2023-05-28)
+    * 1.0.2 (2023-01-13)
+    * 1.0.0 (2022-07-09)
+    * 0.9.3 (2021-10-29)
+    * 0.9.1 (2021-06-09)
+    * 0.9.0 (2021-05-03)
+    * 0.8.3 (2021-03-04)
+    * 0.8.2 (2021-01-25)
+    * 0.8.1 (2020-10-18)
+    * 0.8.0 (2020-08-05)
+    * 0.7.2 (2020-03-31)
+
+
+
+See the LICENSE file for licensing information.
+
+### On this page
+
+  * kafkaconnect
+    * Overview
+      * Supported connectors
+    * Installation
+    * Configuration
+    * User guide
+    * Development guide
+    * CLI
+    * Project information
+
+
+
+Back to Top
+
+Created using Sphinx 6.2.1. Page design is based on Astropy's bootstrap-astropy theme in astropy-helpers.   
+LSST documentation is proudly served through the Fastly CDN. 
+
+© Copyright 2021Association of Universities for Research in Astronomy.  
+
+
+Financial support for LSST comes from the National Science Foundation (NSF) through Cooperative Agreement No. 1258333, the Department of Energy (DOE) Office of Science under Contract No. DE-AC02-76SF00515, and private funding raised by the LSST Corporation. The NSF-funded LSST Project Office for construction was established as an operating center under management of the Association of Universities for Research in Astronomy (AURA). The DOE-funded effort to build the LSST camera is managed by the SLAC National Accelerator Laboratory (SLAC). 

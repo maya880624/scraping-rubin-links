@@ -1,0 +1,404 @@
+Skip to content
+
+## Navigation Menu
+
+Toggle navigation
+
+Sign in 
+
+  * Product 
+
+    * Actions
+
+Automate any workflow 
+
+    * Packages
+
+Host and manage packages 
+
+    * Security
+
+Find and fix vulnerabilities 
+
+    * Codespaces
+
+Instant dev environments 
+
+    * GitHub Copilot
+
+Write better code with AI 
+
+    * Code review
+
+Manage code changes 
+
+    * Issues
+
+Plan and track work 
+
+    * Discussions
+
+Collaborate outside of code 
+
+Explore
+    * All features 
+    * Documentation 
+    * GitHub Skills 
+    * Blog 
+
+  * Solutions 
+
+By size
+    * Enterprise 
+    * Teams 
+    * Startups 
+
+By industry
+    * Healthcare 
+    * Financial services 
+    * Manufacturing 
+
+By use case
+    * CI/CD & Automation 
+    * DevOps 
+    * DevSecOps 
+
+  * Resources 
+
+Topics
+    * AI 
+    * DevOps 
+    * Security 
+    * Software Development 
+
+Explore
+    * Learning Pathways 
+    * White papers, Ebooks, Webinars 
+    * Customer Stories 
+    * Partners 
+
+  * Open Source 
+
+    * GitHub Sponsors
+
+Fund open source developers 
+
+    * The ReadME Project
+
+GitHub community articles 
+
+Repositories
+    * Topics 
+    * Trending 
+    * Collections 
+
+  * Enterprise 
+
+    * Enterprise platform
+
+AI-powered developer platform 
+
+Available add-ons
+    * Advanced Security
+
+Enterprise-grade security features 
+
+    * GitHub Copilot
+
+Enterprise-grade AI features 
+
+    * Premium Support
+
+Enterprise-grade 24/7 support 
+
+  * Pricing
+
+
+
+Search or jump to...
+
+# Search code, repositories, users, issues, pull requests...
+
+Search 
+
+Clear
+
+
+
+
+Search syntax tips 
+
+#  Provide feedback 
+
+We read every piece of feedback, and take your input very seriously.
+
+Include my email address so I can be contacted
+
+Cancel  Submit feedback 
+
+#  Saved searches 
+
+## Use saved searches to filter your results more quickly
+
+Name
+
+Query
+
+To see all available qualifiers, see our documentation. 
+
+Cancel  Create saved search 
+
+Sign in 
+
+Sign up  Reseting focus
+
+You signed in with another tab or window. Reload to refresh your session. You signed out in another tab or window. Reload to refresh your session. You switched accounts on another tab or window. Reload to refresh your session. Dismiss alert
+
+{{ message }}
+
+lsst-sqre  / **lsst-efd-client ** Public
+
+  * Notifications  You must be signed in to change notification settings
+  * Fork 4
+  * Star  3
+
+
+
+
+Simple client for the LSST EFD 
+
+efd-client.lsst.io
+
+### License
+
+MIT license 
+
+3 stars  4 forks  Branches Tags Activity
+
+Star 
+
+Notifications  You must be signed in to change notification settings
+
+  * Code
+  * Issues 2
+  * Pull requests 6
+  * Actions
+  * Projects 0
+  * Security
+  * Insights
+
+
+
+Additional navigation options
+
+  * Code 
+  * Issues 
+  * Pull requests 
+  * Actions 
+  * Projects 
+  * Security 
+  * Insights 
+
+
+
+# lsst-sqre/lsst-efd-client
+
+This commit does not belong to any branch on this repository, and may belong to a fork outside of the repository.
+
+main
+
+BranchesTags
+
+Go to file
+
+Code
+
+## Folders and files
+
+NameName
+
+Last commit message
+
+Last commit date  
+  
+## Latest commit
+
+## History
+
+259 Commits  
+  
+.github
+
+.github  
+  
+changelog.d
+
+changelog.d  
+  
+docs
+
+docs  
+  
+src/lsst_efd_client
+
+src/lsst_efd_client  
+  
+tests
+
+tests  
+  
+.flake8
+
+.flake8  
+  
+.gitignore
+
+.gitignore  
+  
+.pre-commit-config.yaml
+
+.pre-commit-config.yaml  
+  
+CHANGELOG.md
+
+CHANGELOG.md  
+  
+LICENSE
+
+LICENSE  
+  
+MANIFEST.in
+
+MANIFEST.in  
+  
+Makefile
+
+Makefile  
+  
+README.md
+
+README.md  
+  
+pyproject.toml
+
+pyproject.toml  
+  
+tox.ini
+
+tox.ini  
+  
+View all files  
+  
+## Repository files navigation
+
+  * README
+  * Code of conduct
+  * MIT license
+
+
+
+# LSST EFD Client
+
+The LSST EFD Client helps you access the LSST Engineering Facility Database (EFD) inside Sasquatch, which is backed by InfluxDB. The client, `EfdClient`, handles authentication and provides convenience methods for accessing data in ready-to-use formats:
+
+## Features
+
+  * The client `EfdClient`, has several useful functions.
+
+    * `get_topics`: Return the topics in the EFD.
+    * `get_fields`: Return the fields in a particular topic
+    * `build_time_range_query`: Build an InfluxQL query for a topic and time range
+    * `select_time_series`: Return a DataFrame containing results of a time range query
+    * `select_packed_time_series`: Return a DataFrame with high cadence telemetry expanded into a single DataFrame.
+    * `select_top_n`: Return a DataFrame with the results of just the most recent rows.
+    * `get_schema`: Get metadata for the fields in a particular topic.
+  * There are also some utilities for dealing with results of queries
+
+    * `merge_packed_time_series`: Takes a dataframe with records that have multiple samples per entry and returns a dataframe with one record per sample.
+    * `rendezvous_dataframes`: Extend on dataframe with data from another dataframe using the closest record in time in the past, in the future, or nearest overall.
+
+
+
+Example notebooks are available in lsst-sqre/system-test.
+
+Documentation is available at https://efd-client.lsst.io.
+
+## About
+
+The LSST EFD Client was created by Simon Krughoff and continues to be maintained by his friends and colleagues on the SQuaRE team.
+
+## About
+
+Simple client for the LSST EFD 
+
+efd-client.lsst.io
+
+### Resources
+
+Readme 
+
+### License
+
+MIT license 
+
+### Code of conduct
+
+Code of conduct 
+
+Activity
+
+Custom properties
+
+### Stars
+
+**3** stars 
+
+### Watchers
+
+**7** watching 
+
+### Forks
+
+**4** forks 
+
+Report repository 
+
+##  Releases 
+
+38 tags
+
+##  Packages 0
+
+No packages published   
+
+
+##  Contributors 8
+
+  *   *   *   *   *   *   *   * 
+
+
+## Languages
+
+  * Python 99.5%
+  * Other 0.5%
+
+
+
+## Footer
+
+© 2024 GitHub, Inc. 
+
+### Footer navigation
+
+  * Terms
+  * Privacy
+  * Security
+  * Status
+  * Docs
+  * Contact
+  * Manage cookies 
+  * Do not share my personal information 
+
+
+
+You can’t perform that action at this time. 

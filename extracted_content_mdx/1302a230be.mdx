@@ -1,0 +1,101 @@
+ts_simactuators
+
+  * Forum
+  * Docs
+  * LSST.org â
+
+
+
+### Navigation
+
+  * next » 
+  * ts_simactuators » 
+
+
+
+# lsst.ts.simactuatorsÂ¶
+
+Python actuator simulators intended for the simulations in Commandable SAL Components (CSCs).
+
+## Using lsst.ts.simactuatorsÂ¶
+
+The primary classes are:
+
+  * `PointToPointActuator` simulates a simple actuator that moves to a give position at a constant speed, then stops. Examples include hexapod struts and telescope dome shutters.
+
+  * `CircularPointToPointActuator` a point to point actuator that moves in a circle with no limits. Examples include some telescope dome azimuth actuators.
+
+  * `TrackingActuator` simulates an actuator that slews to and tracks a path defined by a series of position, velocity, time triplets. Examples include telescope azimuth, altitude and rotator axes.
+
+  * `CircularTrackingActuator` a tracking actuator that moves in a circle with no limits.
+
+
+
+
+## ContributingÂ¶
+
+`lsst.ts.simactuators` is developed at https://github.com/lsst-ts/ts_simactuators. You can find Jira issues for this module using labels=ts_simactuators.
+
+## Python API referenceÂ¶
+
+### lsst.ts.simactuators PackageÂ¶
+
+#### ClassesÂ¶
+
+`BasePointToPointActuator`(start_position,Â speed)
+
+Base class for point to point actuators that move to a specified position at constant velocity and halt.  
+  
+`CircularPointToPointActuator`(speed[,Â ...])
+
+Simulated circular actuator that moves to a specified position at constant velocity and halts.  
+  
+`CircularTrackingActuator`(max_velocity,Â ...)
+
+A version of a TrackingActuator that moves in a circle with no limits.  
+  
+`CosineGenerator`(center_positions,Â ...[,Â ...])  
+  
+`Direction`(value[,Â names,Â module,Â qualname,Â ...])
+
+Direction of motion.  
+  
+`PointToPointActuator`(min_position,Â ...[,Â ...])
+
+Simulated actuator that moves to a specified position at constant velocity and halts.  
+  
+`RampGenerator`(start_positions,Â ...[,Â ...])  
+  
+`TrackingActuator`(min_position,Â max_position,Â ...)
+
+Simulate an actuator that slews to and tracks a path defined by regular calls to `set_target`.  
+  
+## Version HistoryÂ¶
+
+  * Version History
+
+
+
+### On this page
+
+  * lsst.ts.simactuators
+    * Using lsst.ts.simactuators
+    * Contributing
+    * Python API reference
+      * lsst.ts.simactuators Package
+        * Classes
+    * Version History
+
+
+
+Back to Top
+
+Last built Mar 26, 2024. 
+
+Created using Sphinx 5.3.0. Page design is based on Astropy's bootstrap-astropy theme in astropy-helpers.   
+LSST documentation is proudly served through the Fastly CDN. 
+
+© Copyright 2015-2024 LSST contributors.  
+
+
+Financial support for LSST comes from the National Science Foundation (NSF) through Cooperative Agreement No. 1258333, the Department of Energy (DOE) Office of Science under Contract No. DE-AC02-76SF00515, and private funding raised by the LSST Corporation. The NSF-funded LSST Project Office for construction was established as an operating center under management of the Association of Universities for Research in Astronomy (AURA). The DOE-funded effort to build the LSST camera is managed by the SLAC National Accelerator Laboratory (SLAC). 

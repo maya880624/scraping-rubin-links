@@ -1,0 +1,385 @@
+Skip to content
+
+## Navigation Menu
+
+Toggle navigation
+
+Sign in 
+
+  * Product 
+
+    * Actions
+
+Automate any workflow 
+
+    * Packages
+
+Host and manage packages 
+
+    * Security
+
+Find and fix vulnerabilities 
+
+    * Codespaces
+
+Instant dev environments 
+
+    * GitHub Copilot
+
+Write better code with AI 
+
+    * Code review
+
+Manage code changes 
+
+    * Issues
+
+Plan and track work 
+
+    * Discussions
+
+Collaborate outside of code 
+
+Explore
+    * All features 
+    * Documentation 
+    * GitHub Skills 
+    * Blog 
+
+  * Solutions 
+
+By size
+    * Enterprise 
+    * Teams 
+    * Startups 
+
+By industry
+    * Healthcare 
+    * Financial services 
+    * Manufacturing 
+
+By use case
+    * CI/CD & Automation 
+    * DevOps 
+    * DevSecOps 
+
+  * Resources 
+
+Topics
+    * AI 
+    * DevOps 
+    * Security 
+    * Software Development 
+
+Explore
+    * Learning Pathways 
+    * White papers, Ebooks, Webinars 
+    * Customer Stories 
+    * Partners 
+
+  * Open Source 
+
+    * GitHub Sponsors
+
+Fund open source developers 
+
+    * The ReadME Project
+
+GitHub community articles 
+
+Repositories
+    * Topics 
+    * Trending 
+    * Collections 
+
+  * Enterprise 
+
+    * Enterprise platform
+
+AI-powered developer platform 
+
+Available add-ons
+    * Advanced Security
+
+Enterprise-grade security features 
+
+    * GitHub Copilot
+
+Enterprise-grade AI features 
+
+    * Premium Support
+
+Enterprise-grade 24/7 support 
+
+  * Pricing
+
+
+
+Search or jump to...
+
+# Search code, repositories, users, issues, pull requests...
+
+Search 
+
+Clear
+
+
+
+
+Search syntax tips 
+
+#  Provide feedback 
+
+We read every piece of feedback, and take your input very seriously.
+
+Include my email address so I can be contacted
+
+Cancel  Submit feedback 
+
+#  Saved searches 
+
+## Use saved searches to filter your results more quickly
+
+Name
+
+Query
+
+To see all available qualifiers, see our documentation. 
+
+Cancel  Create saved search 
+
+Sign in 
+
+Sign up  Reseting focus
+
+You signed in with another tab or window. Reload to refresh your session. You signed out in another tab or window. Reload to refresh your session. You switched accounts on another tab or window. Reload to refresh your session. Dismiss alert
+
+{{ message }}
+
+lsst-sqre  / **nbreport ** Public
+
+  * Notifications  You must be signed in to change notification settings
+  * Fork 0
+  * Star  1
+
+
+
+
+Command-line app for creating and publishing notebook-based reports for LSST 
+
+nbreport.lsst.io
+
+### License
+
+MIT license 
+
+1 star  0 forks  Branches Tags Activity
+
+Star 
+
+Notifications  You must be signed in to change notification settings
+
+  * Code
+  * Issues 1
+  * Pull requests 0
+  * Actions
+  * Projects 0
+  * Security
+  * Insights
+
+
+
+Additional navigation options
+
+  * Code 
+  * Issues 
+  * Pull requests 
+  * Actions 
+  * Projects 
+  * Security 
+  * Insights 
+
+
+
+# lsst-sqre/nbreport
+
+This commit does not belong to any branch on this repository, and may belong to a fork outside of the repository.
+
+master
+
+BranchesTags
+
+Go to file
+
+Code
+
+## Folders and files
+
+NameName
+
+Last commit message
+
+Last commit date  
+  
+## Latest commit
+
+## History
+
+101 Commits  
+  
+docs
+
+docs  
+  
+nbreport
+
+nbreport  
+  
+tests
+
+tests  
+  
+.gitignore
+
+.gitignore  
+  
+.travis.yml
+
+.travis.yml  
+  
+CHANGELOG.rst
+
+CHANGELOG.rst  
+  
+LICENSE
+
+LICENSE  
+  
+README.rst
+
+README.rst  
+  
+setup.cfg
+
+setup.cfg  
+  
+setup.py
+
+setup.py  
+  
+View all files  
+  
+## Repository files navigation
+
+  * README
+  * MIT license
+
+
+
+# nbreport
+
+nbreport is a client for creating and publishing LSST's notebook-based reports. Notebook-based reports are generated from template repositories, computed, and published with LSST the Docs.
+
+**Documentation:** https://nbreport.lsst.io
+
+## Installation
+
+nbreport is available on pypi.org:
+    
+    
+    pip install nbreport
+    
+
+nbreport is made for Python 3.6 _and newer._
+
+## Overview
+
+You can use nbreport to:
+
+  1. Create an _instance_ of a report from a report repository.
+  2. Fill that instance in with template variables that configure the report instance.
+  3. Compute the report instance.
+  4. Publish the report instance.
+
+
+
+Try this test command to get a sense for how nbreport work:
+    
+    
+    nbreport test https://github.com/lsst-sqre/nbreport --git-subdir tests/TESTR-000 -c title "My first report"
+    
+
+This test command uses the TESTR-000 example report repository in this project's own Git repository. Next, it creates a new instance called `TESTR-000-test` in your current working directory and configures the notebook so that the `title` variable is `"My first report"`. Finally, the test command runs the notebook to generate outputs.
+
+Learn more about nbreport and how to create reports with LSST's notebook-based report system at https://nbreport.lsst.io.
+
+## About
+
+Command-line app for creating and publishing notebook-based reports for LSST 
+
+nbreport.lsst.io
+
+### Topics
+
+lsst-doc-engineering 
+
+### Resources
+
+Readme 
+
+### License
+
+MIT license 
+
+Activity
+
+Custom properties
+
+### Stars
+
+**1** star 
+
+### Watchers
+
+**8** watching 
+
+### Forks
+
+**0** forks 
+
+Report repository 
+
+##  Releases 
+
+14 tags
+
+##  Packages 0
+
+No packages published   
+
+
+## Languages
+
+  * Python 91.3%
+  * Jupyter Notebook 8.7%
+
+
+
+## Footer
+
+© 2024 GitHub, Inc. 
+
+### Footer navigation
+
+  * Terms
+  * Privacy
+  * Security
+  * Status
+  * Docs
+  * Contact
+  * Manage cookies 
+  * Do not share my personal information 
+
+
+
+You can’t perform that action at this time. 

@@ -1,0 +1,91 @@
+nbreport
+
+  * Forum
+  * Docs
+  * LSST.org â
+
+
+
+### Navigation
+
+  * next » 
+  * nbreport » 
+
+
+
+# nbreportÂ¶
+
+nbreport is a client for creating and publishing LSSTâs notebook-based reports. Notebook-based reports are generated from template repositories, computed, and published with LSST the Docs.
+
+nbreport is developed on GitHub at https://github.com/lsst-sqre/nbreport. The design document is https://sqr-023.lsst.io.
+
+## InstallationÂ¶
+    
+    
+    pip install nbreport
+    
+
+nbreport is built for Python 3.6 and newer.
+
+## Try it outÂ¶
+
+This one-line command creates a test report instance:
+    
+    
+    nbreport test https://github.com/lsst-sqre/nbreport --git-subdir tests/TESTR-000 \
+        -c username $USER -c date `date +"%F"` -c a 20
+    
+
+This test command uses the TESTR-000 example report repository in this projectâs own Git repository. Next, it creates a new report instance called `TESTR-000-test` in your current working directory and configures the values for three variables in the notebook template: `username`, `date`, and `a`. Finally, the test command runs the notebook to generate outputs.
+
+## DocumentationÂ¶
+
+  * Guide to developing report repositories
+    * How to include data files with a notebook template as assets
+    * How to use Python modules in a report notebook template
+    * nbreport.yaml file format reference
+  * Command-line reference
+    * nbreport
+  * Python API reference
+    * nbreport.compute
+    * nbreport.processing
+    * nbreport.repo
+    * nbreport.templating
+    * nbreport.userconfig
+  * Change log
+    * 0.7.4 (2019-02-12)
+    * 0.7.3 (2019-08-28)
+    * 0.7.2 (2019-08-08)
+    * 0.7.1 (2018-08-14)
+    * 0.7.0 (2018-08-12)
+    * 0.6.0 (2018-08-08)
+    * 0.5.1 (2018-08-03)
+    * 0.5.0 (2018-07-27)
+    * 0.4.0 (2018-07-25)
+    * 0.3.0 (2018-07-23)
+    * 0.2.0 (2018-07-18)
+    * 0.1.0 (2018-07-17)
+  * Development guide
+    * Installation for development
+    * Releases
+
+
+
+### On this page
+
+  * nbreport
+    * Installation
+    * Try it out
+    * Documentation
+
+
+
+Back to Top
+
+Created using Sphinx 1.7.9. Page design is based on Astropy's bootstrap-astropy theme in astropy-helpers.   
+LSST documentation is proudly served through the Fastly CDN. 
+
+© Copyright 2018-2019 Association of Universities for Research in Astronomy.  
+
+
+Financial support for LSST comes from the National Science Foundation (NSF) through Cooperative Agreement No. 1258333, the Department of Energy (DOE) Office of Science under Contract No. DE-AC02-76SF00515, and private funding raised by the LSST Corporation. The NSF-funded LSST Project Office for construction was established as an operating center under management of the Association of Universities for Research in Astronomy (AURA). The DOE-funded effort to build the LSST camera is managed by the SLAC National Accelerator Laboratory (SLAC). 

@@ -1,0 +1,92 @@
+ts_ATMCSSimulator
+
+  * Forum
+  * Docs
+  * LSST.org â
+
+
+
+### Navigation
+
+  * next » 
+  * ts_ATMCSSimulator » 
+
+
+
+# lsst.ts.ATMCSSimulatorÂ¶
+
+A simulator for the auxiliary telescope motor control system (ATMCS CSC).
+
+## Using lsst.ts.ATMCSSimulatorÂ¶
+
+The package is compatible with LSST DMâs `scons` build system and `eups` package management system. Assuming you have the basic LSST DM stack installed you can do the following, from within the package directory:
+
+  * `setup -r .` to setup the package and dependencies.
+
+  * `scons` to build the package and run unit tests.
+
+  * `scons install declare` to install the package and declare it to eups.
+
+  * `package-docs build` to build the documentation. This requires `documenteer`; see building single package docs for installation instructions.
+
+
+
+
+With the package built and set up you can run the simulator using:
+
+> run_atmcs_simulator.py
+
+If you want a different configuration, you can call `ATMCSCsc.configure` (from Python, not SAL).
+
+## ContributingÂ¶
+
+`lsst.ts.ATMCSSimulator` is developed at https://github.com/lsst-ts/ts_ATMCSSimulator. You can find Jira issues for this module using labels=ts_ATMCSSimulator.
+
+## Python API referenceÂ¶
+
+### lsst.ts.ATMCSSimulator PackageÂ¶
+
+#### ClassesÂ¶
+
+`ATMCSCsc`([initial_state])
+
+Simulator for auxiliary telescope motor control system CSC.  
+  
+`Axis`(value)
+
+An enumeration.  
+  
+#### Class Inheritance DiagramÂ¶
+
+Inheritance diagram of lsst.ts.ATMCSSimulator.mcs_csc.ATMCSCsc, lsst.ts.ATMCSSimulator.mcs_csc.Axis
+
+## Version HistoryÂ¶
+
+  * Version History
+
+
+
+### On this page
+
+  * lsst.ts.ATMCSSimulator
+    * Using lsst.ts.ATMCSSimulator
+    * Contributing
+    * Python API reference
+      * lsst.ts.ATMCSSimulator Package
+        * Classes
+        * Class Inheritance Diagram
+    * Version History
+
+
+
+Back to Top
+
+Last built Apr 13, 2021. 
+
+Created using Sphinx 3.5.3. Page design is based on Astropy's bootstrap-astropy theme in astropy-helpers.   
+LSST documentation is proudly served through the Fastly CDN. 
+
+© Copyright 2015-2021 LSST contributors.  
+
+
+Financial support for LSST comes from the National Science Foundation (NSF) through Cooperative Agreement No. 1258333, the Department of Energy (DOE) Office of Science under Contract No. DE-AC02-76SF00515, and private funding raised by the LSST Corporation. The NSF-funded LSST Project Office for construction was established as an operating center under management of the Association of Universities for Research in Astronomy (AURA). The DOE-funded effort to build the LSST camera is managed by the SLAC National Accelerator Laboratory (SLAC). 

@@ -1,0 +1,225 @@
+Vera C. Rubin Observatory Documentation for Data Preview 0.2
+
+  * Forum
+  * Docs
+  * LSST.org â
+
+
+
+### Navigation
+
+  * next » 
+  * « previous  | 
+  * Vera C. Rubin Observatory Documentation for Data Preview 0.2 » 
+  * DP0.2 Documentation Project Information »
+  * Documentation for DP0.2 Style Guide
+
+
+
+# Contributing to Rubin Observatory Documentation for Data Preview 0.2 (DP0.2)Â¶
+
+Below are instructions and guidelines on contributing to the Rubin Observatory Documentation for DP0.2. This documentation is built with Sphinx and published to https://dp0-2.lsst.io.
+
+This documentation is open source. Rubin Observatory welcomes contributions that make this documentation more useful and accurate.
+
+## Raising an issueÂ¶
+
+If you spot an issue with the documentation, the best thing to do is raise a GitHub issue in the dp0-2_lsst_io repo. Include any relevant URLs with your issue description.
+
+## Creating a pull request (PR)Â¶
+
+You can contribute directly to the dp0-2_lsst_io repo by creating a pull request (PR). If youâre intending to make a substantial change, itâs a good idea to create a GitHub issue first with your proposal. Rubin Observatory canât accept contributions that donât fit with our strategy and roadmap.
+
+These sections can help you create a successful PR:
+
+>   * Building the documentation locally
+> 
+>   * Documentation style guide
+> 
+> 
+
+
+## Building the documentation locallyÂ¶
+
+These are the basic steps to clone and build the docs:
+
+  1. Clone the GitHub repository:
+    
+        git clone https://github.com/lsst/dp0-2_lsst_io
+    cd dp0-2_lsst_io
+    
+
+  2. Create a Python virtual environment (with venv, for example):
+    
+        python3 -m venv .venv
+    source .venv/bin/activate
+    
+
+Note
+
+Activate this virtual environment in another shell by re-running the `source` command.
+
+  3. Install the Python dependencies:
+    
+        python -m pip install --upgrade pip
+    python -m pip install -r requirements.txt
+    
+
+  4. You are now able to edit the cloned repository. The remaining items below are commands used to build and validate the documentation. These commands must be executed from the top-level directory.
+
+  5. Build the site:
+    
+        make html
+    
+
+Note
+
+Open `_build/html/index.html` in a browser to review it.
+
+  6. Validate the documentation build:
+    
+        make linkcheck
+    
+
+Note
+
+If some links are behind a login, you might need to ignore them. Look at the `linkcheck_ignore` variable in `conf.py` for examples of how to do this.
+
+  7. Completely clear the build:
+    
+        make clean
+    
+
+Note
+
+An error will alert you of identical labels during the build process.
+
+
+
+
+## DeploymentÂ¶
+
+Whenever you push to the GitHub repository, the site is built for the corresponding branch. Find your build at https://dp0-2.lsst.io/v/. You can push to a branch youâve created at any time.
+
+The `main` branch is always published as https://dp0-2.lsst.io. Only authorized individuals can merge to `main` (may be delegated). To incorporate your suggestions, create a pull request.
+
+### Approval processÂ¶
+
+  1. Verify the content with all authors and contributors.
+
+  2. Create a PR.
+
+  3. Request the following to review the PR (additional reviewers may be included in the process):
+
+     * Melissa Graham
+
+     * Leanne Guy
+
+  4. Respond to the comments received during the review process.
+
+  5. After all reviewers approve, the submitter will squash commits and merge to main.
+
+  6. Notify Melissa Graham or Leanne Guy the PR was merged.
+
+  7. Notify the authorized individual to tag the release.
+
+
+
+
+## Documentation style guideÂ¶
+
+### New to reStructuredText and sphinxÂ¶
+
+Check out these resources and guides. Sources files are available to compare raw reST and HTML outputs.
+
+>   * reStructuredText Introductory and Tutorial Material and references therein.
+> 
+>   * reStructuredText Primer
+> 
+>   * reStructuredText Quick Reference
+> 
+>   * reStructuredText Primer from Sphinx
+> 
+>   * reStructuredText Style Guide for Rubin Observatory Data Management Developers
+> 
+> 
+
+
+### Data products documentation style guideÂ¶
+
+Important
+
+The information provided below is based on the LSST DM reStructuredText style guide.
+    
+
+A style guide specific to Data Previews will be provided at a later time.
+
+The information below can help you create effective reStructuredText for the Rubin Observatory Documentation for DP0.2.
+
+### Style and voiceÂ¶
+
+This is user documentation, which is different from academic writing. Here are some tips:
+
+  * Make sure that all of your writing is in the service of users.
+
+  * Write with the active voice and in the present tense as much as possible.
+
+  * Address the user directly (âyou canâ¦â). Never use âweâ since thatâs ambiguous. If âweâ means âRubin Observatory,â then name âRubin Observatory.â If âweâ means the user, then say âyou.â Even in tutorials, donât use âweâ to refer to an imaginary writer assisting the user.
+
+  * Write simple, short sentences in short paragraphs. Chunk information with headers.
+
+  * Write confidently and precisely, yet also casually.
+
+
+
+
+### File namesÂ¶
+
+Always use hyphens to separate words in directory and file names. Do not use underscores or spaces. This choice is based on the Google Developer Documentation Style Guide for search engine optimization.
+
+Use all-lowercase for directory names unless it is appropriate otherwise (such as a common acronym like LSST).
+
+### TemplatesÂ¶
+
+A template folder is located in the documentation project directory. It contains template pages for the Documentation for DP0.2, including a directory index. Review the template folder contents for instructions, then update the contents accordingly.
+
+### Titles and headingsÂ¶
+
+Title case for titles is recommended. Sentence case for headings is recommended. Title case for labels in reStructuredText files is recommended.
+
+Try not to use more than two levels of heading hierarchy. Using more than two levels of hierarchy might suggest an information architecture issue.
+
+Also keep in mind DMâs reStructuredText heading styles.
+
+### LinksÂ¶
+
+Never use âhereâ as link text. Instead, make the relevant noun or phrase the link.
+
+### On this page
+
+  * Contributing to Rubin Observatory Documentation for Data Preview 0.2 (DP0.2)
+    * Raising an issue
+    * Creating a pull request (PR)
+    * Building the documentation locally
+    * Deployment
+      * Approval process
+    * Documentation style guide
+      * New to reStructuredText and sphinx
+      * Data products documentation style guide
+      * Style and voice
+      * File names
+      * Templates
+      * Titles and headings
+      * Links
+
+
+
+Page Source Back to Top
+
+Created using Sphinx 8.0.2. Page design is based on Astropy's bootstrap-astropy theme in astropy-helpers.   
+LSST documentation is proudly served through the Fastly CDN. 
+
+© Copyright 2022, Vera C. Rubin Observatory.  
+
+
+Financial support for LSST comes from the National Science Foundation (NSF) through Cooperative Agreement No. 1258333, the Department of Energy (DOE) Office of Science under Contract No. DE-AC02-76SF00515, and private funding raised by the LSST Corporation. The NSF-funded LSST Project Office for construction was established as an operating center under management of the Association of Universities for Research in Astronomy (AURA). The DOE-funded effort to build the LSST camera is managed by the SLAC National Accelerator Laboratory (SLAC). 

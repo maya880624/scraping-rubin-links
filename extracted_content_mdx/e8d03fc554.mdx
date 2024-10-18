@@ -1,0 +1,423 @@
+Skip to content
+
+## Navigation Menu
+
+Toggle navigation
+
+Sign in 
+
+  * Product 
+
+    * Actions
+
+Automate any workflow 
+
+    * Packages
+
+Host and manage packages 
+
+    * Security
+
+Find and fix vulnerabilities 
+
+    * Codespaces
+
+Instant dev environments 
+
+    * GitHub Copilot
+
+Write better code with AI 
+
+    * Code review
+
+Manage code changes 
+
+    * Issues
+
+Plan and track work 
+
+    * Discussions
+
+Collaborate outside of code 
+
+Explore
+    * All features 
+    * Documentation 
+    * GitHub Skills 
+    * Blog 
+
+  * Solutions 
+
+By size
+    * Enterprise 
+    * Teams 
+    * Startups 
+
+By industry
+    * Healthcare 
+    * Financial services 
+    * Manufacturing 
+
+By use case
+    * CI/CD & Automation 
+    * DevOps 
+    * DevSecOps 
+
+  * Resources 
+
+Topics
+    * AI 
+    * DevOps 
+    * Security 
+    * Software Development 
+
+Explore
+    * Learning Pathways 
+    * White papers, Ebooks, Webinars 
+    * Customer Stories 
+    * Partners 
+
+  * Open Source 
+
+    * GitHub Sponsors
+
+Fund open source developers 
+
+    * The ReadME Project
+
+GitHub community articles 
+
+Repositories
+    * Topics 
+    * Trending 
+    * Collections 
+
+  * Enterprise 
+
+    * Enterprise platform
+
+AI-powered developer platform 
+
+Available add-ons
+    * Advanced Security
+
+Enterprise-grade security features 
+
+    * GitHub Copilot
+
+Enterprise-grade AI features 
+
+    * Premium Support
+
+Enterprise-grade 24/7 support 
+
+  * Pricing
+
+
+
+Search or jump to...
+
+# Search code, repositories, users, issues, pull requests...
+
+Search 
+
+Clear
+
+
+
+
+Search syntax tips 
+
+#  Provide feedback 
+
+We read every piece of feedback, and take your input very seriously.
+
+Include my email address so I can be contacted
+
+Cancel  Submit feedback 
+
+#  Saved searches 
+
+## Use saved searches to filter your results more quickly
+
+Name
+
+Query
+
+To see all available qualifiers, see our documentation. 
+
+Cancel  Create saved search 
+
+Sign in 
+
+Sign up  Reseting focus
+
+You signed in with another tab or window. Reload to refresh your session. You signed out in another tab or window. Reload to refresh your session. You switched accounts on another tab or window. Reload to refresh your session. Dismiss alert
+
+{{ message }}
+
+lsst-sqre  / **gafaelfawr ** Public
+
+  * Notifications  You must be signed in to change notification settings
+  * Fork 7
+  * Star  5
+
+
+
+
+Authorization and token management system supporting OpenID Connect and OAuth 2 
+
+gafaelfawr.lsst.io
+
+### License
+
+MIT license 
+
+5 stars  7 forks  Branches Tags Activity
+
+Star 
+
+Notifications  You must be signed in to change notification settings
+
+  * Code
+  * Issues 0
+  * Pull requests 0
+  * Actions
+  * Projects 0
+  * Security
+  * Insights
+
+
+
+Additional navigation options
+
+  * Code 
+  * Issues 
+  * Pull requests 
+  * Actions 
+  * Projects 
+  * Security 
+  * Insights 
+
+
+
+# lsst-sqre/gafaelfawr
+
+This commit does not belong to any branch on this repository, and may belong to a fork outside of the repository.
+
+main
+
+BranchesTags
+
+Go to file
+
+Code
+
+## Folders and files
+
+NameName
+
+Last commit message
+
+Last commit date  
+  
+## Latest commit
+
+## History
+
+3,091 Commits  
+  
+.github
+
+.github  
+  
+alembic
+
+alembic  
+  
+changelog.d
+
+changelog.d  
+  
+crds
+
+crds  
+  
+docs
+
+docs  
+  
+requirements
+
+requirements  
+  
+scripts
+
+scripts  
+  
+src/gafaelfawr
+
+src/gafaelfawr  
+  
+tests
+
+tests  
+  
+ui
+
+ui  
+  
+.dockerignore
+
+.dockerignore  
+  
+.gitignore
+
+.gitignore  
+  
+.nvmrc
+
+.nvmrc  
+  
+.pre-commit-config.yaml
+
+.pre-commit-config.yaml  
+  
+.prettierignore
+
+.prettierignore  
+  
+CHANGELOG.md
+
+CHANGELOG.md  
+  
+Dockerfile
+
+Dockerfile  
+  
+LICENSE
+
+LICENSE  
+  
+Makefile
+
+Makefile  
+  
+README.md
+
+README.md  
+  
+alembic.ini
+
+alembic.ini  
+  
+pyproject.toml
+
+pyproject.toml  
+  
+ruff-shared.toml
+
+ruff-shared.toml  
+  
+tox.ini
+
+tox.ini  
+  
+View all files  
+  
+## Repository files navigation
+
+  * README
+  * MIT license
+
+
+
+# Gafaelfawr
+
+Gafaelfawr is a FastAPI service for the authorization and management of tokens, including their issuance and revocation. It is deployed via Phalanx.
+
+It is part of the Rubin Science Platform identity management system. The overall design is documented in DMTN-234, and its implementation in DMTN-224. History and decisions made during its development are documented in SQR-069. Read those documents for a more complete picture of how Gafaelfawr fits into a larger identity management system.
+
+Gafaelfawr provides authentication and access control via NGINX's `auth_request` directive, and handles integration with an external identity provider (either with GitHub or OpenID Connect). Authentication sessions and user identity information are stored in Redis. Token information is stored in a SQL database. It also provides an API (and currently a UI) to create and manipulate tokens, and a minimal OpenID Connect server to support protected services that only understand OpenID Connect.
+
+For full documentation, see gafaelfawr.lsst.io.
+
+Gafaelfawr is named for Glewlwyd Gafaelfawr, the knight who challenges King Arthur in _Pa gur yv y porthaur?_ and, in later stories, is a member of his court and acts as gatekeeper. Gafaelfawr is pronounced (very roughly) gah-VILE-vahwr. (If you speak Welsh and can provide a better pronunciation guide, please open an issue!)
+
+## About
+
+Authorization and token management system supporting OpenID Connect and OAuth 2 
+
+gafaelfawr.lsst.io
+
+### Resources
+
+Readme 
+
+### License
+
+MIT license 
+
+Activity
+
+Custom properties
+
+### Stars
+
+**5** stars 
+
+### Watchers
+
+**12** watching 
+
+### Forks
+
+**7** forks 
+
+Report repository 
+
+##  Releases 46
+
+11.1.1 Latest 
+
+May 24, 2024
+
+\+ 45 releases 
+
+##  Packages 0
+
+##  Contributors 12
+
+  *   *   *   *   *   *   *   *   *   *   *   * 
+
+
+## Languages
+
+  * Python 94.5%
+  * JavaScript 3.8%
+  * Roff 0.9%
+  * Shell 0.3%
+  * Dockerfile 0.2%
+  * Makefile 0.2%
+  * Other 0.1%
+
+
+
+## Footer
+
+© 2024 GitHub, Inc. 
+
+### Footer navigation
+
+  * Terms
+  * Privacy
+  * Security
+  * Status
+  * Docs
+  * Contact
+  * Manage cookies 
+  * Do not share my personal information 
+
+
+
+You can’t perform that action at this time. 

@@ -1,0 +1,368 @@
+Skip to content
+
+## Navigation Menu
+
+Toggle navigation
+
+Sign in 
+
+  * Product 
+
+    * Actions
+
+Automate any workflow 
+
+    * Packages
+
+Host and manage packages 
+
+    * Security
+
+Find and fix vulnerabilities 
+
+    * Codespaces
+
+Instant dev environments 
+
+    * GitHub Copilot
+
+Write better code with AI 
+
+    * Code review
+
+Manage code changes 
+
+    * Issues
+
+Plan and track work 
+
+    * Discussions
+
+Collaborate outside of code 
+
+Explore
+    * All features 
+    * Documentation 
+    * GitHub Skills 
+    * Blog 
+
+  * Solutions 
+
+By size
+    * Enterprise 
+    * Teams 
+    * Startups 
+
+By industry
+    * Healthcare 
+    * Financial services 
+    * Manufacturing 
+
+By use case
+    * CI/CD & Automation 
+    * DevOps 
+    * DevSecOps 
+
+  * Resources 
+
+Topics
+    * AI 
+    * DevOps 
+    * Security 
+    * Software Development 
+
+Explore
+    * Learning Pathways 
+    * White papers, Ebooks, Webinars 
+    * Customer Stories 
+    * Partners 
+
+  * Open Source 
+
+    * GitHub Sponsors
+
+Fund open source developers 
+
+    * The ReadME Project
+
+GitHub community articles 
+
+Repositories
+    * Topics 
+    * Trending 
+    * Collections 
+
+  * Enterprise 
+
+    * Enterprise platform
+
+AI-powered developer platform 
+
+Available add-ons
+    * Advanced Security
+
+Enterprise-grade security features 
+
+    * GitHub Copilot
+
+Enterprise-grade AI features 
+
+    * Premium Support
+
+Enterprise-grade 24/7 support 
+
+  * Pricing
+
+
+
+Search or jump to...
+
+# Search code, repositories, users, issues, pull requests...
+
+Search 
+
+Clear
+
+
+
+
+Search syntax tips 
+
+#  Provide feedback 
+
+We read every piece of feedback, and take your input very seriously.
+
+Include my email address so I can be contacted
+
+Cancel  Submit feedback 
+
+#  Saved searches 
+
+## Use saved searches to filter your results more quickly
+
+Name
+
+Query
+
+To see all available qualifiers, see our documentation. 
+
+Cancel  Create saved search 
+
+Sign in 
+
+Sign up  Reseting focus
+
+You signed in with another tab or window. Reload to refresh your session. You signed out in another tab or window. Reload to refresh your session. You switched accounts on another tab or window. Reload to refresh your session. Dismiss alert
+
+{{ message }}
+
+lsst  / **display_firefly ** Public
+
+  * Notifications  You must be signed in to change notification settings
+  * Fork 5
+  * Star  2
+
+
+
+
+Interface between afw and firefly 
+
+2 stars  5 forks  Branches Tags Activity
+
+Star 
+
+Notifications  You must be signed in to change notification settings
+
+  * Code
+  * Issues 0
+  * Pull requests 2
+  * Actions
+  * Projects 0
+  * Wiki
+  * Security
+  * Insights
+
+
+
+Additional navigation options
+
+  * Code 
+  * Issues 
+  * Pull requests 
+  * Actions 
+  * Projects 
+  * Wiki 
+  * Security 
+  * Insights 
+
+
+
+# lsst/display_firefly
+
+This commit does not belong to any branch on this repository, and may belong to a fork outside of the repository.
+
+main
+
+BranchesTags
+
+Go to file
+
+Code
+
+## Folders and files
+
+NameName
+
+Last commit message
+
+Last commit date  
+  
+## Latest commit
+
+## History
+
+176 Commits  
+  
+.github/workflows
+
+.github/workflows  
+  
+doc
+
+doc  
+  
+python/lsst
+
+python/lsst  
+  
+tests
+
+tests  
+  
+ups
+
+ups  
+  
+.gitignore
+
+.gitignore  
+  
+README.md
+
+README.md  
+  
+SConstruct
+
+SConstruct  
+  
+setup.cfg
+
+setup.cfg  
+  
+View all files  
+  
+## Repository files navigation
+
+  * README
+
+
+
+# display_firefly
+
+Implementation of the `afw.display` interface for the Firefly backend.
+
+Firefly is IPAC's toolkit for construction of astronomical data user interfaces.
+
+## Pointers to more information
+
+  * Full documentation is available at https://pipelines.lsst.io/modules/lsst.display.firefly/ .
+  * Within the Rubin Science Platform environment, suitable Firefly servers are provided by default, so that in many cases the user need not be aware of the identity or URL of the server.
+  * `display_firefly` works with the RSP's Firefly extension for JupyterLab for displays within the JupyterLab environment (the default), but also with Firefly servers in separate browser tabs/windows.
+  * See http://github.com/Caltech-IPAC/firefly for the core Firefly code base.
+  * The RSP Portal Aspect is constructed from the http://github.com/lsst/suit package, as an application of Firefly. Portal Aspect application.
+  * Standalone Firefly servers for individual use may be obtained from this Dockerhub repository.
+
+
+
+## Dependencies
+
+In addition to its `eups`-declared dependencies, `display_firefly` requires the `firefly_client` Python module to be available. In the Rubin build environment, this is treated as an external dependency, managed via Conda and supplied via the `rubin-env` mechanism.
+
+  * See https://github.com/conda-forge/rubinenv-feedstock and DMTN-174.
+
+
+
+## Usage
+
+Usage is described in detail in the documentation. However, in many cases the following is sufficient to set up a Firefly display for use with the back-end-agnostic `afw.display` interface:
+    
+    
+    import lsst.afw.display as afwDisplay
+    afwDisplay.setDefaultBackend('firefly')
+    afw_display = afwDisplay.Display(frame=1)
+    
+
+## About
+
+Interface between afw and firefly 
+
+### Resources
+
+Readme 
+
+Activity
+
+Custom properties
+
+### Stars
+
+**2** stars 
+
+### Watchers
+
+**61** watching 
+
+### Forks
+
+**5** forks 
+
+Report repository 
+
+##  Releases 
+
+431 tags
+
+##  Packages 0
+
+No packages published   
+
+
+##  Contributors 12
+
+  *   *   *   *   *   *   *   *   *   *   *   * 
+
+
+## Languages
+
+  * Python 100.0%
+
+
+
+## Footer
+
+© 2024 GitHub, Inc. 
+
+### Footer navigation
+
+  * Terms
+  * Privacy
+  * Security
+  * Status
+  * Docs
+  * Contact
+  * Manage cookies 
+  * Do not share my personal information 
+
+
+
+You can’t perform that action at this time. 

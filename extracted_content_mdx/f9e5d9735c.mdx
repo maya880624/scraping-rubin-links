@@ -1,0 +1,290 @@
+LSST Science Pipelines
+
+  * Forum
+  * Docs
+  * LSST.org â
+
+
+
+### Navigation
+
+  * next » 
+  * LSST Science Pipelines » 
+
+
+
+# The LSST Science PipelinesÂ¶
+
+The LSST Science Pipelines are designed to enable optical and near-infrared astronomy in the âbig dataâ era. While they are being developed to process the data for the Rubin Observatory Legacy Survey of Space and Time (Rubinâs LSST), our command line and programming interfaces can be extended to address any optical or near-infrared dataset.
+
+This documentation covers version **v27_0_0**. Learn whatâs new. You can also find documentation for other versions.
+
+## Getting startedÂ¶
+
+If youâre new to the LSST Science Pipelines, these step-by-step data processing tutorials will get you up and running.
+
+Data processing tutorial series (these were developed using the `w_2021_33` version of the science pipelines):
+
+  * Part 1 Data repositories
+
+  * Part 2 Single frame processing
+
+  * Part 3 Image and catalog display
+
+  * Part 4 Global calibration
+
+  * Part 5 Image coaddition
+
+  * Part 6 Source measurement
+
+  * Part 7 Multi-band catalog analysis.
+
+
+
+
+Guide for processing DESC DC2 data in a shared repository using the Alert Production pipeline (this was developed using the `w_2021_30` version of the science pipelines):
+
+  * Processing DESC DC2 data with the Alert Production pipeline.
+
+
+
+
+Join us on the LSST Community forum to get help and share ideas.
+
+## InstallationÂ¶
+
+Recommended installation path:
+
+  * Installing with lsstinstall
+
+  * Setting up installed LSST Science Pipelines
+
+  * Top-level packages to install
+
+
+
+
+Alternative distributions and installation methods:
+
+  * Running with Docker
+
+  * Installing from source with lsstsw
+
+  * CernVM FS (contributed by CC-IN2P3)
+
+  * Installing with newinstall.sh
+
+
+
+
+Related topics:
+
+  * Configuring Git LFS for data packages
+
+  * Building a package with the installed Science Pipelines stack
+
+
+
+
+To install the LSST Simulation software, such as MAF, please follow the LSST Simulations documentation.
+
+## FrameworksÂ¶
+
+  * Data access and pipeline middleware
+    * Frequently asked questions
+
+
+
+## Python modulesÂ¶
+
+  * lsst.afw.cameraGeom
+  * lsst.afw.coord
+  * lsst.afw.detection
+  * lsst.afw.display
+  * lsst.afw.fits
+  * lsst.afw.formatters
+  * lsst.afw.geom
+  * lsst.afw.image
+  * lsst.afw.math
+  * lsst.afw.table
+  * lsst.afw.typehandling
+  * lsst.alert.packet
+  * lsst.analysis.ap
+  * lsst.analysis.tools
+  * lsst.ap.association
+  * lsst.ap.pipe
+  * lsst.ap.verify
+  * lsst.base
+  * lsst.cbp
+  * lsst.cell_coadds
+  * lsst.coadd.utils
+  * lsst.cp.pipe
+  * lsst.ctrl.bps.htcondor
+  * lsst.ctrl.bps.panda
+  * lsst.ctrl.bps.parsl
+  * lsst.ctrl.bps
+  * lsst.ctrl.mpexec
+  * lsst.daf.butler
+  * lsst.daf.relation
+  * lsst.dax.apdb
+  * lsst.display.ds9
+  * lsst.display.firefly
+  * lsst.drp.pipe
+  * lsst.drp.tasks
+  * lsst.faro.base
+  * lsst.faro.measurement
+  * lsst.faro.preparation
+  * lsst.faro.summary
+  * lsst.faro.utils
+  * lsst.faro
+  * lsst.fgcmcal
+  * lsst.gauss2d.fit
+  * lsst.gauss2d
+  * lsst.geom
+  * lsst.ip.diffim
+  * lsst.ip.isr
+  * lsst.jointcal
+  * lsst.log
+  * lsst.meas.algorithms
+  * lsst.meas.astrom
+  * lsst.meas.base
+  * lsst.meas.deblender
+  * lsst.meas.extensions.gaap
+  * lsst.meas.extensions.photometryKron
+  * lsst.meas.extensions.piff
+  * lsst.meas.extensions.psfex
+  * lsst.meas.extensions.scarlet
+  * lsst.meas.extensions.shapeHSM
+  * lsst.meas.extensions.simpleShape
+  * lsst.meas.extensions.trailedSources
+  * lsst.meas.modelfit
+  * lsst.meas.transiNet
+  * lsst.modelfit.parameters
+  * lsst.obs.base
+  * lsst.obs.cfht
+  * lsst.obs.decam
+  * lsst.obs.lsst
+  * lsst.pex.config
+  * lsst.pex.exceptions
+  * lsst.pipe.base
+  * lsst.pipe.tasks
+  * lsst.resources
+  * lsst.sconsUtils
+  * lsst.shapelet
+  * lsst.skymap
+  * lsst.source.injection
+  * lsst.utils
+  * lsst.verify
+  * lsstDebug
+
+
+
+Additional C++ API reference documentation is currently available at the doxygen.lsst.codes site.
+
+## PackagesÂ¶
+
+  * verify_metrics
+
+
+
+## Release detailsÂ¶
+
+  * Release History
+    * Release 27.0.0 (2024-06-25)
+    * Release 26.0.2 (2024-03-20)
+    * Release 25.0.4 (2024-03-20)
+    * Release 24.1.5 (2024-04-25)
+    * Release 24.0.0 (2022-12-09)
+    * Release 23.0.0 (2021-12-21)
+    * Release 22.0.0 (2021-07-09)
+    * Release 21.0.0 (2020-12-08)
+    * Release 20.0.0 (2020-06-24)
+    * Release 19.0.0 (2019-12-05)
+    * Release 18.1.0 (2019-08-08)
+    * Release 18.0.0 (2019-07-09)
+    * Release 17.0 (2019-02-15)
+    * Release 16.0 (2018-06-28)
+    * Release 15.0 (2018-04-06)
+    * Release 14.0 (2017-10-23)
+    * Release 13.0 (2017-02-28)
+    * Release 12.0 (2016-06-15)
+    * Release 11.0 (2015-09-24)
+  * Known Issues
+    * Binary installation issues
+    * Source installation issues
+    * Other issues
+  * Characterization Metric Reports
+
+
+
+## IndicesÂ¶
+
+  * Tasks
+
+  * Index
+
+  * Search
+
+
+
+
+## Citing and acknowledging the LSST Science PipelinesÂ¶
+
+If you use the science pipelines in a published work, we request that you cite Bosch et al. 2018, 2019. In addition, it is appropriate to include an acknowledgement of the form:
+
+> This paper makes use of LSST Science Pipelines software developed by the Vera C. Rubin Observatory. We thank the Rubin Observatory for making their code available as free software at https://pipelines.lsst.io.
+
+For studies that make use of the Data Butler and pipeline execution system, we request that you additionally cite Jenness et al. 2022. For studies that make use of the SCARLET source separation framework, we request that you additionally cite Melchior et al. 2018.
+
+As the Rubin Observatory is not funded to provide support for the LSST Science Pipelines outside of the project, any support provided by project members will come out of their own free or science time. A fair way to acknowledge their help and good will may be to offer co-authorship on technical papers describing the derived software (e.g. pipelines).
+
+## LicenseÂ¶
+
+All LSST Science Pipelines code is free software, licensed under the terms of the GNU General Public Licence, Version 3. You have the freedom to run, copy, distribute, study, change and improve the software as you see fit within the terms of the GPL v3 license. Using, modifying or redistributing the LSST Science Pipelines does not make you subject to the LSST Project Publication Policy (LPM-162). This documentation is licensed under the Creative Commons Attribution Share Alike 4.0 International License (CC-BY-SA 4.0).
+
+## More infoÂ¶
+
+  * Join us on the LSST Community forum, community.lsst.org.
+
+  * Fork our code on GitHub at https://github.com/lsst.
+
+  * Report issues in Jira.
+
+  * Some API documentation, particularly for C++, is currently published separately on a Doxygen site.
+
+  * Our Developer Guide describes the procedures and standards followed by the DM team.
+
+  * Learn more about Rubin Observatory Data Management by visiting http://lsst.org/about/dm.
+
+  * Contribute to our documentation. This guide is on GitHub at lsst/pipelines_lsst_io.
+
+
+
+
+### On this page
+
+  * The LSST Science Pipelines
+    * Getting started
+    * Installation
+    * Frameworks
+    * Python modules
+    * Packages
+    * Release details
+    * Indices
+    * Citing and acknowledging the LSST Science Pipelines
+    * License
+    * More info
+
+
+
+Back to Top
+
+Last built Aug 15, 2024. 
+
+Created using Sphinx 6.2.1. Page design is based on Astropy's bootstrap-astropy theme in astropy-helpers.   
+LSST documentation is proudly served through the Fastly CDN. 
+
+© Copyright 2015-2024 LSST contributors.  
+
+
+Financial support for LSST comes from the National Science Foundation (NSF) through Cooperative Agreement No. 1258333, the Department of Energy (DOE) Office of Science under Contract No. DE-AC02-76SF00515, and private funding raised by the LSST Corporation. The NSF-funded LSST Project Office for construction was established as an operating center under management of the Association of Universities for Research in Astronomy (AURA). The DOE-funded effort to build the LSST camera is managed by the SLAC National Accelerator Laboratory (SLAC). 

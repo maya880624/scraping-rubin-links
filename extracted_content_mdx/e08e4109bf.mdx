@@ -1,0 +1,194 @@
+ts_fiberspectrograph
+
+  * Forum
+  * Docs
+  * LSST.org â
+
+
+
+### Navigation
+
+  * next » 
+  * ts_fiberspectrograph » 
+
+
+
+# lsst.ts.fiberspectrographÂ¶
+
+Commandable SAL Component (CSC) to control the fiber spectrographs that are used to determine the wavelengths of the LSST calibration lamps and lasers.
+
+## Using lsst.ts.fiberspectrographÂ¶
+
+The Avantes Sensline spectrographs are USB connected devices, controlled via a vendor-supplied linux library written in C. This library, `libavs.so`, must be installed in `/usr/local/lib`. See `AvsFiberSpectrograph` for information about library version compatibility.
+
+### Device CommunicationÂ¶
+
+The CSC communicates with a connected device via an Resource acquisition is initialization (RAII) controller class, `AvsFiberSpectrograph`, which manages the device state, exposures, and error return codes. As an RAII class, a successful instantiation of the class means that the device is ready for use, and communication errors typically require destroying the instance and creating a new one to re-connect. The CSC manages this via its states: transitioning to the DISABLED state creates a device connection, while transitioning to any non-ENABLED state closes the connection. Setting up the udev rules on the machine connected to the devices and running the CSC is described in the README file of the code repository.
+
+Multiple devices can be connected to a single computer (however, see caveats), with the desired device determined by the index number of the CSC (see SALSubsystems.xml for the index->device mapping). The index `-1` is special, as a CSC with that index will connect to the only attached USB spectrograph (if multiple devices are attached, `index=-1` will raise an error). This can be useful for bench testing where different devices are plugged in and removed while a single CSC is running.
+
+### ExposuresÂ¶
+
+Exposure durations can be between 2 microseconds and 600 seconds. Exposure readout should complete within about 10 milliseconds of the end of the exposure duration.
+
+The output of an exposure is a 1x2048 pixel spectrum, with units of instrumental counts. This spectrum is bundled with appropriate metadata and a per-pixel wavelength solution in a FITS file. It is possible to saturate the detector: we do not currently provide a mask of saturated pixels.
+
+Exposures are not dark corrected: we should have plenty of signal, so should have minimal dark current to worry about. The AvaSpec devices have a âdynamic dark correctionâ option available, which we have disabled.
+
+The device provides an estimated per-pixel wavelength solution, which we include with the output from each exposure. These wavelengths should be used as an initial guess when fitting a calibration lamp (e.g. HeNeAr), and are likely not accurate enough for the LSST science goals.
+
+Status commands have to wait for on-going exposures to finish. This appears to be a limitation of the library or device itself: the `AVS_GetParameter` and `AVS_GetAnalogIn` commands (used to query the temperature setpoint and device temperature) will block until the exposure has been read out.
+
+### Cooling and statusÂ¶
+
+The `FiberSpectrographCsc` telemetry loop outputs the device temperature and setpoint every 10 seconds. We have not currently implemented a facility for modifying the setpoint temperature: the device default is 5Â°C.
+
+### Error codesÂ¶
+
+When a command to the device fails, the called C function will return an error code. The controller class will raise an exception that includes some information about that error code. For a detailed description of what each error code means, consult section `3.6.1` of the AvaSpec Linux Library Manual, on page 44.
+
+### SimulatorÂ¶
+
+The CSC implements a simulator mode using the same `unittest.mock` framework that the tests use to fake a connected spectrograph, via the `AvsSimulator` class. `AvsSimulator` mocks the loading of the `libavs.so` C library entirely, so the simulator must be activated before a device is connected, i.e. when the CSC is in STANDBY mode. The simulator is configured for a âno error conditionsâ use case, where all functions return success codes and reasonable values.
+
+### Caveats and notesÂ¶
+
+Some particular quirks of working with the system:
+
+  * There is no specific âUSB heartbeatâ command as there might be with an ethernet connected device; commands will immediately fail if the device is no longer connected or if there is a failure in communication.
+
+  * Running multiple CSCs from the same python instance may cause odd behavior, as the device controller class closes all communications via the `AVS_Done` function when disconnecting. It is **strongly recommended** to use a separate python instance for each device.
+
+  * Using multiple devices attached to the same computer should work, so long as each device is connected to via a specific serial number, as is done with the three indexes in the CSC. If no serial number is specified, the controller class will connect to a single attached device, but will fail at instantiation if multiple devices are attached.
+
+
+
+
+### Data FormatÂ¶
+
+Data files written by this CSC are in FITS format with the data stored as a 1-D spectrum in the primary HDU. The wavelength information is stored using the FITS `-TAB` standard and is stored in a binary table with name `WCS-TAB`. At this time Astropy does not natively support this WCS but the data and wavelength information can be read using the following code:
+    
+    
+    with astropy.io.fits.open(filename, checksum=True) as hdulist:
+        spectrum = hdulist[0].data
+    
+        # Read WCS information from header
+        primary_header = hdulist[0].header
+        wcs_tab_name = primary_header["PS1_0"]
+        wcs_tab_extver = primary_header["PV1_1"]
+        wave_col_name = primary_header["PS1_1"]
+        wave_table = astropy.table.QTable.read(hdulist[wcs_tab_name, wcs_tab_extver])
+        # Only one row so select that one explicitly
+        wavelengths = wave_table[wave_col_name][0]
+        # Force 1,N array to shape N
+        wavelengths = wavelengths.flatten()
+    
+
+## ContributingÂ¶
+
+`lsst.ts.fiberspectrograph` is developed at https://github.com/lsst-ts/ts_fiberspectrograph. You can find Jira issues for this module under the fiberspectrograph label.
+
+## Python API referenceÂ¶
+
+### lsst.ts.fiberspectrograph PackageÂ¶
+
+#### FunctionsÂ¶
+
+`run_fiberspectrograph`()
+
+Run the FiberSpectrograph CSC.  
+  
+#### ClassesÂ¶
+
+`AvsDeviceConfig`
+
+Python structure to represent the `DeviceConfigType` C struct.  
+  
+`AvsDeviceStatus`(value[,Â names,Â module,Â ...])
+
+Avantes DeviceStatus from page 38 of the Linux Library Manual.  
+  
+`AvsFiberSpectrograph`([serial_number,Â log,Â ...])
+
+Interface for the Avantes fiber spectrograph AvaSpec library.  
+  
+`AvsIdentity`
+
+Python structure to represent the `AvsIdentityType` C struct.  
+  
+`AvsMeasureConfig`  
+  
+`AvsReturnCode`(value[,Â names,Â module,Â ...])
+
+These codes were taken from avaspec.h and should match the code list in section 3.6.1 "Return Value Constants" (page 44) of the "Avantes Linux Library Manual" PDF version 9.6.0.0.  
+  
+`AvsReturnError`(code,Â what)
+
+Exception raised if an `AVS_*` C function returns an error code.  
+  
+`AvsSimulator`()
+
+Mock a libavs Avantes spectrograph connection; mocks enough of the `AVS_*` C free functions from `libavs.0.2.0` to allow connecting and disconnecting, getting status, and starting/stopping exposures.  
+  
+`DataManager`(instrument,Â origin,Â serial)
+
+A data packager from the Fiber Spectrograph CSC.  
+  
+`FiberSpectrographCsc`(index[,Â config_dir,Â ...])
+
+Commandable SAL Component (CSC) to communicate with the Avantes Fiber Spectrograph.  
+  
+`SalIndex`(value[,Â names,Â module,Â qualname,Â ...])
+
+Valid values for the SAL index.  
+  
+`SimulationMode`(value[,Â names,Â module,Â ...])
+
+Bitmask values for the CSC simulation mode.  
+  
+`SpectrographData`(wavelength,Â spectrum,Â ...)
+
+Class to hold data and metadata from a fiber spectrograph.  
+  
+#### Class Inheritance DiagramÂ¶
+
+Inheritance diagram of lsst.ts.fiberspectrograph.avs_fiber_spectrograph.AvsDeviceConfig, lsst.ts.fiberspectrograph.avs_fiber_spectrograph.AvsDeviceStatus, lsst.ts.fiberspectrograph.avs_fiber_spectrograph.AvsFiberSpectrograph, lsst.ts.fiberspectrograph.avs_fiber_spectrograph.AvsIdentity, lsst.ts.fiberspectrograph.avs_fiber_spectrograph.AvsMeasureConfig, lsst.ts.fiberspectrograph.avs_fiber_spectrograph.AvsReturnCode, lsst.ts.fiberspectrograph.avs_fiber_spectrograph.AvsReturnError, lsst.ts.fiberspectrograph.avs_simulator.AvsSimulator, lsst.ts.fiberspectrograph.data_manager.DataManager, lsst.ts.fiberspectrograph.csc.FiberSpectrographCsc, lsst.ts.fiberspectrograph.constants.SalIndex, lsst.ts.fiberspectrograph.constants.SimulationMode, lsst.ts.fiberspectrograph.data_manager.SpectrographData
+
+## Version HistoryÂ¶
+
+  * Version History
+
+
+
+### On this page
+
+  * lsst.ts.fiberspectrograph
+    * Using lsst.ts.fiberspectrograph
+      * Device Communication
+      * Exposures
+      * Cooling and status
+      * Error codes
+      * Simulator
+      * Caveats and notes
+      * Data Format
+    * Contributing
+    * Python API reference
+      * lsst.ts.fiberspectrograph Package
+        * Functions
+        * Classes
+        * Class Inheritance Diagram
+    * Version History
+
+
+
+Back to Top
+
+Last built Dec 12, 2023. 
+
+Created using Sphinx 5.3.0. Page design is based on Astropy's bootstrap-astropy theme in astropy-helpers.   
+LSST documentation is proudly served through the Fastly CDN. 
+
+© Copyright 2015-2023 LSST contributors.  
+
+
+Financial support for LSST comes from the National Science Foundation (NSF) through Cooperative Agreement No. 1258333, the Department of Energy (DOE) Office of Science under Contract No. DE-AC02-76SF00515, and private funding raised by the LSST Corporation. The NSF-funded LSST Project Office for construction was established as an operating center under management of the Association of Universities for Research in Astronomy (AURA). The DOE-funded effort to build the LSST camera is managed by the SLAC National Accelerator Laboratory (SLAC). 

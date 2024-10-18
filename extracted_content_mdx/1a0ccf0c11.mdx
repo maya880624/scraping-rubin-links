@@ -1,0 +1,384 @@
+Skip to content
+
+## Navigation Menu
+
+Toggle navigation
+
+Sign in 
+
+  * Product 
+
+    * Actions
+
+Automate any workflow 
+
+    * Packages
+
+Host and manage packages 
+
+    * Security
+
+Find and fix vulnerabilities 
+
+    * Codespaces
+
+Instant dev environments 
+
+    * GitHub Copilot
+
+Write better code with AI 
+
+    * Code review
+
+Manage code changes 
+
+    * Issues
+
+Plan and track work 
+
+    * Discussions
+
+Collaborate outside of code 
+
+Explore
+    * All features 
+    * Documentation 
+    * GitHub Skills 
+    * Blog 
+
+  * Solutions 
+
+By size
+    * Enterprise 
+    * Teams 
+    * Startups 
+
+By industry
+    * Healthcare 
+    * Financial services 
+    * Manufacturing 
+
+By use case
+    * CI/CD & Automation 
+    * DevOps 
+    * DevSecOps 
+
+  * Resources 
+
+Topics
+    * AI 
+    * DevOps 
+    * Security 
+    * Software Development 
+
+Explore
+    * Learning Pathways 
+    * White papers, Ebooks, Webinars 
+    * Customer Stories 
+    * Partners 
+
+  * Open Source 
+
+    * GitHub Sponsors
+
+Fund open source developers 
+
+    * The ReadME Project
+
+GitHub community articles 
+
+Repositories
+    * Topics 
+    * Trending 
+    * Collections 
+
+  * Enterprise 
+
+    * Enterprise platform
+
+AI-powered developer platform 
+
+Available add-ons
+    * Advanced Security
+
+Enterprise-grade security features 
+
+    * GitHub Copilot
+
+Enterprise-grade AI features 
+
+    * Premium Support
+
+Enterprise-grade 24/7 support 
+
+  * Pricing
+
+
+
+Search or jump to...
+
+# Search code, repositories, users, issues, pull requests...
+
+Search 
+
+Clear
+
+
+
+
+Search syntax tips 
+
+#  Provide feedback 
+
+We read every piece of feedback, and take your input very seriously.
+
+Include my email address so I can be contacted
+
+Cancel  Submit feedback 
+
+#  Saved searches 
+
+## Use saved searches to filter your results more quickly
+
+Name
+
+Query
+
+To see all available qualifiers, see our documentation. 
+
+Cancel  Create saved search 
+
+Sign in 
+
+Sign up  Reseting focus
+
+You signed in with another tab or window. Reload to refresh your session. You signed out in another tab or window. Reload to refresh your session. You switched accounts on another tab or window. Reload to refresh your session. Dismiss alert
+
+{{ message }}
+
+k8s-operatorhub  / **community-operators ** Public
+
+  * Notifications  You must be signed in to change notification settings
+  * Fork 564
+  * Star  210
+
+
+
+
+The canonical source for Kubernetes Operators that are published on OperatorHub.io and part of the default catalog of the Operator Lifecycle Manager. 
+
+### License
+
+Apache-2.0 license 
+
+210 stars  564 forks  Branches Tags Activity
+
+Star 
+
+Notifications  You must be signed in to change notification settings
+
+  * Code
+  * Issues 2
+  * Pull requests 4
+  * Discussions
+  * Actions
+  * Security
+  * Insights
+
+
+
+Additional navigation options
+
+  * Code 
+  * Issues 
+  * Pull requests 
+  * Discussions 
+  * Actions 
+  * Security 
+  * Insights 
+
+
+
+# k8s-operatorhub/community-operators
+
+This commit does not belong to any branch on this repository, and may belong to a fork outside of the repository.
+
+main
+
+BranchesTags
+
+Go to file
+
+Code
+
+## Folders and files
+
+NameName
+
+Last commit message
+
+Last commit date  
+  
+## Latest commit
+
+## History
+
+9,858 Commits  
+  
+.github/workflows
+
+.github/workflows  
+  
+ci
+
+ci  
+  
+docs
+
+docs  
+  
+operators
+
+operators  
+  
+scripts
+
+scripts  
+  
+.gitignore
+
+.gitignore  
+  
+LICENSE
+
+LICENSE  
+  
+README.md
+
+README.md  
+  
+categories.json
+
+categories.json  
+  
+config.yaml
+
+config.yaml  
+  
+upstream.Dockerfile
+
+upstream.Dockerfile  
+  
+View all files  
+  
+## Repository files navigation
+
+  * README
+  * Apache-2.0 license
+
+
+
+# Kubernetes Community Operators
+
+## About this repository
+
+This repo is the canonical source for Kubernetes Operators that appear on OperatorHub.io. The solutions merged on this repository are distributed via the OLM index catalog quay.io/operatorhubio/catalog. Users can install OLM in any Kubernetes or vendor such as Openshift to consume this content by adding a new CatalogSource for the index image `quay.io/operatorhubio/catalog`. (more info)
+
+**NOTE** If you are looking to distribute solutions on Openshift/OKD catalog then, you also should publish them into the repository Community Operators.
+
+## Documentation
+
+Full documentation is generated via mkdoc and is located at https://k8s-operatorhub.github.io/community-operators/
+
+## IMPORTANT NOTICE
+
+Some APIs versions are deprecated and are OR will no longer be served on the Kubernetes version `1.22/1.25/1.26` and consequently on vendors like Openshift `4.9/4.12/4.13`.
+
+**What does it mean for you?**
+
+Operator bundle versions using the removed APIs can not work successfully from the respective releases. Therefore, it is recommended to check if your solutions are failing in these scenarios to let its users be aware. Note that you can inform via the CSV the minimal (`spec.minKubeVersion`) and the max Kubernetes version (metadata.annotation `operatorhub.io/ui-metadata-max-k8s-version`) where your solution can successfully work. This information can be checked on the details of each release on OperatorHub.io.
+
+Please, make sure you check the following announcements:
+
+  * How to deal with removal of v1beta1 CRD removals in Kubernetes 1.22
+  * Kubernetes API removals on 1.25/1.26 might impact your Operator. How to deal with it?
+
+
+
+> **NOTE** _If you have been distributing solutions on Openshift you might be aware of the property`"olm.properties": '[{"type": "olm.maxOpenShiftVersion", "value": "<OCP version>"}]'` which can be used to block cluster admins upgrades when they have Operator versions installed that can **not** work well in OCP versions higher than the value informed. Nothing prevents you from using this property here, however, be aware that it is ignored on OperatorHub.io and that the index catalog built from this repository is not part of the Openshift catalog. So that, it can be useful only for those who are creating a new Source Catalog on Openshift using the index image: `quay.io/operatorhubio/catalog:latest`._
+
+## Reporting Bugs
+
+Use the issue tracker in this repository to report bugs.
+
+## About
+
+The canonical source for Kubernetes Operators that are published on OperatorHub.io and part of the default catalog of the Operator Lifecycle Manager. 
+
+### Resources
+
+Readme 
+
+### License
+
+Apache-2.0 license 
+
+Activity
+
+Custom properties
+
+### Stars
+
+**210** stars 
+
+### Watchers
+
+**5** watching 
+
+### Forks
+
+**564** forks 
+
+Report repository 
+
+##  Releases 
+
+No releases published
+
+##  Packages 0
+
+No packages published   
+
+
+##  Contributors 506
+
+  *   *   *   *   *   *   *   *   *   *   *   *   *   * 
+
+
+\+ 492 contributors 
+
+## Languages
+
+  * Dockerfile 98.8%
+  * Shell 1.2%
+
+
+
+## Footer
+
+© 2024 GitHub, Inc. 
+
+### Footer navigation
+
+  * Terms
+  * Privacy
+  * Security
+  * Status
+  * Docs
+  * Contact
+  * Manage cookies 
+  * Do not share my personal information 
+
+
+
+You can’t perform that action at this time. 

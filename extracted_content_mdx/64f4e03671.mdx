@@ -1,0 +1,516 @@
+Skip to content
+
+## Navigation Menu
+
+Toggle navigation
+
+Sign in 
+
+  * Product 
+
+    * Actions
+
+Automate any workflow 
+
+    * Packages
+
+Host and manage packages 
+
+    * Security
+
+Find and fix vulnerabilities 
+
+    * Codespaces
+
+Instant dev environments 
+
+    * GitHub Copilot
+
+Write better code with AI 
+
+    * Code review
+
+Manage code changes 
+
+    * Issues
+
+Plan and track work 
+
+    * Discussions
+
+Collaborate outside of code 
+
+Explore
+    * All features 
+    * Documentation 
+    * GitHub Skills 
+    * Blog 
+
+  * Solutions 
+
+By size
+    * Enterprise 
+    * Teams 
+    * Startups 
+
+By industry
+    * Healthcare 
+    * Financial services 
+    * Manufacturing 
+
+By use case
+    * CI/CD & Automation 
+    * DevOps 
+    * DevSecOps 
+
+  * Resources 
+
+Topics
+    * AI 
+    * DevOps 
+    * Security 
+    * Software Development 
+
+Explore
+    * Learning Pathways 
+    * White papers, Ebooks, Webinars 
+    * Customer Stories 
+    * Partners 
+
+  * Open Source 
+
+    * GitHub Sponsors
+
+Fund open source developers 
+
+    * The ReadME Project
+
+GitHub community articles 
+
+Repositories
+    * Topics 
+    * Trending 
+    * Collections 
+
+  * Enterprise 
+
+    * Enterprise platform
+
+AI-powered developer platform 
+
+Available add-ons
+    * Advanced Security
+
+Enterprise-grade security features 
+
+    * GitHub Copilot
+
+Enterprise-grade AI features 
+
+    * Premium Support
+
+Enterprise-grade 24/7 support 
+
+  * Pricing
+
+
+
+Search or jump to...
+
+# Search code, repositories, users, issues, pull requests...
+
+Search 
+
+Clear
+
+
+
+
+Search syntax tips 
+
+#  Provide feedback 
+
+We read every piece of feedback, and take your input very seriously.
+
+Include my email address so I can be contacted
+
+Cancel  Submit feedback 
+
+#  Saved searches 
+
+## Use saved searches to filter your results more quickly
+
+Name
+
+Query
+
+To see all available qualifiers, see our documentation. 
+
+Cancel  Create saved search 
+
+Sign in 
+
+Sign up  Reseting focus
+
+You signed in with another tab or window. Reload to refresh your session. You signed out in another tab or window. Reload to refresh your session. You switched accounts on another tab or window. Reload to refresh your session. Dismiss alert
+
+{{ message }}
+
+lsst  / **qserv-operator ** Public
+
+  * Notifications  You must be signed in to change notification settings
+  * Fork 7
+  * Star  6
+
+
+
+
+Qserv Operator creates/configures/manages Qserv clusters atop Kubernetes 
+
+dm.lsst.org/
+
+6 stars  7 forks  Branches Tags Activity
+
+Star 
+
+Notifications  You must be signed in to change notification settings
+
+  * Code
+  * Issues 0
+  * Pull requests 5
+  * Actions
+  * Security
+  * Insights
+
+
+
+Additional navigation options
+
+  * Code 
+  * Issues 
+  * Pull requests 
+  * Actions 
+  * Security 
+  * Insights 
+
+
+
+# lsst/qserv-operator
+
+This commit does not belong to any branch on this repository, and may belong to a fork outside of the repository.
+
+main
+
+BranchesTags
+
+Go to file
+
+Code
+
+## Folders and files
+
+NameName
+
+Last commit message
+
+Last commit date  
+  
+## Latest commit
+
+## History
+
+367 Commits  
+  
+.github
+
+.github  
+  
+api/v1beta1
+
+api/v1beta1  
+  
+config
+
+config  
+  
+configmap
+
+configmap  
+  
+controllers
+
+controllers  
+  
+doc
+
+doc  
+  
+examples
+
+examples  
+  
+hack
+
+hack  
+  
+manifests
+
+manifests  
+  
+tests
+
+tests  
+  
+.dockerignore
+
+.dockerignore  
+  
+.gitignore
+
+.gitignore  
+  
+.grype.yaml
+
+.grype.yaml  
+  
+Dockerfile
+
+Dockerfile  
+  
+Makefile
+
+Makefile  
+  
+PROJECT
+
+PROJECT  
+  
+README.md
+
+README.md  
+  
+README.migration.md
+
+README.migration.md  
+  
+TODO.org
+
+TODO.org  
+  
+build.sh
+
+build.sh  
+  
+deploy.sh
+
+deploy.sh  
+  
+env.build.sh
+
+env.build.sh  
+  
+go.mod
+
+go.mod  
+  
+go.sum
+
+go.sum  
+  
+main.go
+
+main.go  
+  
+prereq-build.sh
+
+prereq-build.sh  
+  
+prereq-install.sh
+
+prereq-install.sh  
+  
+publish-release.sh
+
+publish-release.sh  
+  
+push-image.sh
+
+push-image.sh  
+  
+static-analysis.sh
+
+static-analysis.sh  
+  
+View all files  
+  
+## Repository files navigation
+
+  * README
+
+
+
+# qserv-operator
+
+A qserv operator for Kubernetes based on operator-framework. An Operator is a method of packaging, deploying and managing a Kubernetes application.
+
+## Continuous integration for master branch
+
+Build Qserv-operator and run Qserv multi-node integration tests (using a fixed Qserv version)
+
+CI Status Image build e2e tests Documentation generation Static code analysis Image security scan  
+Gihub Yes Yes https://qserv-operator.lsst.io/ Yes Yes  
+  
+## Documentation
+
+Access to Qserv-operator documentation
+
+# Code analysis
+
+Security overview
+
+## How to publish a new release for the whole Qserv stack
+
+### Qserv (and _worker, _master flavor containers), qserv_distrib, qserv_testdata
+
+These are built and published by running the two jenkins jobs rebuild-publish-qserv-dev and build-dev, after pushing tags to all the involved repositories. Then release tags must be added to the resulting containers on docker hub.
+
+### qserv-operator
+
+Validate the integration of `qserv-operator` with the release in CI (i.e. GHA), using a dedicated branch
+    
+    
+    cd <project_directory>
+    # RELEASE format is "<YYYY>.<M>.<i>-rc<j>"
+    RELEASE="2024.5.1-rc5"
+    git checkout -b $RELEASE
+    # Script below edit `qserv` image name in `manifests/image.yaml`, and prepare operatorHub packaging
+    ./publish-release.sh "$RELEASE"
+    
+
+Then edit `qserv-ingest` version in `tests/e2e/integration.sh`, to validate the release component altogether. Once the release CI pass, merge the release branch to `main` branch.
+
+In `main` branch, create the release tag and the image
+    
+    
+    git tag -a "$RELEASE" -m "Version $RELEASE"
+    git push --follow-tags
+    
+    ./push-image.sh
+    
+
+This will automatically push the release tag to the repositories, and push the tagged container images to docker hub.
+
+## How to publish a new release to operatorHub
+
+The above step (i.e. release publishing) must have been completed before doing this one.
+    
+    
+    make bundle
+    RELEASE="2024.5.1-rc5"
+    OPERATOR_SRC_DIR="$PWD"
+    # Clone community-operators and create a branch
+    gh repo clone https://github.com/lsst/community-operators.git /tmp/community-operators
+    cd /tmp/community-operators
+    # Synchronize with upstream repository
+    git fetch upstream
+    git checkout main
+    git merge upstream/main
+    git push origin main
+    # Prepare a Pull-Request
+    git checkout -b "$RELEASE"
+    cp -r $OPERATOR_SRC_DIR/bundle /tmp/community-operators/operators/qserv-operator/"$RELEASE"
+    # WARNING: Edit manually 'version' and 'replaceVersion' fields at the end of file qserv-operator.clusterserviceversion.yaml
+    git add .
+    git commit --signoff -m "Release $RELEASE for qserv-operator"
+    git push --set-upstream origin "$RELEASE"
+    gh repo view --web
+    # Then make a PR: https://github.com/lsst/community-operators/compare
+    
+
+* * *
+
+**NOTE**
+
+If a CI test fail in PR for community-operators official repository, it is possible to run it locally on a workstation using:
+    
+    
+    RELEASE="2024.5.1-rc5"
+    OPP_PRODUCTION_TYPE=k8s bash <(curl -sL https://raw.githubusercontent.com/redhat-openshift-ecosystem/community-operators-pipeline/ci/latest/ci/scripts/opp.sh) \
+    kiwi operators/qserv-operator/$RELEASE
+    
+
+* * *
+
+## About
+
+Qserv Operator creates/configures/manages Qserv clusters atop Kubernetes 
+
+dm.lsst.org/
+
+### Topics
+
+kubernetes  lsst  operator-sdk 
+
+### Resources
+
+Readme 
+
+Activity
+
+Custom properties
+
+### Stars
+
+**6** stars 
+
+### Watchers
+
+**4** watching 
+
+### Forks
+
+**7** forks 
+
+Report repository 
+
+##  Releases 
+
+55 tags
+
+##  Packages 0
+
+No packages published   
+
+
+##  Contributors 6
+
+  *   *   *   *   *   * 
+
+
+## Languages
+
+  * Go 78.2%
+  * Shell 14.1%
+  * Makefile 7.2%
+  * Other 0.5%
+
+
+
+## Footer
+
+© 2024 GitHub, Inc. 
+
+### Footer navigation
+
+  * Terms
+  * Privacy
+  * Security
+  * Status
+  * Docs
+  * Contact
+  * Manage cookies 
+  * Do not share my personal information 
+
+
+
+You can’t perform that action at this time. 

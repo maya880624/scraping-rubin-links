@@ -1,0 +1,167 @@
+kafka-aggregator
+
+  * Forum
+  * Docs
+  * LSST.org â
+
+
+
+### Navigation
+
+  * next » 
+  * kafka-aggregator » 
+
+
+
+# Kafka-aggregatorÂ¶
+
+A Kafka aggregator based on the Faust Python Stream Processing library.
+
+This site provides documentation for the kafka-aggregator installation, configuration, user and development guides, and API reference.
+
+Before installing kafka-aggregator, you might want to use the docker-compose set up as a way to run it locally, in this case jump straight to the Configuration and User guide sessions.
+
+## OverviewÂ¶
+
+kafka-aggregator uses Faustâs windowing feature to aggregate Kafka streams.
+
+kafka-aggregator implements a Faust agent (stream processor) that adds messages from a source topic into a Faust table. The table is configured as a tumbling window with a size and an expiration time. Every time a window expires, a callback function is called to aggregate the messages allocated to that window. The size of the window controls the frequency of the aggregated stream.
+
+kafka-aggregator uses faust-avro to add Avro serialization and Schema Registry support to Faust.
+
+Figure 1. Kafka-aggregator architecture diagram showing Kafka and Faust components.Â¶
+
+### Summary statisticsÂ¶
+
+kafka-aggregator uses the Python statistics module to compute summary statistics for each numerical field in the source topic.
+
+_Summary statistics computed by kafka-aggregator_.Â¶
+
+mean()
+
+Arithmetic mean (âaverageâ) of data.  
+  
+median()
+
+Median (middle value) of data.  
+  
+min()
+
+Minimum value of data.  
+  
+max()
+
+Maximum value of data.  
+  
+stdev()
+
+Sample standard deviation of data.  
+  
+q1()
+
+First quartile of the data.  
+  
+q3()
+
+Third quartile of the data.  
+  
+### ScalabilityÂ¶
+
+As a kafka application, it is easy to scale kafka-aggregator horizontally by increasing the number of partitions for the source topics and by running more workers.
+
+To help to define the number of workers in a given environment, kafka-aggregator comes with an example module. Using the kafka-aggregator example module, you can initialize a number of source topics in kafka, control the number of fields in each topic, and produce messages for those topics at a given frequency. It is a good way to start running kafka-aggregator and to understand how it scales in a particular environment.
+
+## InstallationÂ¶
+
+  * Installation guide
+    * Helm chart
+    * Argo CD
+
+
+
+## ConfigurationÂ¶
+
+  * Configuration settings
+    * Kafka settings
+    * Kafka-aggregator settings
+    * Example module configuration
+    * Configuration class
+
+
+
+## User guideÂ¶
+
+  * How to run kafka-aggregator
+    * Running locally with docker-compose
+    * Initializing source topics
+    * Generating Faust agents
+    * Starting a worker
+    * Producing messages
+    * Inspecting the consumer lag
+    * Internal vs. external managed topics
+
+
+
+## Development guideÂ¶
+
+  * Development guide
+    * Pull Request Guidelines
+  * Release procedure
+
+
+
+## APIÂ¶
+
+  * API Reference
+    * kafkaaggregator.app Module
+    * kafkaaggregator.fields Module
+    * kafkaaggregator.topics Module
+    * kafkaaggregator.models Module
+    * kafkaaggregator.aggregator Module
+    * kafkaaggregator.generator Module
+    * kafkaaggregator.cli Module
+    * kafkaaggregator.example Module
+
+
+
+## Project informationÂ¶
+
+The GitHub repository for `kafka-aggregator` is https://github.com/lsst-sqre/kafka-aggregator
+
+  * Contributing
+    * Reporting an issue
+    * Fix bugs or implement features
+    * Write Documentation
+    * Send Feedback
+  * Change log
+    * 0.2.0 (2020-08-14)
+    * 0.1.0 (2020-07-13)
+
+
+
+See the LICENSE file for licensing information.
+
+### On this page
+
+  * Kafka-aggregator
+    * Overview
+      * Summary statistics
+      * Scalability
+    * Installation
+    * Configuration
+    * User guide
+    * Development guide
+    * API
+    * Project information
+
+
+
+Back to Top
+
+Created using Sphinx 5.1.1. Page design is based on Astropy's bootstrap-astropy theme in astropy-helpers.   
+LSST documentation is proudly served through the Fastly CDN. 
+
+© Copyright 2020Association of Universities for Research in Astronomy.  
+
+
+Financial support for LSST comes from the National Science Foundation (NSF) through Cooperative Agreement No. 1258333, the Department of Energy (DOE) Office of Science under Contract No. DE-AC02-76SF00515, and private funding raised by the LSST Corporation. The NSF-funded LSST Project Office for construction was established as an operating center under management of the Association of Universities for Research in Astronomy (AURA). The DOE-funded effort to build the LSST camera is managed by the SLAC National Accelerator Laboratory (SLAC). 

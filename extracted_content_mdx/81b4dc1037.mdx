@@ -1,0 +1,403 @@
+Skip to content
+
+## Navigation Menu
+
+Toggle navigation
+
+Sign in 
+
+  * Product 
+
+    * Actions
+
+Automate any workflow 
+
+    * Packages
+
+Host and manage packages 
+
+    * Security
+
+Find and fix vulnerabilities 
+
+    * Codespaces
+
+Instant dev environments 
+
+    * GitHub Copilot
+
+Write better code with AI 
+
+    * Code review
+
+Manage code changes 
+
+    * Issues
+
+Plan and track work 
+
+    * Discussions
+
+Collaborate outside of code 
+
+Explore
+    * All features 
+    * Documentation 
+    * GitHub Skills 
+    * Blog 
+
+  * Solutions 
+
+By size
+    * Enterprise 
+    * Teams 
+    * Startups 
+
+By industry
+    * Healthcare 
+    * Financial services 
+    * Manufacturing 
+
+By use case
+    * CI/CD & Automation 
+    * DevOps 
+    * DevSecOps 
+
+  * Resources 
+
+Topics
+    * AI 
+    * DevOps 
+    * Security 
+    * Software Development 
+
+Explore
+    * Learning Pathways 
+    * White papers, Ebooks, Webinars 
+    * Customer Stories 
+    * Partners 
+
+  * Open Source 
+
+    * GitHub Sponsors
+
+Fund open source developers 
+
+    * The ReadME Project
+
+GitHub community articles 
+
+Repositories
+    * Topics 
+    * Trending 
+    * Collections 
+
+  * Enterprise 
+
+    * Enterprise platform
+
+AI-powered developer platform 
+
+Available add-ons
+    * Advanced Security
+
+Enterprise-grade security features 
+
+    * GitHub Copilot
+
+Enterprise-grade AI features 
+
+    * Premium Support
+
+Enterprise-grade 24/7 support 
+
+  * Pricing
+
+
+
+Search or jump to...
+
+# Search code, repositories, users, issues, pull requests...
+
+Search 
+
+Clear
+
+
+
+
+Search syntax tips 
+
+#  Provide feedback 
+
+We read every piece of feedback, and take your input very seriously.
+
+Include my email address so I can be contacted
+
+Cancel  Submit feedback 
+
+#  Saved searches 
+
+## Use saved searches to filter your results more quickly
+
+Name
+
+Query
+
+To see all available qualifiers, see our documentation. 
+
+Cancel  Create saved search 
+
+Sign in 
+
+Sign up  Reseting focus
+
+You signed in with another tab or window. Reload to refresh your session. You signed out in another tab or window. Reload to refresh your session. You switched accounts on another tab or window. Reload to refresh your session. Dismiss alert
+
+{{ message }}
+
+lsst-sqre  / **safir ** Public
+
+  * Notifications  You must be signed in to change notification settings
+  * Fork 1
+  * Star  8
+
+
+
+
+Safir is the SQuaRE Framework for building FastAPI services 
+
+safir.lsst.io
+
+### License
+
+MIT license 
+
+8 stars  1 fork  Branches Tags Activity
+
+Star 
+
+Notifications  You must be signed in to change notification settings
+
+  * Code
+  * Issues 0
+  * Pull requests 3
+  * Actions
+  * Projects 0
+  * Security
+  * Insights
+
+
+
+Additional navigation options
+
+  * Code 
+  * Issues 
+  * Pull requests 
+  * Actions 
+  * Projects 
+  * Security 
+  * Insights 
+
+
+
+# lsst-sqre/safir
+
+This commit does not belong to any branch on this repository, and may belong to a fork outside of the repository.
+
+main
+
+BranchesTags
+
+Go to file
+
+Code
+
+## Folders and files
+
+NameName
+
+Last commit message
+
+Last commit date  
+  
+## Latest commit
+
+## History
+
+831 Commits  
+  
+.github
+
+.github  
+  
+changelog.d
+
+changelog.d  
+  
+docs
+
+docs  
+  
+safir-arq
+
+safir-arq  
+  
+safir
+
+safir  
+  
+.gitignore
+
+.gitignore  
+  
+.pre-commit-config.yaml
+
+.pre-commit-config.yaml  
+  
+CHANGELOG.md
+
+CHANGELOG.md  
+  
+LICENSE
+
+LICENSE  
+  
+README.md
+
+README.md  
+  
+noxfile.py
+
+noxfile.py  
+  
+pyproject.toml
+
+pyproject.toml  
+  
+ruff-shared.toml
+
+ruff-shared.toml  
+  
+View all files  
+  
+## Repository files navigation
+
+  * README
+  * Code of conduct
+  * MIT license
+
+
+
+# Safir
+
+Safir is Rubin Observatory's library for building FastAPI services for the Rubin Science Platform (Phalanx) and Roundtable Kubernetes clusters. Safir is developed, maintained, and field tested by the SQuaRE team.
+
+Safir is available from PyPI:
+    
+    
+    pip install safir
+
+The best way to create a new FastAPI/Safir service is with the `fastapi_safir_app` template.
+
+Read more about Safir at https://safir.lsst.io.
+
+## Features
+
+  * Set up an `httpx.AsyncClient` as part of the application start-up and shutdown lifecycle.
+  * Set up structlog-based logging.
+  * Middleware for attaching request context to the logger to include a request UUID, method, and route in all log messages.
+  * Process `X-Forwarded-*` headers to determine the source IP and related information of the request.
+  * Gather and structure standard metadata about your application.
+  * Operate a distributed Redis job queue with arq using convenient clients, testing mocks, and a FastAPI dependency.
+
+
+
+## Developing Safir
+
+The best way to start contributing to Safir is by cloning this repository creating a virtual environment, and running the init command:
+    
+    
+    git clone https://github.com/lsst-sqre/safir.git
+    cd safir
+    make init
+
+For details, see https://safir.lsst.io/dev/development.html.
+
+## About
+
+Safir is the SQuaRE Framework for building FastAPI services 
+
+safir.lsst.io
+
+### Topics
+
+roundtable  pypi-package 
+
+### Resources
+
+Readme 
+
+### License
+
+MIT license 
+
+### Code of conduct
+
+Code of conduct 
+
+Activity
+
+Custom properties
+
+### Stars
+
+**8** stars 
+
+### Watchers
+
+**7** watching 
+
+### Forks
+
+**1** fork 
+
+Report repository 
+
+##  Releases 42
+
+6.2.0 Latest 
+
+Aug 2, 2024
+
+\+ 41 releases 
+
+##  Contributors 10
+
+  *   *   *   *   *   *   *   *   *   * 
+
+
+## Languages
+
+  * Python 100.0%
+
+
+
+## Footer
+
+© 2024 GitHub, Inc. 
+
+### Footer navigation
+
+  * Terms
+  * Privacy
+  * Security
+  * Status
+  * Docs
+  * Contact
+  * Manage cookies 
+  * Do not share my personal information 
+
+
+
+You can’t perform that action at this time. 

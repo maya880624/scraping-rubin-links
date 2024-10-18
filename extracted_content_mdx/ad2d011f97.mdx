@@ -1,0 +1,422 @@
+Skip to content
+
+## Navigation Menu
+
+Toggle navigation
+
+Sign in 
+
+  * Product 
+
+    * Actions
+
+Automate any workflow 
+
+    * Packages
+
+Host and manage packages 
+
+    * Security
+
+Find and fix vulnerabilities 
+
+    * Codespaces
+
+Instant dev environments 
+
+    * GitHub Copilot
+
+Write better code with AI 
+
+    * Code review
+
+Manage code changes 
+
+    * Issues
+
+Plan and track work 
+
+    * Discussions
+
+Collaborate outside of code 
+
+Explore
+    * All features 
+    * Documentation 
+    * GitHub Skills 
+    * Blog 
+
+  * Solutions 
+
+By size
+    * Enterprise 
+    * Teams 
+    * Startups 
+
+By industry
+    * Healthcare 
+    * Financial services 
+    * Manufacturing 
+
+By use case
+    * CI/CD & Automation 
+    * DevOps 
+    * DevSecOps 
+
+  * Resources 
+
+Topics
+    * AI 
+    * DevOps 
+    * Security 
+    * Software Development 
+
+Explore
+    * Learning Pathways 
+    * White papers, Ebooks, Webinars 
+    * Customer Stories 
+    * Partners 
+
+  * Open Source 
+
+    * GitHub Sponsors
+
+Fund open source developers 
+
+    * The ReadME Project
+
+GitHub community articles 
+
+Repositories
+    * Topics 
+    * Trending 
+    * Collections 
+
+  * Enterprise 
+
+    * Enterprise platform
+
+AI-powered developer platform 
+
+Available add-ons
+    * Advanced Security
+
+Enterprise-grade security features 
+
+    * GitHub Copilot
+
+Enterprise-grade AI features 
+
+    * Premium Support
+
+Enterprise-grade 24/7 support 
+
+  * Pricing
+
+
+
+Search or jump to...
+
+# Search code, repositories, users, issues, pull requests...
+
+Search 
+
+Clear
+
+
+
+
+Search syntax tips 
+
+#  Provide feedback 
+
+We read every piece of feedback, and take your input very seriously.
+
+Include my email address so I can be contacted
+
+Cancel  Submit feedback 
+
+#  Saved searches 
+
+## Use saved searches to filter your results more quickly
+
+Name
+
+Query
+
+To see all available qualifiers, see our documentation. 
+
+Cancel  Create saved search 
+
+Sign in 
+
+Sign up  Reseting focus
+
+You signed in with another tab or window. Reload to refresh your session. You signed out in another tab or window. Reload to refresh your session. You switched accounts on another tab or window. Reload to refresh your session. Dismiss alert
+
+{{ message }}
+
+lsst  / **lsst-texmf ** Public
+
+  * Notifications  You must be signed in to change notification settings
+  * Fork 21
+  * Star  10
+
+
+
+
+LSST TeX macros and class files 
+
+lsst-texmf.lsst.io
+
+10 stars  21 forks  Branches Tags Activity
+
+Star 
+
+Notifications  You must be signed in to change notification settings
+
+  * Code
+  * Issues 0
+  * Pull requests 2
+  * Actions
+  * Projects 0
+  * Security
+  * Insights
+
+
+
+Additional navigation options
+
+  * Code 
+  * Issues 
+  * Pull requests 
+  * Actions 
+  * Projects 
+  * Security 
+  * Insights 
+
+
+
+# lsst/lsst-texmf
+
+This commit does not belong to any branch on this repository, and may belong to a fork outside of the repository.
+
+main
+
+BranchesTags
+
+Go to file
+
+Code
+
+## Folders and files
+
+NameName
+
+Last commit message
+
+Last commit date  
+  
+## Latest commit
+
+## History
+
+3,394 Commits  
+  
+.github
+
+.github  
+  
+bin
+
+bin  
+  
+docker
+
+docker  
+  
+docs
+
+docs  
+  
+etc
+
+etc  
+  
+examples
+
+examples  
+  
+templates
+
+templates  
+  
+tests
+
+tests  
+  
+texmf
+
+texmf  
+  
+ups
+
+ups  
+  
+.dockerignore
+
+.dockerignore  
+  
+.flake8
+
+.flake8  
+  
+.gitignore
+
+.gitignore  
+  
+.pre-commit-config.yaml
+
+.pre-commit-config.yaml  
+  
+.yamllint.yaml
+
+.yamllint.yaml  
+  
+Dockerfile
+
+Dockerfile  
+  
+Makefile
+
+Makefile  
+  
+README.md
+
+README.md  
+  
+pyproject.toml
+
+pyproject.toml  
+  
+requirements.txt
+
+requirements.txt  
+  
+View all files  
+  
+## Repository files navigation
+
+  * README
+
+
+
+# Rubin Observatory LSST LaTeX document class files
+
+This repository contains LaTeX class and style files that can be used to create documents matching (reasonably closely) the LSST documentation standard. This includes the `lsstdoc` class for documents (including LDM, DMTN, and SQR) and a `LSST-beamer` package for making Beamer slide decks. lsst-texmf also includes DM's common BibTeX bibliographies.
+
+**Documentation:** https://lsst-texmf.lsst.io.
+
+## Quickstart
+
+To use these class files clone this repository and set `$TEXMFHOME` to the location of the `texmf` subdirectory. For example, with `bash` or `sh`:
+    
+    
+    git clone https://github.com/lsst/lsst-texmf
+    export TEXMFHOME=`pwd`/lsst-texmf/texmf
+
+Additionally, add `lsst-texmf/bin` to you `PATH` so lsst-texmf's scripts such as `generateAcronyms.py` and `db2authors.py` are available.
+
+Next, read the docs at https://lsst-texmf.lsst.io.
+
+## Docker image
+
+You can compile your document through an lsst-texmf Docker image to avoid installing LaTeX and lsst-texmf on your own computer:
+    
+    
+    docker run --rm -v `pwd`:/build -w /build lsstsqre/lsst-texmf:latest sh -c 'make'
+
+See the documentation for more information.
+
+## Developers
+
+Please refer to the lsst-texmf Developer Guide for contribution information.
+
+If adding or removing files from the `texmf` directory, please remember to run the `mktexlsr` command and commit the new version of `ls-R`.
+    
+    
+    mktexlsr --verbose texmf
+
+## About
+
+LSST TeX macros and class files 
+
+lsst-texmf.lsst.io
+
+### Resources
+
+Readme 
+
+Activity
+
+Custom properties
+
+### Stars
+
+**10** stars 
+
+### Watchers
+
+**51** watching 
+
+### Forks
+
+**21** forks 
+
+Report repository 
+
+##  Releases 
+
+No releases published
+
+##  Packages 0
+
+No packages published   
+
+
+##  Contributors 56
+
+  *   *   *   *   *   *   *   *   *   *   *   *   *   * 
+
+
+\+ 42 contributors 
+
+## Languages
+
+  * TeX 96.4%
+  * PostScript 2.1%
+  * Python 1.3%
+  * Makefile 0.1%
+  * HTML 0.1%
+  * Dockerfile 0.0%
+
+
+
+## Footer
+
+© 2024 GitHub, Inc. 
+
+### Footer navigation
+
+  * Terms
+  * Privacy
+  * Security
+  * Status
+  * Docs
+  * Contact
+  * Manage cookies 
+  * Do not share my personal information 
+
+
+
+You can’t perform that action at this time. 

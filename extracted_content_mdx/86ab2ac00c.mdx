@@ -1,0 +1,167 @@
+ts_mtdome
+
+  * Forum
+  * Docs
+  * LSST.org â
+
+
+
+### Navigation
+
+  * next » 
+  * ts_mtdome » 
+
+
+
+# lsst.ts.mtdomeÂ¶
+
+Controller for the Simonyi Survey Telescope dome at Vera C. Rubin Observatory.
+
+## Using lsst.ts.mtdomeÂ¶
+
+  * Communication Protocols
+    * Command Protocol
+    * Configuration Protocol
+    * JSON Schemas
+  * Lower Level Commands
+  * Lower Level Component Statuses
+  * Lower Level Configuration Parameters
+    * AMCS (Azimuth Motion Control System)
+    * LWSCS (Light Wind Screen Control System)
+  * Software Response Codes
+  * Power Management
+    * Introduction
+    * Power Management Modes
+    * Implementation
+    * Pending Items
+
+
+
+### Build and TestÂ¶
+
+This package has the following requirements:
+
+  * ts_salobj
+
+
+
+
+The package is compatible with LSST DMâs `scons` build system and `eups` package management system. Assuming you have the basic LSST DM stack installed you can do the following, from within the package directory:
+
+  * `setup -r .` to setup the package and dependencies.
+
+  * `scons` to build the package and run unit tests.
+
+  * `scons install declare` to install the package and declare it to eups.
+
+  * `package-docs build` to build the documentation. This requires `documenteer`; see building single package docs for installation instructions.
+
+
+
+
+### UsageÂ¶
+
+The primary classes are:
+
+  * `MTDomeCsc`: controller for the Simonyi Survey Telescope dome.
+
+  * `MockDomeController`: simulator for the dome TCP/IP interface.
+
+
+
+
+Run the `MTDome` controller using `bin/run_mtdome.py`.
+
+## ContributingÂ¶
+
+`lsst.ts.mtdome` is developed at https://github.com/lsst-ts/ts_mtdome. You can find Jira issues for this module using labels=ts_mtdome.
+
+## Python API referenceÂ¶
+
+### lsst.ts.mtdome PackageÂ¶
+
+#### FunctionsÂ¶
+
+`run_mtdome`()  
+  
+#### ClassesÂ¶
+
+`CommandName`(value[,Â names,Â module,Â ...])
+
+Command names.  
+  
+`CommandTime`(command,Â tai)
+
+Class representing the TAI time at which a command was issued.  
+  
+`InternalMotionState`(value[,Â names,Â module,Â ...])
+
+Internal Motion states.  
+  
+`LlcName`(value[,Â names,Â module,Â qualname,Â ...])
+
+LLC names.  
+  
+`MTDomeCsc`([config_dir,Â initial_state,Â ...])
+
+Upper level Commandable SAL Component to interface with the Simonyi Survey Telescope Dome lower level components.  
+  
+`MockMTDomeController`(port,Â log[,Â ...])
+
+Mock MTDome Controller that talks over TCP/IP.  
+  
+`ResponseCode`(value[,Â names,Â module,Â ...])
+
+Response codes.  
+  
+`ScheduledCommand`(command,Â params)
+
+Class representing a scheduled command.  
+  
+`SlipRingState`(value[,Â names,Â module,Â ...])  
+  
+`StopCommand`(scheduled_command,Â llc_name)
+
+Class representing a command to stop an ongoing motion.  
+  
+`ValidSimulationMode`(value[,Â names,Â module,Â ...])
+
+Valid values for the simulation_mode attribute of the CSC.  
+  
+#### Class Inheritance DiagramÂ¶
+
+Inheritance diagram of lsst.ts.mtdome.enums.CommandName, lsst.ts.mtdome.mtdome_csc.CommandTime, lsst.ts.mtdome.enums.InternalMotionState, lsst.ts.mtdome.enums.LlcName, lsst.ts.mtdome.mtdome_csc.MTDomeCsc, lsst.ts.mtdome.mock_controller.MockMTDomeController, lsst.ts.mtdome.enums.ResponseCode, lsst.ts.mtdome.enums.ScheduledCommand, lsst.ts.mtdome.enums.SlipRingState, lsst.ts.mtdome.enums.StopCommand, lsst.ts.mtdome.enums.ValidSimulationMode
+
+## Version HistoryÂ¶
+
+  * Version History
+
+
+
+### On this page
+
+  * lsst.ts.mtdome
+    * Using lsst.ts.mtdome
+      * Build and Test
+      * Usage
+    * Contributing
+    * Python API reference
+      * lsst.ts.mtdome Package
+        * Functions
+        * Classes
+        * Class Inheritance Diagram
+    * Version History
+
+
+
+Back to Top
+
+Last built Jul 12, 2024. 
+
+Created using Sphinx 5.3.0. Page design is based on Astropy's bootstrap-astropy theme in astropy-helpers.   
+LSST documentation is proudly served through the Fastly CDN. 
+
+© Copyright 2015-2024 LSST contributors.  
+
+
+Financial support for LSST comes from the National Science Foundation (NSF) through Cooperative Agreement No. 1258333, the Department of Energy (DOE) Office of Science under Contract No. DE-AC02-76SF00515, and private funding raised by the LSST Corporation. The NSF-funded LSST Project Office for construction was established as an operating center under management of the Association of Universities for Research in Astronomy (AURA). The DOE-funded effort to build the LSST camera is managed by the SLAC National Accelerator Laboratory (SLAC). 

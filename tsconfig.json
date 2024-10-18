@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["es5","es6", "dom", "ESNext"],
+    "lib": ["es5", "es6", "dom", "ESNext"],
     "outDir": "./dist",
     "sourceMap": true,
     "noImplicitAny": true,
@@ -8,7 +8,14 @@
     "target": "ESNext",
     "moduleResolution": "node",
     "jsx": "react",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules/*"]
+    }
+  },
+  "ts-node": {
+    "esm": true
   },
   "include": ["./**/*.ts"],
   "exclude": ["./dist"]

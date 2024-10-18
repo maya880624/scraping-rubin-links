@@ -12,3 +12,28 @@ yarn dev
 # run extract-links.ts
 npx tsc
 node ./dist/extract-links.js
+
+npx tsc
+node ./dist/rename-markdown.js
+
+npx tsc 
+node ./dist/read-links.js
+
+npx tsc
+node ./dist/scrape-web.js
+
+npx tsc
+node ./dist/scrape-links.js
+
+npx tsc
+node ./dist/pdf-markdown.js
+
+npx tsc
+node ....
+
+npx tsc 
+node ./dist/pdfToMdx.js
+
+## first level links
+    some links point to pdf: extract pdf document
+    

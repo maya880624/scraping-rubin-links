@@ -2,17 +2,27 @@
   "name": "scraping-rubin-links",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
+  "type": "commonjs",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node index.ts"
+    "dev": "node --loader ts-node/esm index.ts"
   },
   "devDependencies": {
-    "@types/node": "^20.14.10",
+    "@types/node": "^20.16.3",
+    "@types/pdf-parse": "^1.1.4",
+    "@types/pdfjs-dist": "^2.10.378",
+    "@types/turndown": "^5.0.4",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.4"
   },
   "dependencies": {
-    "puppeteer": "^22.12.1"
+    "@opendocsg/pdf2md": "^0.1.31",
+    "@types/cheerio": "^0.22.35",
+    "cheerio": "^1.0.0-rc.12",
+    "node-fetch": "^3.3.2",
+    "pdf-parse": "^1.1.1",
+    "pdfjs-dist": "^3.11.174",
+    "puppeteer": "^22.12.1",
+    "turndown": "^7.2.0"
   }
 }

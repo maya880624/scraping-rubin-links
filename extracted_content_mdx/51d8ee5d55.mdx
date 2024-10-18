@@ -1,0 +1,289 @@
+Skip to content
+
+## Navigation Menu
+
+Toggle navigation
+
+Sign in 
+
+  * Product 
+
+    * Actions
+
+Automate any workflow 
+
+    * Packages
+
+Host and manage packages 
+
+    * Security
+
+Find and fix vulnerabilities 
+
+    * Codespaces
+
+Instant dev environments 
+
+    * GitHub Copilot
+
+Write better code with AI 
+
+    * Code review
+
+Manage code changes 
+
+    * Issues
+
+Plan and track work 
+
+    * Discussions
+
+Collaborate outside of code 
+
+Explore
+    * All features 
+    * Documentation 
+    * GitHub Skills 
+    * Blog 
+
+  * Solutions 
+
+By size
+    * Enterprise 
+    * Teams 
+    * Startups 
+
+By industry
+    * Healthcare 
+    * Financial services 
+    * Manufacturing 
+
+By use case
+    * CI/CD & Automation 
+    * DevOps 
+    * DevSecOps 
+
+  * Resources 
+
+Topics
+    * AI 
+    * DevOps 
+    * Security 
+    * Software Development 
+
+Explore
+    * Learning Pathways 
+    * White papers, Ebooks, Webinars 
+    * Customer Stories 
+    * Partners 
+
+  * Open Source 
+
+    * GitHub Sponsors
+
+Fund open source developers 
+
+    * The ReadME Project
+
+GitHub community articles 
+
+Repositories
+    * Topics 
+    * Trending 
+    * Collections 
+
+  * Enterprise 
+
+    * Enterprise platform
+
+AI-powered developer platform 
+
+Available add-ons
+    * Advanced Security
+
+Enterprise-grade security features 
+
+    * GitHub Copilot
+
+Enterprise-grade AI features 
+
+    * Premium Support
+
+Enterprise-grade 24/7 support 
+
+  * Pricing
+
+
+
+Search or jump to...
+
+# Search code, repositories, users, issues, pull requests...
+
+Search 
+
+Clear
+
+
+
+
+Search syntax tips 
+
+#  Provide feedback 
+
+We read every piece of feedback, and take your input very seriously.
+
+Include my email address so I can be contacted
+
+Cancel  Submit feedback 
+
+#  Saved searches 
+
+## Use saved searches to filter your results more quickly
+
+Name
+
+Query
+
+To see all available qualifiers, see our documentation. 
+
+Cancel  Create saved search 
+
+Sign in 
+
+Sign up  Reseting focus
+
+You signed in with another tab or window. Reload to refresh your session. You signed out in another tab or window. Reload to refresh your session. You switched accounts on another tab or window. Reload to refresh your session. Dismiss alert
+
+{{ message }}
+
+lsst  / **pipelines_lsst_io ** Public
+
+  * Notifications  You must be signed in to change notification settings
+  * Fork 9
+  * Star  11
+
+
+
+
+  * Code
+  * Issues 1
+  * Pull requests 4
+  * Actions
+  * Security
+  * Insights
+
+
+
+Additional navigation options
+
+  * Code 
+  * Issues 
+  * Pull requests 
+  * Actions 
+  * Security 
+  * Insights 
+
+
+
+## Files
+
+main
+
+## Breadcrumbs
+
+  1. pipelines_lsst_io
+
+
+
+/
+
+# known-issues.rst
+
+Blame
+
+Blame
+
+## Latest commit
+
+## History
+
+History
+
+51 lines (33 loc) · 1.75 KB
+
+main
+
+## Breadcrumbs
+
+  1. pipelines_lsst_io
+
+
+
+/
+
+# known-issues.rst
+
+Top
+
+## File metadata and controls
+
+  * Preview
+
+  * Code
+
+  * Blame
+
+
+
+
+51 lines (33 loc) · 1.75 KB
+
+Raw
+
+# Known Issues
+
+## Binary installation issues
+
+### Cross Platform
+
+  * Detailed numerical results may be sensitive to the exact versions of third party numerical libraries. If you are not using the :ref:`standard Conda environment <system-prereqs>` you may encounter issues when running the :doc:`validation demo </install/demo>`.
+
+
+
+## Source installation issues
+
+### Cross Platform
+
+  * Compiling some packages---in particular `afw`\---require large amounts of RAM to compile. This is compounded as the system will automatically attempt to parallelize the build, and can cause the build to run extremely slowly or fail altogether. On machines with less than 8 GB of RAM, disable parallelization by setting `EUPSPKG_NJOBS=1` in your environment before running `eups distrib`.
+  * Detailed numerical results may be sensitive to the exact versions of third party numerical libraries. If you are not using the :ref:`standard Conda environment <system-prereqs>` you may encounter issues when running the :doc:`validation demo </install/demo>`.
+
+
+
+### macOS specific
+
+  * Some old installations of Xcode on Macs create a :file:`/Developer` directory which can interfere with installation.
+
+
+
+## Other issues
+
+Many versions of the DS9 image viewer software incorrectly read mask planes in Science Pipelines image files as all zeros.
+
+## Footer
+
+© 2024 GitHub, Inc. 
+
+### Footer navigation
+
+  * Terms
+  * Privacy
+  * Security
+  * Status
+  * Docs
+  * Contact
+  * Manage cookies 
+  * Do not share my personal information 
+
+
+
+You can’t perform that action at this time. 
